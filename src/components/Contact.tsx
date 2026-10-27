@@ -1,18 +1,12 @@
 import { ArrowUpRight } from "lucide-react";
+import { SiteCopy } from "@/content/siteCopy";
 
 interface ContactProps {
+  copy: SiteCopy;
   onOpenBooking: () => void;
 }
 
-export default function Contact({ onOpenBooking }: ContactProps) {
-  const navItems = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Insights", href: "#insights" },
-    { label: "Contact", href: "#contact" },
-  ];
-
+export default function Contact({ copy, onOpenBooking }: ContactProps) {
   return (
     <section id="contact" className="py-24 sm:py-36 bg-[#fcfbf7] border-b border-[#e8e6df]">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14">
@@ -20,23 +14,20 @@ export default function Contact({ onOpenBooking }: ContactProps) {
           {/* Coluna Esquerda: Chamada e CTA Principal */}
           <div className="lg:col-span-6 space-y-8 reveal">
             <span className="text-[12px] font-semibold tracking-wider uppercase text-[#6e6d69] block">
-              CONTACT
+              {copy.contact.label}
             </span>
             <h2 className="text-4xl sm:text-6xl md:text-7xl font-normal tracking-tight leading-[1.05] text-[#101010]">
-              Legal support for
-              <br />
-              secure decisions.
+              {copy.contact.title}
             </h2>
             <p className="text-lg sm:text-xl text-[#6e6d69] font-normal leading-relaxed max-w-lg">
-              KAFKA offers legal consulting for businesses and individuals on
-              contracts, compliance, and real estate.
+              {copy.contact.description}
             </p>
             <div className="pt-4">
               <button
                 onClick={onOpenBooking}
-                className="btn-pill px-7 py-3.5 rounded-full bg-[#101010] text-white text-base font-medium shadow-md cursor-pointer"
+                className="btn-pill px-7 py-3.5 rounded-full bg-[#101010] text-white text-base font-medium shadow-md cursor-pointer hover:bg-[#101010]/90 transition-all"
               >
-                Schedule an Appointment
+                {copy.contact.cta}
               </button>
             </div>
           </div>
@@ -45,52 +36,54 @@ export default function Contact({ onOpenBooking }: ContactProps) {
           <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-10 lg:pl-10 reveal delay-100">
             <div className="space-y-3">
               <span className="text-xs font-semibold uppercase tracking-wider text-[#6e6d69] block">
-                TALK TO US
+                {copy.contact.talkToUsLabel}
               </span>
               <a
-                href="mailto:hey@kafkalegal.pl"
-                className="text-lg sm:text-xl font-medium text-[#101010] hover:underline block"
+                href={`mailto:${copy.contact.email}`}
+                className="text-lg sm:text-xl font-medium text-[#101010] hover:underline block break-all"
               >
-                hey@kafkalegal.pl
+                {copy.contact.email}
               </a>
               <a
-                href="tel:+45121231289"
+                href={`tel:${copy.contact.phone.replace(/[^0-9+]/g, "")}`}
                 className="text-base text-[#6e6d69] hover:text-[#101010] block font-mono"
               >
-                +45 121 231 289
+                {copy.contact.phone}
               </a>
             </div>
 
             <div className="space-y-3">
               <span className="text-xs font-semibold uppercase tracking-wider text-[#6e6d69] block">
-                ADDRESS
+                {copy.contact.addressLabel}
               </span>
               <p className="text-lg sm:text-xl font-medium text-[#101010]">
-                ul. Św Jacka 21
+                {copy.contact.addressLines[0]}
                 <br />
                 <span className="text-[#6e6d69] font-normal text-base">
-                  38-102 Warszawa
+                  {copy.contact.addressLines[1]}
                 </span>
               </p>
             </div>
 
             <div className="space-y-3">
               <span className="text-xs font-semibold uppercase tracking-wider text-[#6e6d69] block">
-                WORKING HOURS
+                {copy.contact.hoursLabel}
               </span>
               <p className="text-base sm:text-lg font-medium text-[#101010]">
-                Monday — Friday
+                {copy.contact.hoursLines[0]}
                 <br />
-                <span className="text-[#6e6d69] font-normal">09:00 — 18:00 CET</span>
+                <span className="text-[#6e6d69] font-normal">
+                  {copy.contact.hoursLines[1]}
+                </span>
               </p>
             </div>
 
             <div className="space-y-2">
               <span className="text-xs font-semibold uppercase tracking-wider text-[#6e6d69] block mb-2">
-                NAVIGATION
+                {copy.contact.navLabel}
               </span>
               <ul className="space-y-1 divide-y divide-[#e8e6df]">
-                {navItems.map((item) => (
+                {copy.nav.items.map((item) => (
                   <li key={item.label} className="first:pt-0 pt-1">
                     <a
                       href={item.href}

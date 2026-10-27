@@ -11,13 +11,13 @@ const schibstedGrotesk = Schibsted_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Kafka™ — Where legal clarity meets confidence",
+  title: "Fabyana™ — Assessoria Jurídica para Agências e Negócios Digitais",
   description:
-    "Kafka™ provides clear, strategic legal solutions for businesses, entrepreneurs, and individuals across corporate law, dispute resolution, and regulatory compliance.",
+    "Proteção jurídica para agências de Live, TikTok e negócios digitais. Contratos blindados, compliance de plataformas, registro de marcas e segurança operacional.",
   openGraph: {
-    title: "Kafka™ — Where legal clarity meets confidence",
+    title: "Fabyana™ — Assessoria Jurídica para Agências e Negócios Digitais",
     description:
-      "Strategic legal advisory, notarial authentication, and corporate dispute resolution.",
+      "Ajudamos agências de TikTok, criadores e infoprodutores a escalar operações com segurança jurídica.",
     type: "website",
   },
 };
@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`h-full antialiased ${schibstedGrotesk.variable}`}>
+    <html lang="pt-BR" className={`h-full antialiased ${schibstedGrotesk.variable}`}>
       <body className="min-h-full flex flex-col bg-[#fcfbf7] text-[#101010] selection:bg-[#101010] selection:text-[#fcfbf7]">
         <MotionProvider>{children}</MotionProvider>
       </body>

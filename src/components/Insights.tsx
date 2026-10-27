@@ -1,49 +1,27 @@
 import Image from "next/image";
+import { SiteCopy } from "@/content/siteCopy";
 
-export default function Insights() {
-  const projects = [
-    {
-      title: "Property & Civil Law",
-      year: "2024",
-      tags: "Litigation • Claim Management",
-      image: "https://framerusercontent.com/images/wsGNlyuOkIdU6Vf8VoUlYjuvmC4.png",
-      alt: "Property & Civil Law Case Study",
-      align: "left",
-    },
-    {
-      title: "Nomad Vision™",
-      year: "2024",
-      tags: "Corporate Law • Civil Law",
-      image: "https://framerusercontent.com/images/nmXZOsPpIlQjIHmg5uwOA5NJcI.png",
-      alt: "Nomad Vision Corporate Law Case Study",
-      align: "right",
-    },
-    {
-      title: "Livingless",
-      year: "2025",
-      tags: "Corporate Law • Due Diligence",
-      image: "https://framerusercontent.com/images/uKY0y11Igx9LzVoeZBuszZASoU.png",
-      alt: "Livingless Legal Advisory Case Study",
-      align: "left",
-    },
-  ];
+interface InsightsProps {
+  copy: SiteCopy;
+}
 
+export default function Insights({ copy }: InsightsProps) {
   return (
     <section id="insights" className="py-24 sm:py-32 bg-[#fcfbf7] border-b border-[#e8e6df]">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14">
         {/* Header da Seção de Insights */}
         <div className="pb-16 reveal">
           <span className="text-[12px] font-semibold tracking-wider uppercase text-[#6e6d69] block mb-4">
-            INSIGHTS & CASE STUDIES
+            {copy.insights.label}
           </span>
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-normal tracking-tight leading-[1.08] max-w-2xl text-[#101010]">
-            Real-world results across corporate matters.
+            {copy.insights.title}
           </h2>
         </div>
 
         <div className="border-t border-[#e8e6df] pt-16">
           <div className="space-y-20 sm:space-y-28">
-            {projects.map((proj, idx) => (
+            {copy.insights.cases.map((proj, idx) => (
               <article
                 key={proj.title}
                 className={`grid grid-cols-1 lg:grid-cols-12 gap-6 items-start group reveal ${
@@ -63,11 +41,11 @@ export default function Insights() {
                           loading="lazy"
                         />
                       </div>
-                      <div className="flex items-center justify-between text-xs tracking-tight pt-1">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs tracking-tight pt-1 gap-1">
                         <h3 className="font-semibold text-[#101010] text-lg sm:text-xl group-hover:underline">
                           {proj.title}
                         </h3>
-                        <div className="text-right text-[11px] uppercase text-[#6e6d69] tracking-wider">
+                        <div className="text-[11px] uppercase text-[#6e6d69] tracking-wider font-mono">
                           {proj.tags}
                         </div>
                       </div>
@@ -96,11 +74,11 @@ export default function Insights() {
                           loading="lazy"
                         />
                       </div>
-                      <div className="flex items-center justify-between text-xs tracking-tight pt-1">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs tracking-tight pt-1 gap-1">
                         <h3 className="font-semibold text-[#101010] text-lg sm:text-xl group-hover:underline">
                           {proj.title}
                         </h3>
-                        <div className="text-right text-[11px] uppercase text-[#6e6d69] tracking-wider">
+                        <div className="text-[11px] uppercase text-[#6e6d69] tracking-wider font-mono">
                           {proj.tags}
                         </div>
                       </div>

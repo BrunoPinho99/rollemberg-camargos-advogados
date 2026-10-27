@@ -1,6 +1,11 @@
 import { ArrowUpRight } from "lucide-react";
+import { SiteCopy } from "@/content/siteCopy";
 
-export default function Hero() {
+interface HeroProps {
+  copy: SiteCopy;
+}
+
+export default function Hero({ copy }: HeroProps) {
   return (
     <section
       id="home"
@@ -20,17 +25,16 @@ export default function Hero() {
         id="heroSubtext"
         className="relative z-10 max-w-[1400px] w-full mx-auto px-6 sm:px-10 md:px-14 flex justify-end hero-animate-sub"
       >
-        <div className="max-w-md sm:max-w-lg text-right sm:text-left">
-          <p className="text-lg sm:text-xl md:text-[22px] font-normal leading-[1.35] tracking-tight text-white/90">
-            We help companies, entrepreneurs, and private clients navigate legal
-            complexity with confidence.
+        <div className="max-w-md sm:max-w-xl text-right sm:text-left">
+          <p className="text-lg sm:text-xl md:text-[22px] font-normal leading-[1.38] tracking-tight text-white/90">
+            {copy.hero.subtext}
           </p>
           <div className="mt-4 sm:mt-5">
             <a
               href="#services"
-              className="arrow-link text-white text-sm sm:text-base font-medium"
+              className="arrow-link text-white text-sm sm:text-base font-medium inline-flex items-center gap-1.5 hover:underline"
             >
-              <span>Our services</span>
+              <span>{copy.hero.secondaryCta}</span>
               <ArrowUpRight className="w-4 h-4 inline-block" />
             </a>
           </div>
@@ -42,12 +46,16 @@ export default function Hero() {
         id="heroHeadline"
         className="relative z-10 max-w-[1400px] w-full mx-auto px-6 sm:px-10 md:px-14 pb-12 sm:pb-16 hero-animate-title"
       >
-        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[104px] font-bold tracking-tight leading-[0.98] max-w-5xl text-white">
-          Where legal
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[96px] font-bold tracking-tight leading-[1.02] max-w-5xl text-white">
+          {copy.hero.headline.line1}
           <br />
-          clarity meets
-          <br />
-          confidence.
+          {copy.hero.headline.line2}
+          {copy.hero.headline.line3 && (
+            <>
+              <br />
+              {copy.hero.headline.line3}
+            </>
+          )}
         </h1>
 
         {/* Scroll Indicator */}
@@ -56,11 +64,11 @@ export default function Hero() {
           className="mt-12 sm:mt-16 flex items-center justify-between text-white/40 text-xs font-medium tracking-wider uppercase border-t border-white/10 pt-6 transition-opacity duration-300"
         >
           <span className="flex items-center gap-2 text-white/70">
-            <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-            Scroll to explore
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            {copy.hero.scrollIndicator}
           </span>
-          <span className="font-mono text-white/40 hidden sm:inline">
-            KAFKA™ / LEGAL ADVISORY
+          <span className="font-mono text-white/40 hidden sm:inline tracking-wider">
+            {copy.hero.badge}
           </span>
         </div>
       </div>

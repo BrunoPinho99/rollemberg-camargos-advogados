@@ -3,20 +3,26 @@
 import { useEffect, useState, FormEvent } from "react";
 import { X, CheckCircle2 } from "lucide-react";
 import { useMotion } from "./MotionProvider";
+import { SiteCopy } from "@/content/siteCopy";
 
 interface BookingModalProps {
   isOpen: boolean;
   onClose: () => void;
+  copy: SiteCopy;
 }
 
-export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
+export default function BookingModal({
+  isOpen,
+  onClose,
+  copy,
+}: BookingModalProps) {
   const { lenis } = useMotion();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    area: "advisory",
+    service: copy.modal.serviceOptions[0],
     summary: "",
   });
 
@@ -57,7 +63,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
         name: "",
         email: "",
         phone: "",
-        area: "advisory",
+        service: copy.modal.serviceOptions[0],
         summary: "",
       });
     }, 2400);
@@ -72,16 +78,16 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
         <div className="flex items-center justify-between pb-6 border-b border-[#e8e6df]">
           <div>
             <span className="text-[11px] font-semibold tracking-wider uppercase text-[#6e6d69] block mb-1">
-              KAFKA™ LEGAL CONSULTATION
+              {copy.brand.name}™ {copy.brand.tagline}
             </span>
             <h3 className="text-2xl font-bold tracking-tight text-[#101010]">
-              Schedule an Appointment
+              {copy.modal.title}
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-[#6e6d69] hover:text-[#101010] rounded-full hover:bg-neutral-200/50 transition-colors"
-            aria-label="Close modal"
+            className="p-2 text-[#6e6d69] hover:text-[#101010] rounded-full hover:bg-neutral-200/50 transition-colors cursor-pointer"
+            aria-label="Fechar modal"
           >
             <X className="w-5 h-5" />
           </button>
@@ -93,104 +99,129 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <h4 className="text-xl font-bold text-[#101010]">
-              Consultation Request Received
+              Solicitação Enviada com Sucesso
             </h4>
             <p className="text-sm text-[#6e6d69] max-w-sm mx-auto">
-              Thank you, {formData.name || "Client"}. A senior partner from Kafka™
-              will review your case and reach out within 2 business hours.
+              Obrigado, {formData.name || "Cliente"}. A equipe jurídica da{" "}
+              {copy.brand.name} entrará em contato em até 2 horas úteis pelo WhatsApp ou e-mail.
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="mt-6 space-y-4 text-left">
+          <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+            <p className="text-sm text-[#6e6d69] mb-4">
+              {copy.modal.subtitle}
+            </p>
+
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-[#6e6d69] mb-1.5">
-                Full Name
+              <label
+                htmlFor="modalName"
+                className="block text-xs font-semibold uppercase tracking-wider text-[#101010] mb-1.5"
+              >
+                Nome Completo
               </label>
               <input
+                id="modalName"
                 type="text"
                 required
-                placeholder="e.g. Alexander Vance"
+                placeholder="Ex: Ana Silva ou Razão Social"
                 value={formData.name}
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
-                className="w-full px-4 py-3 rounded-xl bg-white border border-[#e8e6df] text-[#101010] placeholder-[#6e6d69]/60 text-sm focus:outline-none focus:border-[#101010] transition-colors"
+                className="w-full px-4 py-3 rounded-xl border border-[#e8e6df] bg-white text-sm focus:outline-none focus:border-[#101010] transition-colors"
               />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-[#6e6d69] mb-1.5">
-                  Corporate Email
+                <label
+                  htmlFor="modalEmail"
+                  className="block text-xs font-semibold uppercase tracking-wider text-[#101010] mb-1.5"
+                >
+                  E-mail Profissional
                 </label>
                 <input
+                  id="modalEmail"
                   type="email"
                   required
-                  placeholder="name@company.com"
+                  placeholder="seu@dominio.com"
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-xl bg-white border border-[#e8e6df] text-[#101010] placeholder-[#6e6d69]/60 text-sm focus:outline-none focus:border-[#101010] transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border border-[#e8e6df] bg-white text-sm focus:outline-none focus:border-[#101010] transition-colors"
                 />
               </div>
+
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-[#6e6d69] mb-1.5">
-                  Phone Number
+                <label
+                  htmlFor="modalPhone"
+                  className="block text-xs font-semibold uppercase tracking-wider text-[#101010] mb-1.5"
+                >
+                  WhatsApp / Telefone
                 </label>
                 <input
+                  id="modalPhone"
                   type="tel"
                   required
-                  placeholder="+45 123 456 789"
+                  placeholder="(11) 99999-9999"
                   value={formData.phone}
                   onChange={(e) =>
                     setFormData({ ...formData, phone: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-xl bg-white border border-[#e8e6df] text-[#101010] placeholder-[#6e6d69]/60 text-sm focus:outline-none focus:border-[#101010] transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border border-[#e8e6df] bg-white text-sm focus:outline-none focus:border-[#101010] transition-colors"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-[#6e6d69] mb-1.5">
-                Legal Area of Interest
+              <label
+                htmlFor="modalService"
+                className="block text-xs font-semibold uppercase tracking-wider text-[#101010] mb-1.5"
+              >
+                Necessidade Principal
               </label>
               <select
-                value={formData.area}
+                id="modalService"
+                value={formData.service}
                 onChange={(e) =>
-                  setFormData({ ...formData, area: e.target.value })
+                  setFormData({ ...formData, service: e.target.value })
                 }
-                className="w-full px-4 py-3 rounded-xl bg-white border border-[#e8e6df] text-[#101010] text-sm focus:outline-none focus:border-[#101010] transition-colors cursor-pointer"
+                className="w-full px-4 py-3 rounded-xl border border-[#e8e6df] bg-white text-sm focus:outline-none focus:border-[#101010] transition-colors"
               >
-                <option value="advisory">001 — Legal Advisory</option>
-                <option value="notarial">002 — Notarial Services</option>
-                <option value="dispute">003 — Dispute Resolution</option>
-                <option value="documentation">004 — Legal Documentation</option>
-                <option value="other">General Inquiries / Corporate</option>
+                {copy.modal.serviceOptions.map((opt) => (
+                  <option key={opt} value={opt}>
+                    {opt}
+                  </option>
+                ))}
               </select>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-[#6e6d69] mb-1.5">
-                Case Summary (Optional)
+              <label
+                htmlFor="modalSummary"
+                className="block text-xs font-semibold uppercase tracking-wider text-[#101010] mb-1.5"
+              >
+                Breve Descrição do Caso (Opcional)
               </label>
               <textarea
+                id="modalSummary"
                 rows={3}
-                placeholder="Briefly outline your situation or business context..."
+                placeholder="Conte-nos brevemente o contexto da agência ou empresa..."
                 value={formData.summary}
                 onChange={(e) =>
                   setFormData({ ...formData, summary: e.target.value })
                 }
-                className="w-full px-4 py-3 rounded-xl bg-white border border-[#e8e6df] text-[#101010] placeholder-[#6e6d69]/60 text-sm focus:outline-none focus:border-[#101010] transition-colors"
+                className="w-full px-4 py-3 rounded-xl border border-[#e8e6df] bg-white text-sm focus:outline-none focus:border-[#101010] transition-colors resize-none"
               />
             </div>
 
-            <div className="pt-4">
+            <div className="pt-2">
               <button
                 type="submit"
-                className="btn-pill w-full py-3.5 rounded-full bg-[#101010] text-white font-medium text-sm"
+                className="btn-pill w-full py-4 rounded-xl bg-[#101010] text-white font-medium text-sm hover:bg-[#101010]/90 transition-all shadow-md cursor-pointer"
               >
-                Confirm Consultation Request
+                {copy.modal.submitButton}
               </button>
             </div>
           </form>
