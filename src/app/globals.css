@@ -1,26 +1,164 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fcfbf7;
+  --foreground: #101010;
+  --border-line: #e8e6df;
+  --muted-text: #6e6d69;
+  --ease-framer: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.15);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-schibsted), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Scrollbar minimalista */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #fcfbf7;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d2cb;
+  border-radius: 3px;
+}
+
+/* ==========================================================================
+   ATTEST FRAMER MOTION DESIGN SYSTEM
+   Física e identidade de motion mapeadas de https://attest.framer.media/:
+   - Easing Framer: cubic-bezier(0.16, 1, 0.3, 1)
+   - Micro-interações táteis nos botões (hover scale 1.02 + lift, active scale 0.97)
+   - Hover em cards e imagens (lift sutil + zoom suave scale 1.045)
+   - Scroll reveals com escala suave (scale 0.985 -> 1.0) e elevação ágil
+   - Staggers em cascata
+   ========================================================================== */
+
+/* Botões Pill Táteis (Framer Motion Physics) */
+.btn-pill {
+  transition: transform 0.24s var(--ease-framer),
+              box-shadow 0.24s var(--ease-framer),
+              background-color 0.24s var(--ease-framer),
+              color 0.24s var(--ease-framer);
+  will-change: transform, box-shadow;
+}
+.btn-pill:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 22px -4px rgba(16, 16, 16, 0.12);
+}
+.btn-pill:active {
+  transform: translateY(0px) scale(0.97);
+  box-shadow: 0 2px 8px -2px rgba(16, 16, 16, 0.08);
+}
+
+/* Estilo de links com seta diagonal (Attest Motion) */
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+  transition: all 0.25s var(--ease-framer);
+}
+.arrow-link:hover {
+  opacity: 0.75;
+  text-underline-offset: 9px;
+}
+.arrow-link svg {
+  transition: transform 0.25s var(--ease-framer);
+}
+.arrow-link:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* Cards e Imagens Interativas (Attest Lift & Gentle Zoom) */
+article.group, .framer-card {
+  transition: transform 0.4s var(--ease-framer), box-shadow 0.4s var(--ease-framer);
+}
+article.group:hover, .framer-card:hover {
+  transform: translateY(-3px);
+}
+article.group img, .framer-card img {
+  transition: transform 0.65s var(--ease-framer) !important;
+}
+article.group:hover img, .framer-card:hover img {
+  transform: scale(1.045) !important;
+}
+
+/* Animação suave para acordion do FAQ (Attest physics) */
+.faq-answer {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.38s var(--ease-framer), opacity 0.3s var(--ease-framer);
+}
+.faq-item.active .faq-answer {
+  max-height: 250px;
+  opacity: 1;
+}
+.faq-item .faq-icon {
+  transition: transform 0.32s var(--ease-framer);
+}
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+/* Logo Marquee infinito */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: 200%;
+  animation: marquee 28s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Revelação de Scroll com Física Framer Motion (Attest) */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px) scale(0.985);
+  transition: opacity 0.5s var(--ease-framer),
+              transform 0.5s var(--ease-framer);
+  will-change: opacity, transform;
+}
+.reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Staggers explícitos em cascata */
+.reveal.delay-100 { transition-delay: 0.08s; }
+.reveal.delay-200 { transition-delay: 0.16s; }
+.reveal.delay-300 { transition-delay: 0.24s; }
+.reveal.delay-400 { transition-delay: 0.32s; }
+.reveal.delay-500 { transition-delay: 0.40s; }
+
+/* Animação inicial de entrada do Hero */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.hero-animate-title {
+  animation: heroFadeUp 0.85s var(--ease-framer) 0.15s both;
+}
+.hero-animate-sub {
+  animation: heroFadeUp 0.85s var(--ease-framer) 0.3s both;
 }
