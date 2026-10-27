@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { SiteCopy } from "@/content/siteCopy";
+import { SiteCopy, copyVersionA } from "@/content/siteCopy";
 
 interface HeaderProps {
-  copy: SiteCopy;
+  copy?: SiteCopy;
   onOpenBooking: () => void;
 }
 
-export default function Header({ copy, onOpenBooking }: HeaderProps) {
+export default function Header({ copy = copyVersionA, onOpenBooking }: HeaderProps) {
   const [isPastHero, setIsPastHero] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 

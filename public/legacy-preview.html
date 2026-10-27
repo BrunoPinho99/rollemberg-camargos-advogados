@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kafka™ — Where legal clarity meets confidence</title>
+  <meta name="description" content="Kafka™ provides clear, strategic legal solutions for businesses and individuals. We turn legal complexity into confidence through precision and expertise.">
+  <link rel="icon" type="image/svg+xml" href="https://framerusercontent.com/images/PyXVDUQDFZzdxEMtSHbQJoAY.svg">
+  
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kafka™">
+  <meta property="og:description" content="Kafka™ provides clear, strategic legal solutions for businesses and individuals. We turn legal complexity into confidence through precision and expertise.">
+  <meta property="og:image" content="https://framerusercontent.com/images/0NSo9g2ncJrgLY2gFa4YbZuJA.png">
+
+  <!-- Typography: Schibsted Grotesk & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Lenis Smooth Scroll -->
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.20/dist/lenis.css">
+  <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Schibsted Grotesk"', 'sans-serif'],
+            inter: ['"Inter"', 'sans-serif'],
+          },
+          colors: {
+            bgMain: '#fcfbf7',        /* Cor de fundo exata do Kafka Framer */
+            cardBg: '#ffffff',
+            dark: '#101010',          /* Preto puro característico do Kafka */
+            muted: 'rgba(16, 16, 16, 0.5)',
+            subtle: 'rgba(16, 16, 16, 0.75)',
+            borderLine: 'rgba(16, 16, 16, 0.12)',
+            borderLight: 'rgba(255, 255, 255, 0.15)',
+          },
+          letterSpacing: {
+            tightest: '-0.04em',
+            tighter: '-0.025em',
+            wideTag: '0.08em',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg-color: #fcfbf7;
+      --text-dark: #101010;
+    }
+
+    /* Otimizações essenciais para o Lenis */
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      font-family: 'Schibsted Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* Scrollbar minimalista */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #fcfbf7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #d4d2cb;
+      border-radius: 3px;
+    }
+
+    /* ==========================================================================
+       ATTEST FRAMER MOTION DESIGN SYSTEM
+       Física e identidade de motion mapeadas de https://attest.framer.media/:
+       - Easing Framer: cubic-bezier(0.16, 1, 0.3, 1) (curva Apple/Framer spring amortecida)
+       - Micro-interações táteis nos botões (hover scale 1.02 + lift, active scale 0.97)
+       - Hover em cards e imagens (lift sutil + zoom suave scale 1.045)
+       - Scroll reveals com escala suave (scale 0.985 -> 1.0) e elevação ágil
+       - Staggers em cascata para grids e listas de itens
+       ========================================================================== */
+
+    :root {
+      --ease-framer: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-framer-spring: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+    }
+
+    /* Botões Pill Táteis (Framer Motion Physics) */
+    .btn-pill, button#navCta, button[type="submit"], .cta-pill {
+      transition: transform 0.24s var(--ease-framer),
+                  box-shadow 0.24s var(--ease-framer),
+                  background-color 0.24s var(--ease-framer),
+                  color 0.24s var(--ease-framer);
+      will-change: transform, box-shadow;
+    }
+    .btn-pill:hover, button#navCta:hover, button[type="submit"]:hover, .cta-pill:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 10px 22px -4px rgba(16, 16, 16, 0.12);
+    }
+    .btn-pill:active, button#navCta:active, button[type="submit"]:active, .cta-pill:active {
+      transform: translateY(0px) scale(0.97);
+      box-shadow: 0 2px 8px -2px rgba(16, 16, 16, 0.08);
+    }
+
+    /* Estilo de links com seta diagonal (Attest Motion) */
+    .arrow-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      text-decoration: underline;
+      text-underline-offset: 6px;
+      text-decoration-thickness: 1px;
+      transition: all 0.25s var(--ease-framer);
+    }
+    .arrow-link:hover {
+      opacity: 0.75;
+      text-underline-offset: 9px;
+    }
+    .arrow-link svg {
+      transition: transform 0.25s var(--ease-framer);
+    }
+    .arrow-link:hover svg {
+      transform: translate(3px, -3px);
+    }
+
+    /* Cards e Imagens Interativas (Attest Lift & Gentle Zoom) */
+    article.group, .framer-card {
+      transition: transform 0.4s var(--ease-framer), box-shadow 0.4s var(--ease-framer);
+    }
+    article.group:hover, .framer-card:hover {
+      transform: translateY(-3px);
+    }
+    article.group img, .framer-card img {
+      transition: transform 0.65s var(--ease-framer) !important;
+    }
+    article.group:hover img, .framer-card:hover img {
+      transform: scale(1.045) !important;
+    }
+
+    /* Animação suave para acordion do FAQ (Attest physics) */
+    .faq-answer {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.38s var(--ease-framer), opacity 0.3s var(--ease-framer);
+    }
+    .faq-item.active .faq-answer {
+      max-height: 250px;
+      opacity: 1;
+    }
+    .faq-item .faq-icon {
+      transition: transform 0.32s var(--ease-framer);
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    /* Logo Marquee infinito */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-track {
+      display: flex;
+      width: 200%;
+      animation: marquee 28s linear infinite;
+    }
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    /* Revelação de Scroll com Física Framer Motion (Attest) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px) scale(0.985);
+      transition: opacity 0.5s var(--ease-framer),
+                  transform 0.5s var(--ease-framer);
+      will-change: opacity, transform;
+    }
+    .reveal.is-revealed {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Staggers explícitos em cascata */
+    .reveal.delay-100 { transition-delay: 0.08s; }
+    .reveal.delay-200 { transition-delay: 0.16s; }
+    .reveal.delay-300 { transition-delay: 0.24s; }
+    .reveal.delay-400 { transition-delay: 0.32s; }
+    .reveal.delay-500 { transition-delay: 0.40s; }
+
+    /* Animação inicial de entrada do Hero */
+    @keyframes heroFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    .hero-animate-title {
+      animation: heroFadeUp 0.85s var(--ease-framer) 0.15s both;
+    }
+    .hero-animate-sub {
+      animation: heroFadeUp 0.85s var(--ease-framer) 0.3s both;
+    }
+  </style>
+</head>
+<body class="selection:bg-[#101010] selection:text-[#fcfbf7]">
+
+  <!-- ==================== HEADER DINÂMICO ==================== -->
+  <header id="siteHeader" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-6 px-6 sm:px-10 md:px-14">
+    <div class="max-w-[1400px] mx-auto flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="text-2xl sm:text-[26px] font-bold tracking-tightest flex items-center transition-opacity hover:opacity-85" id="navLogo">
+        <span class="tracking-tight text-white font-extrabold" id="logoText">KAFKA<sup class="text-xs font-semibold ml-0.5 tracking-normal">TM</sup></span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden md:flex items-center gap-8 text-[15px] font-medium tracking-tight" id="navMenu">
+        <a href="#home" class="nav-item text-white/90 hover:text-white transition-colors">Home</a>
+        <a href="#about" class="nav-item text-white/90 hover:text-white transition-colors">About</a>
+        <a href="#services" class="nav-item text-white/90 hover:text-white transition-colors">Services</a>
+        <a href="#insights" class="nav-item text-white/90 hover:text-white transition-colors">Insights</a>
+        <a href="#contact" class="nav-item text-white/90 hover:text-white transition-colors">Contact</a>
+      </nav>
+
+      <!-- CTA Button Desktop -->
+      <div class="hidden md:flex items-center gap-4">
+        <button onclick="openBookingModal()" id="navCta" class="btn-pill px-5 py-2.5 rounded-full text-[14px] font-medium bg-white text-dark shadow-xs">
+          Book Consultation
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuToggle" class="md:hidden p-2 text-white focus:outline-none transition-colors" aria-label="Toggle navigation">
+        <i data-lucide="menu" id="mobileMenuIcon" class="w-6 h-6"></i>
+      </button>
+
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileDrawer" class="hidden md:hidden mt-4 mx-2 rounded-2xl bg-[#fcfbf7] border border-borderLine p-6 shadow-2xl transition-all">
+      <div class="flex flex-col space-y-4 text-base font-medium text-dark">
+        <a href="#home" class="mobile-nav-link py-2 border-b border-borderLine/50">Home</a>
+        <a href="#about" class="mobile-nav-link py-2 border-b border-borderLine/50">About</a>
+        <a href="#services" class="mobile-nav-link py-2 border-b border-borderLine/50">Services</a>
+        <a href="#insights" class="mobile-nav-link py-2 border-b border-borderLine/50">Insights</a>
+        <a href="#contact" class="mobile-nav-link py-2 border-b border-borderLine/50">Contact</a>
+        <button onclick="openBookingModal(); toggleMobileMenu();" class="btn-pill w-full mt-2 py-3.5 rounded-full bg-dark text-white text-sm font-semibold tracking-wide">
+          Book Consultation
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+    <!-- ==================== HERO SECTION (MINIMALIST DARK CANVAS) ==================== -->
+    <section id="home" class="relative min-h-screen w-full flex flex-col justify-between overflow-hidden bg-[#101010] text-white">
+      
+      <!-- Fundo dark minimalista sem imagem com iluminação ambiente sutil -->
+      <div class="absolute inset-0 z-0 pointer-events-none">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-[550px] bg-gradient-to-b from-white/[0.04] via-white/[0.015] to-transparent blur-3xl opacity-70"></div>
+        <div class="absolute inset-0 bg-[#101010]"></div>
+      </div>
+
+      <!-- Espaçador do topo (para compensar header absoluto) -->
+      <div class="pt-28"></div>
+
+      <!-- Meio / Lateral Direita: Subtítulo Editorial e Link com animação dinâmica -->
+      <div id="heroSubtext" class="relative z-10 max-w-[1400px] w-full mx-auto px-6 sm:px-10 md:px-14 flex justify-end hero-animate-sub">
+        <div class="max-w-md sm:max-w-lg text-right sm:text-left">
+          <p class="text-lg sm:text-xl md:text-[22px] font-normal leading-[1.35] tracking-tight text-white/90">
+            We help companies, entrepreneurs, and private clients navigate legal complexity with confidence.
+          </p>
+          <div class="mt-4 sm:mt-5">
+            <a href="#services" class="arrow-link text-white text-sm sm:text-base font-medium">
+              <span>Our services</span>
+              <svg class="w-4 h-4 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Base do Hero: Headline Gigante "Where legal clarity meets confidence." -->
+      <div id="heroHeadline" class="relative z-10 max-w-[1400px] w-full mx-auto px-6 sm:px-10 md:px-14 pb-12 sm:pb-16 hero-animate-title transition-all duration-300">
+        <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-[104px] font-bold tracking-tightest leading-[0.98] max-w-5xl text-white">
+          Where legal<br>
+          clarity meets<br>
+          confidence.
+        </h1>
+
+        <!-- Indicador Minimalista de Scroll Dinâmico -->
+        <div id="heroScrollIndicator" class="mt-12 sm:mt-16 flex items-center justify-between text-white/40 text-xs font-medium tracking-wider uppercase border-t border-white/10 pt-6 transition-opacity duration-300">
+          <span class="flex items-center gap-2 text-white/70">
+            <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+            Scroll to explore
+          </span>
+          <span class="font-mono text-white/40 hidden sm:inline">KAFKA™ / LEGAL ADVISORY</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== TRUSTED CLIENT LOGOS (MARQUEE) ==================== -->
+    <section class="border-b border-borderLine py-10 bg-bgMain overflow-hidden select-none reveal">
+      <div class="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14 mb-4">
+        <span class="text-[11px] font-semibold tracking-wideTag uppercase text-muted">Trusted by industry leaders</span>
+      </div>
+      <div class="marquee-track flex items-center justify-between gap-16 sm:gap-24 text-dark/75 opacity-70 hover:opacity-100 transition-opacity">
+        
+        <!-- Logo Group 1 -->
+        <span class="text-xl sm:text-2xl font-serif font-bold tracking-tight">Superior Space®</span>
+        <span class="text-xl sm:text-2xl font-bold tracking-tight flex items-center gap-1.5"><span class="text-xs">●</span> Strobe™</span>
+        <span class="text-xl sm:text-2xl font-light tracking-wider flex items-center gap-1.5">✦ Sophia</span>
+        <span class="text-xl sm:text-2xl font-medium tracking-tight flex items-center gap-1.5">ꕤ Harbor™</span>
+        <span class="text-xl sm:text-2xl font-mono tracking-tight">Human.IN</span>
+        <span class="text-xl sm:text-2xl font-black tracking-tighter uppercase">Monolith™</span>
+
+        <!-- Logo Group 2 (Repetição para infinite scroll) -->
+        <span class="text-xl sm:text-2xl font-serif font-bold tracking-tight">Superior Space®</span>
+        <span class="text-xl sm:text-2xl font-bold tracking-tight flex items-center gap-1.5"><span class="text-xs">●</span> Strobe™</span>
+        <span class="text-xl sm:text-2xl font-light tracking-wider flex items-center gap-1.5">✦ Sophia</span>
+        <span class="text-xl sm:text-2xl font-medium tracking-tight flex items-center gap-1.5">ꕤ Harbor™</span>
+        <span class="text-xl sm:text-2xl font-mono tracking-tight">Human.IN</span>
+        <span class="text-xl sm:text-2xl font-black tracking-tighter uppercase">Monolith™</span>
+
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT US SECTION ==================== -->
+    <section id="about" class="py-24 sm:py-36 border-b border-borderLine bg-bgMain">
+      <div class="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+          
+          <!-- Coluna Esquerda: Tag / Label -->
+          <div class="lg:col-span-3 reveal">
+            <span class="text-[12px] font-semibold tracking-wideTag uppercase text-muted">
+              ABOUT US
+            </span>
+          </div>
+
+          <!-- Coluna Direita: Declaração Editorial Dual-Tone -->
+          <div class="lg:col-span-9 max-w-4xl reveal">
+            <h2 class="text-3xl sm:text-5xl md:text-[54px] font-medium tracking-tightest leading-[1.15]">
+              <span class="text-dark font-semibold">Kafka™ provides clear, strategic</span>
+              <span class="text-dark/45 font-normal"> legal solutions for businesses and individuals.</span>
+            </h2>
+            <p class="mt-8 sm:mt-12 text-lg sm:text-2xl font-normal text-muted leading-relaxed max-w-2xl">
+              We turn legal complexity into confidence through precision and expertise.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== OUR SERVICES SECTION (EDITORIAL ROWS) ==================== -->
+    <section id="services" class="py-24 sm:py-32 bg-bgMain border-b border-borderLine">
+      <div class="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14">
+        
+        <!-- Header da Seção de Serviços -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between pb-16 gap-6 reveal">
+          <div>
+            <span class="text-[12px] font-semibold tracking-wideTag uppercase text-muted block mb-4">
+              OUR SERVICES
+            </span>
+            <h2 class="text-3xl sm:text-5xl md:text-6xl font-normal tracking-tightest leading-[1.08] max-w-2xl">
+              Legal and notary services<br class="hidden sm:inline"> for modern legal matters.
+            </h2>
+          </div>
+          <div>
+            <a href="#contact" class="arrow-link text-dark text-base sm:text-lg font-medium">
+              <span>Need legal guidance? Contact us</span>
+              <svg class="w-4 h-4 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Linha Divisória -->
+        <div class="border-t border-borderLine"></div>
+
+        <!-- Lista de Serviços com Imagem, Número e Conteúdo -->
+        <div class="divide-y divide-borderLine">
+          
+          <!-- Serviço 001 -->
+          <article class="py-14 sm:py-20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center group reveal">
+            <div class="lg:col-span-4 overflow-hidden rounded-xl bg-neutral-200">
+              <img 
+                src="https://framerusercontent.com/images/Unj4zrUK7oJ6Ma2mUvFNpF17P1U.png" 
+                alt="Legal Advisory service" 
+                class="w-full h-[240px] sm:h-[280px] object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              >
+            </div>
+            <div class="lg:col-span-2">
+              <span class="text-3xl sm:text-4xl font-normal text-dark tracking-tighter">001</span>
+            </div>
+            <div class="lg:col-span-6 space-y-3">
+              <h3 class="text-2xl sm:text-3xl font-semibold tracking-tight uppercase text-dark">
+                Legal Advisory
+              </h3>
+              <p class="text-base sm:text-lg text-muted font-normal leading-relaxed max-w-lg">
+                Clear legal guidance and professional advisory for individuals, families, and businesses.
+              </p>
+            </div>
+          </article>
+
+          <!-- Serviço 002 -->
+          <article class="py-14 sm:py-20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center group reveal delay-100">
+            <div class="lg:col-span-4 overflow-hidden rounded-xl bg-neutral-200">
+              <img 
+                src="https://framerusercontent.com/images/9TGdyV5TPmEmHtmnA4gxULCrIL0.png" 
+                alt="Notarial Services" 
+                class="w-full h-[240px] sm:h-[280px] object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              >
+            </div>
+            <div class="lg:col-span-2">
+              <span class="text-3xl sm:text-4xl font-normal text-dark tracking-tighter">002</span>
+            </div>
+            <div class="lg:col-span-6 space-y-3">
+              <h3 class="text-2xl sm:text-3xl font-semibold tracking-tight uppercase text-dark">
+                Notarial Services
+              </h3>
+              <p class="text-base sm:text-lg text-muted font-normal leading-relaxed max-w-lg">
+                Certified document verification, powers of attorney, and official legal authentication services.
+              </p>
+            </div>
+          </article>
+
+          <!-- Serviço 003 -->
+          <article class="py-14 sm:py-20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center group reveal">
+            <div class="lg:col-span-4 overflow-hidden rounded-xl bg-neutral-200">
+              <img 
+                src="https://framerusercontent.com/images/5c2WmHLzjnU1fC8Mp9z1mGaVgjE.png" 
+                alt="Dispute Resolution" 
+                class="w-full h-[240px] sm:h-[280px] object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              >
+            </div>
+            <div class="lg:col-span-2">
+              <span class="text-3xl sm:text-4xl font-normal text-dark tracking-tighter">003</span>
+            </div>
+            <div class="lg:col-span-6 space-y-3">
+              <h3 class="text-2xl sm:text-3xl font-semibold tracking-tight uppercase text-dark">
+                Dispute Resolution
+              </h3>
+              <p class="text-base sm:text-lg text-muted font-normal leading-relaxed max-w-lg">
+                Legal support for property matters, civil disputes, ownership rights, and documentation.
+              </p>
+            </div>
+          </article>
+
+          <!-- Serviço 004 -->
+          <article class="py-14 sm:py-20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center group reveal delay-100">
+            <div class="lg:col-span-4 overflow-hidden rounded-xl bg-neutral-200">
+              <img 
+                src="https://framerusercontent.com/images/M5oBh2KSjcSMsrrhFyIradzlA.png" 
+                alt="Legal Documentation" 
+                class="w-full h-[240px] sm:h-[280px] object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              >
+            </div>
+            <div class="lg:col-span-2">
+              <span class="text-3xl sm:text-4xl font-normal text-dark tracking-tighter">004</span>
+            </div>
+            <div class="lg:col-span-6 space-y-3">
+              <h3 class="text-2xl sm:text-3xl font-semibold tracking-tight uppercase text-dark">
+                Legal Documentation
+              </h3>
+              <p class="text-base sm:text-lg text-muted font-normal leading-relaxed max-w-lg">
+                Professionally prepared agreements and legal documents designed to protect your interests.
+              </p>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== LEGAL EXPERTISE & STATS SECTION ==================== -->
+    <section class="py-24 sm:py-32 bg-bgMain border-b border-borderLine">
+      <div class="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14">
+        
+        <div class="mb-16 reveal">
+          <span class="text-[12px] font-semibold tracking-wideTag uppercase text-muted block mb-3">LEGAL EXPERTISE</span>
+          <h2 class="text-3xl sm:text-5xl font-normal tracking-tightest text-dark max-w-2xl">
+            Professional legal support with clarity and precision.
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          <!-- Coluna Esquerda: Métricas e Indicadores Chave -->
+          <div class="lg:col-span-6 space-y-10 reveal">
+            
+            <!-- Item 1 -->
+            <div class="space-y-2">
+              <h4 class="text-sm font-semibold uppercase tracking-wider text-dark/70">TRUSTED CLIENTS</h4>
+              <p class="text-base sm:text-lg text-muted leading-relaxed">
+                Supporting businesses, founders, and private clients with strategic legal guidance and long-term protection.
+              </p>
+            </div>
+
+            <div class="border-t border-borderLine"></div>
+
+            <!-- Item 2: Stat $500M+ -->
+            <div class="space-y-3">
+              <span class="text-6xl sm:text-7xl font-bold tracking-tightest text-dark block">$500M+</span>
+              <h4 class="text-sm font-semibold uppercase tracking-wider text-dark/70">LEGAL TRANSACTIONS ADVISED</h4>
+              <p class="text-base sm:text-lg text-muted leading-relaxed">
+                Assisting with contracts, negotiations, and legal structuring across complex business matters.
+              </p>
+            </div>
+
+            <div class="border-t border-borderLine"></div>
+
+            <!-- Item 3: Stat 15+ -->
+            <div class="space-y-3">
+              <span class="text-6xl sm:text-7xl font-bold tracking-tightest text-dark block">15+</span>
+              <h4 class="text-sm font-semibold uppercase tracking-wider text-dark/70">YEARS OF EXPERTISE</h4>
+              <p class="text-base sm:text-lg text-muted leading-relaxed">
+                Combining legal expertise, business understanding, and modern advisory solutions for every client.
+              </p>
+            </div>
+
+            <div class="border-t border-borderLine"></div>
+
+            <!-- Item 4: Stat 98% -->
+            <div class="space-y-3">
+              <span class="text-6xl sm:text-7xl font-bold tracking-tightest text-dark block">98%</span>
+              <h4 class="text-sm font-semibold uppercase tracking-wider text-dark/70">CLIENT SATISFACTION</h4>
+              <p class="text-base sm:text-lg text-muted leading-relaxed">
+                Built on trust, responsiveness, discretion, and consistent legal excellence across every engagement.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Coluna Direita: Fotografia Editorial Grande -->
+          <div class="lg:col-span-6 reveal delay-200">
+            <div class="rounded-2xl overflow-hidden bg-neutral-200 sticky top-28 shadow-sm">
+              <img 
+                src="https://framerusercontent.com/images/Ju8A5viMRN546D58tj5DGHfN2g.png" 
+                alt="Kafka partner consulting with corporate clients" 
+                class="w-full h-[540px] sm:h-[680px] object-cover"
+                loading="lazy"
+              >
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== HOW WE WORK (PROCESS) ==================== -->
+    <section class="py-24 sm:py-32 bg-bgMain border-b border-borderLine">
+      <div class="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between pb-16 gap-6 reveal">
+          <div>
+            <span class="text-[12px] font-semibold tracking-wideTag uppercase text-muted block mb-3">HOW WE WORK</span>
+            <h2 class="text-3xl sm:text-5xl md:text-6xl font-normal tracking-tightest leading-[1.08] max-w-xl">
+              Legal clarity built on<br>
+              strategy and trust.
+            </h2>
+          </div>
+          <div>
+            <button onclick="openBookingModal()" class="arrow-link text-dark text-base sm:text-lg font-medium">
+              <span>Book consultation</span>
+              <svg class="w-4 h-4 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="border-t border-borderLine pt-12">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Imagem do processo -->
+            <div class="lg:col-span-6 rounded-2xl overflow-hidden bg-neutral-200 shadow-sm reveal">
+              <img 
+                src="https://framerusercontent.com/images/W5j9nq5fKAE7pC3koIiniWE8yP8.png" 
+                alt="Lawyers analyzing strategy in conference room" 
+                class="w-full h-[400px] sm:h-[480px] object-cover"
+                loading="lazy"
+              >
+            </div>
+
+            <!-- 4 Etapas do Workflow -->
+            <div class="lg:col-span-6 space-y-8 divide-y divide-borderLine reveal delay-100">
+              
+              <div class="pt-6 first:pt-0">
+                <span class="text-xs font-semibold text-muted uppercase tracking-wider block mb-1">01 / DISCOVERY</span>
+                <h3 class="text-2xl font-semibold tracking-tight text-dark mb-2">Case Analysis</h3>
+                <p class="text-muted text-base leading-relaxed">
+                  We break down your situation in detail, identifying risks, opportunities, and legal priorities.
+                </p>
+              </div>
+
+              <div class="pt-6">
+                <span class="text-xs font-semibold text-muted uppercase tracking-wider block mb-1">02 / ARCHITECTURE</span>
+                <h3 class="text-2xl font-semibold tracking-tight text-dark mb-2">Strategy Design</h3>
+                <p class="text-muted text-base leading-relaxed">
+                  We build a tailored legal roadmap that aligns with your business and long-term protection.
+                </p>
+              </div>
+
+              <div class="pt-6">
+                <span class="text-xs font-semibold text-muted uppercase tracking-wider block mb-1">03 / EXECUTION</span>
+                <h3 class="text-2xl font-semibold tracking-tight text-dark mb-2">Action Implementation</h3>
+                <p class="text-muted text-base leading-relaxed">
+                  We execute legal processes with precision, ensuring every step is handled correctly and on time.
+                </p>
+              </div>
+
+              <div class="pt-6">
+                <span class="text-xs font-semibold text-muted uppercase tracking-wider block mb-1">04 / OPTIMIZATION</span>
+                <h3 class="text-2xl font-semibold tracking-tight text-dark mb-2">Outcome Optimization</h3>
+                <p class="text-muted text-base leading-relaxed">
+                  We review results and adjust strategy to secure the strongest possible legal position.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== LEGAL MATTERS / PRACTICE CASES ==================== -->
+    <section id="insights" class="py-24 sm:py-32 bg-bgMain border-b border-borderLine">
+      <div class="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14">
+        
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between pb-16 gap-6 reveal">
+          <div>
+            <span class="text-[12px] font-semibold tracking-wideTag uppercase text-muted block mb-3">LEGAL MATTERS</span>
+            <h2 class="text-3xl sm:text-5xl font-normal tracking-tightest leading-tight text-dark">
+              Legal solutions with lasting impact.
+            </h2>
+          </div>
+          <div>
+            <span class="text-xs font-semibold tracking-wideTag uppercase text-dark px-4 py-2 border border-borderLine rounded-full">
+              Explore Our Practice
+            </span>
+          </div>
+        </div>
+
+        <!-- Asymmetrical Portfolio List matching Kafka Framer exactly -->
+        <div class="space-y-20 sm:space-y-28">
+          <!-- Project 1: Left column -->
+          <article class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start group reveal">
+            <div class="lg:col-span-6 space-y-4">
+              <div class="overflow-hidden rounded-xl bg-neutral-200 aspect-[4/3]">
+                <img 
+                  src="https://framerusercontent.com/images/wsGNlyuOkIdU6Vf8VoUlYjuvmC4.png" 
+                  alt="Property & Civil Law - Architecture" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                >
+              </div>
+              <div class="flex items-center justify-between text-xs tracking-tight pt-1">
+                <h3 class="font-semibold text-dark text-lg sm:text-xl group-hover:underline">Property & Civil Law</h3>
+                <div class="text-right text-[11px] uppercase text-muted tracking-wider">
+                  <span>Litigation</span> • <span>Claim Management</span>
+                </div>
+              </div>
+            </div>
+            <div class="hidden lg:block lg:col-span-6 text-right pt-2">
+              <span class="text-xs font-mono text-muted">2024</span>
+            </div>
+          </article>
+
+          <!-- Project 2: Right column -->
+          <article class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start group reveal delay-100">
+            <div class="hidden lg:block lg:col-span-6 pt-2">
+              <span class="text-xs font-mono text-muted">2024</span>
+            </div>
+            <div class="lg:col-span-6 space-y-4">
+              <div class="overflow-hidden rounded-xl bg-neutral-200 aspect-[4/3]">
+                <img 
+                  src="https://framerusercontent.com/images/nmXZOsPpIlQjIHmg5uwOA5NJcI.png" 
+                  alt="Nomad Vision Corporate Law" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                >
+              </div>
+              <div class="flex items-center justify-between text-xs tracking-tight pt-1">
+                <h3 class="font-semibold text-dark text-lg sm:text-xl group-hover:underline">Nomad Vision™</h3>
+                <div class="text-right text-[11px] uppercase text-muted tracking-wider">
+                  <span>Corporate Law</span> • <span>Civil Law</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: Left column -->
+          <article class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start group reveal">
+            <div class="lg:col-span-6 space-y-4">
+              <div class="overflow-hidden rounded-xl bg-neutral-200 aspect-[4/3]">
+                <img 
+                  src="https://framerusercontent.com/images/uKY0y11Igx9LzVoeZBuszZASoU.png" 
+                  alt="Livingless Legal Advisory" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                >
+              </div>
+              <div class="flex items-center justify-between text-xs tracking-tight pt-1">
+                <h3 class="font-semibold text-dark text-lg sm:text-xl group-hover:underline">Livingless</h3>
+                <div class="text-right text-[11px] uppercase text-muted tracking-wider">
+                  <span>Corporate Law</span> • <span>Due Diligence</span>
+                </div>
+              </div>
+            </div>
+            <div class="hidden lg:block lg:col-span-6 text-right pt-2">
+              <span class="text-xs font-mono text-muted">2025</span>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== TESTIMONIAL SECTION ==================== -->
+    <section class="py-24 sm:py-36 bg-bgMain border-b border-borderLine">
+      <div class="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          <div class="lg:col-span-5 order-2 lg:order-1 rounded-2xl overflow-hidden bg-neutral-200 shadow-sm reveal">
+            <img 
+              src="https://framerusercontent.com/images/l42v1qcmKYIdTNMHMCqMZiaA1oI.png" 
+              alt="Client satisfaction testimonial" 
+              class="w-full h-[360px] sm:h-[460px] object-cover"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="lg:col-span-7 order-1 lg:order-2 space-y-8 reveal delay-100">
+            <span class="text-[12px] font-semibold tracking-wideTag uppercase text-muted block">
+              TESTIMONIAL
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-normal tracking-tight text-dark">
+              Trusted by clients who value clarity.
+            </h2>
+            
+            <blockquote class="text-2xl sm:text-3xl md:text-4xl font-normal tracking-tightest leading-snug text-dark">
+              “The team handled our legal matter with clarity, discretion, and real attention to detail. We felt supported at every step.”
+            </blockquote>
+
+            <div class="pt-2">
+              <span class="text-sm font-bold tracking-wider uppercase text-dark block">NEXA SYSTEMS</span>
+              <span class="text-sm text-muted font-normal">Technology & Infrastructure Client</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== FAQ ACCORDION ==================== -->
+    <section class="py-24 sm:py-32 bg-bgMain border-b border-borderLine">
+      <div class="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          
+          <!-- Coluna Esquerda: Título -->
+          <div class="lg:col-span-5 reveal">
+            <span class="text-[12px] font-semibold tracking-wideTag uppercase text-muted block mb-3">
+              WHAT LEGAL TEAM SAYS
+            </span>
+            <h2 class="text-3xl sm:text-5xl font-normal tracking-tightest leading-[1.1] text-dark max-w-sm">
+              All you need to know about Kafka
+            </h2>
+          </div>
+
+          <!-- Coluna Direita: Acordeão Limpo -->
+          <div class="lg:col-span-7 divide-y divide-borderLine border-t border-b border-borderLine reveal delay-100">
+            
+            <!-- FAQ 1 -->
+            <div class="faq-item py-6 sm:py-7">
+              <button class="faq-toggle w-full flex items-center justify-between text-left font-semibold text-lg sm:text-xl text-dark group focus:outline-none">
+                <span>What services does your law firm provide?</span>
+                <span class="faq-icon text-2xl font-light text-dark transition-transform duration-300 ml-4">+</span>
+              </button>
+              <div class="faq-answer">
+                <p class="pt-4 text-base text-muted font-normal leading-relaxed">
+                  Kafka™ provides corporate and commercial legal advisory, notarial services, contract drafting and negotiation, dispute resolution, intellectual property guidance, and strategic compliance consulting for both domestic and international enterprises.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="faq-item py-6 sm:py-7">
+              <button class="faq-toggle w-full flex items-center justify-between text-left font-semibold text-lg sm:text-xl text-dark group focus:outline-none">
+                <span>How can I schedule a consultation?</span>
+                <span class="faq-icon text-2xl font-light text-dark transition-transform duration-300 ml-4">+</span>
+              </button>
+              <div class="faq-answer">
+                <p class="pt-4 text-base text-muted font-normal leading-relaxed">
+                  You can click on the "Book Consultation" button in our navigation bar or complete the contact form below. Our partners will reach out within 24 business hours to confirm your meeting time and review initial case requirements.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-item py-6 sm:py-7">
+              <button class="faq-toggle w-full flex items-center justify-between text-left font-semibold text-lg sm:text-xl text-dark group focus:outline-none">
+                <span>Can I cancel or reschedule my appointment?</span>
+                <span class="faq-icon text-2xl font-light text-dark transition-transform duration-300 ml-4">+</span>
+              </button>
+              <div class="faq-answer">
+                <p class="pt-4 text-base text-muted font-normal leading-relaxed">
+                  Yes, we understand that executive schedules shift. Appointments may be canceled or rescheduled up to 12 hours prior to the scheduled consultation with no penalties.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-item py-6 sm:py-7">
+              <button class="faq-toggle w-full flex items-center justify-between text-left font-semibold text-lg sm:text-xl text-dark group focus:outline-none">
+                <span>Do I need legal insurance to work with you?</span>
+                <span class="faq-icon text-2xl font-light text-dark transition-transform duration-300 ml-4">+</span>
+              </button>
+              <div class="faq-answer">
+                <p class="pt-4 text-base text-muted font-normal leading-relaxed">
+                  No, legal insurance is not required. We operate with transparent direct fee models, fixed-scope projects, and monthly retained counsel options tailored to your company's operational rhythm.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="faq-item py-6 sm:py-7">
+              <button class="faq-toggle w-full flex items-center justify-between text-left font-semibold text-lg sm:text-xl text-dark group focus:outline-none">
+                <span>Do you offer document drafting and review services?</span>
+                <span class="faq-icon text-2xl font-light text-dark transition-transform duration-300 ml-4">+</span>
+              </button>
+              <div class="faq-answer">
+                <p class="pt-4 text-base text-muted font-normal leading-relaxed">
+                  Absolutely. Our attorneys prepare and scrutinize all corporate agreements, shareholder pacts, NDAs, employment covenants, and real estate transfers with rapid turnaround times.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== CONTACT / PRE-FOOTER ==================== -->
+    <section id="contact" class="py-24 sm:py-36 bg-bgMain">
+      <div class="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          
+          <!-- Bloco Principal com Headline e Subtítulo -->
+          <div class="lg:col-span-6 space-y-6 reveal">
+            <h2 class="text-4xl sm:text-6xl md:text-7xl font-normal tracking-tightest leading-[1.05] text-dark">
+              Legal support for<br>
+              secure decisions.
+            </h2>
+            <p class="text-lg sm:text-xl text-muted font-normal leading-relaxed max-w-lg">
+              KAFKA offers legal consulting for businesses and individuals on contracts, compliance, and real estate.
+            </p>
+            <div class="pt-4">
+              <button onclick="openBookingModal()" class="btn-pill px-7 py-3.5 rounded-full bg-dark text-white text-base font-medium shadow-md">
+                Schedule an Appointment
+              </button>
+            </div>
+          </div>
+
+          <!-- Bloco de Informações de Contato -->
+          <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-10 lg:pl-10 reveal delay-100">
+            
+            <div class="space-y-3">
+              <span class="text-xs font-semibold uppercase tracking-wider text-muted block">TALK TO US</span>
+              <a href="mailto:hey@kafkalegal.pl" class="text-lg sm:text-xl font-medium text-dark hover:underline block">
+                hey@kafkalegal.pl
+              </a>
+              <a href="tel:+45121231289" class="text-base text-muted hover:text-dark block font-mono">
+                +45 121 231 289
+              </a>
+            </div>
+
+            <div class="space-y-3">
+              <span class="text-xs font-semibold uppercase tracking-wider text-muted block">ADDRESS</span>
+              <p class="text-lg sm:text-xl font-medium text-dark">
+                ul. Św Jacka 21<br>
+                <span class="text-muted font-normal text-base">38-102 Warszawa</span>
+              </p>
+            </div>
+
+            <div class="space-y-3">
+              <span class="text-xs font-semibold uppercase tracking-wider text-muted block">WORKING HOURS</span>
+              <p class="text-base sm:text-lg font-medium text-dark">
+                Monday — Friday<br>
+                <span class="text-muted font-normal">09:00 — 18:00 CET</span>
+              </p>
+            </div>
+
+            <div class="space-y-2 sm:col-span-2 pt-4 border-t border-borderLine">
+              <span class="text-xs font-semibold uppercase tracking-wider text-muted block mb-3">MENU</span>
+              <ul class="divide-y divide-borderLine text-xs">
+                <li>
+                  <a href="#home" class="py-2.5 flex items-center justify-between text-dark/70 hover:text-dark transition-colors">
+                    <span class="font-mono text-muted">001</span>
+                    <span class="font-medium tracking-wider uppercase">Home</span>
+                    <span>→</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#about" class="py-2.5 flex items-center justify-between text-dark/70 hover:text-dark transition-colors">
+                    <span class="font-mono text-muted">002</span>
+                    <span class="font-medium tracking-wider uppercase">About</span>
+                    <span>→</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#services" class="py-2.5 flex items-center justify-between text-dark/70 hover:text-dark transition-colors">
+                    <span class="font-mono text-muted">003</span>
+                    <span class="font-medium tracking-wider uppercase">Services</span>
+                    <span>→</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#insights" class="py-2.5 flex items-center justify-between text-dark/70 hover:text-dark transition-colors">
+                    <span class="font-mono text-muted">004</span>
+                    <span class="font-medium tracking-wider uppercase">Insights</span>
+                    <span>→</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#contact" class="py-2.5 flex items-center justify-between text-dark/70 hover:text-dark transition-colors">
+                    <span class="font-mono text-muted">005</span>
+                    <span class="font-medium tracking-wider uppercase">Contact</span>
+                    <span>→</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="border-t border-borderLine py-12 bg-bgMain text-sm text-muted reveal">
+    <div class="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14 flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <div class="flex items-center gap-3">
+        <span class="font-bold text-dark tracking-tight">KAFKA™</span>
+        <span>•</span>
+        <a href="mailto:hey@kafkaconsulting.pl" class="hover:text-dark transition-colors">hey@kafkaconsulting.pl</a>
+      </div>
+
+      <div class="flex items-center gap-8">
+        <a href="#" onclick="alert('Terms and Conditions of Legal Practice: All advice provided in compliance with applicable regional bar association guidelines.'); return false;" class="hover:text-dark transition-colors">
+          Terms and Conditions
+        </a>
+        <a href="#home" class="hover:text-dark transition-colors flex items-center gap-1">
+          Back to top ↑
+        </a>
+      </div>
+
+      <div class="text-xs">
+        <p>© 2026 Ketmon Kafka. All rights reserved.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==================== BOOKING MODAL (INTERATIVE CONSULTATION) ==================== -->
+  <dialog id="bookingModal" class="p-0 rounded-3xl backdrop:bg-dark/70 shadow-2xl border border-borderLine max-w-lg w-full m-auto overflow-hidden bg-bgMain">
+    <div class="p-8 sm:p-10">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-muted">KAFKA CONSULTATION</span>
+          <h3 class="text-2xl font-bold tracking-tight text-dark mt-1">Book an Initial Review</h3>
+        </div>
+        <button onclick="closeBookingModal()" class="p-2 text-dark/50 hover:text-dark rounded-full hover:bg-neutral-200/50 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form id="consultationForm" class="space-y-4" onsubmit="handleBooking(event)">
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-muted mb-1.5">Full Name</label>
+          <input type="text" required placeholder="Alexander Vance" class="w-full px-4 py-3 rounded-xl bg-white border border-borderLine text-dark placeholder-muted text-sm focus:outline-none focus:border-dark transition-colors">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-muted mb-1.5">Corporate Email</label>
+            <input type="email" required placeholder="alexander@vance.com" class="w-full px-4 py-3 rounded-xl bg-white border border-borderLine text-dark placeholder-muted text-sm focus:outline-none focus:border-dark transition-colors">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-muted mb-1.5">Phone Number</label>
+            <input type="tel" required placeholder="+45 123 456 789" class="w-full px-4 py-3 rounded-xl bg-white border border-borderLine text-dark placeholder-muted text-sm focus:outline-none focus:border-dark transition-colors">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-muted mb-1.5">Legal Area of Interest</label>
+          <select class="w-full px-4 py-3 rounded-xl bg-white border border-borderLine text-dark text-sm focus:outline-none focus:border-dark transition-colors cursor-pointer">
+            <option value="advisory">001 — Legal Advisory</option>
+            <option value="notarial">002 — Notarial Services</option>
+            <option value="dispute">003 — Dispute Resolution</option>
+            <option value="documentation">004 — Legal Documentation</option>
+            <option value="other">General Inquiries / Corporate</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-muted mb-1.5">Case Summary (Optional)</label>
+          <textarea rows="3" placeholder="Briefly outline your situation or business context..." class="w-full px-4 py-3 rounded-xl bg-white border border-borderLine text-dark placeholder-muted text-sm focus:outline-none focus:border-dark transition-colors"></textarea>
+        </div>
+
+        <div class="pt-4">
+          <button type="submit" class="btn-pill w-full py-3.5 rounded-full bg-dark text-white font-medium text-sm">
+            Confirm Consultation Request
+          </button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    // Inicializa ícones Lucide
+    lucide.createIcons();
+
+    // Registra ScrollTrigger no GSAP
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ==================== LENIS SMOOTH SCROLL (ATTEST MOTION PHYSICS) ====================
+    const lenis = new Lenis({
+      duration: 0.8,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1.1,
+      touchMultiplier: 1.6,
+      infinite: false,
+    });
+
+    // Sincroniza o Lenis com o ticker do GSAP para taxa de quadros perfeita (60-120 FPS)
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
+    // Rolagem suave e orgânica para links com âncoras internas
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId && targetId !== '#') {
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            lenis.scrollTo(targetEl, {
+              offset: -30,
+              duration: 1.0,
+              easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+            });
+          }
+        }
+      });
+    });
+
+    // ==================== CONTROLE DO HEADER DINÂMICO ====================
+    const siteHeader = document.getElementById('siteHeader');
+    const navLogo = document.getElementById('navLogo');
+    const logoText = document.getElementById('logoText');
+    const navLinks = document.querySelectorAll('.nav-item');
+    const navCta = document.getElementById('navCta');
+    const mobileMenuIcon = document.getElementById('mobileMenuIcon');
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+
+    function setHeaderTheme(isPastHero) {
+      if (isPastHero) {
+        siteHeader.classList.add('bg-[#fcfbf7]/90', 'backdrop-blur-md', 'border-b', 'border-borderLine', 'py-4', 'shadow-xs');
+        siteHeader.classList.remove('py-6');
+        
+        logoText.classList.remove('text-white');
+        logoText.classList.add('text-dark');
+
+        navLinks.forEach(link => {
+          link.classList.remove('text-white/90', 'hover:text-white');
+          link.classList.add('text-dark/75', 'hover:text-dark');
+        });
+
+        navCta.classList.remove('bg-white', 'text-dark');
+        navCta.classList.add('bg-dark', 'text-white');
+
+        mobileMenuToggle.classList.remove('text-white');
+        mobileMenuToggle.classList.add('text-dark');
+      } else {
+        siteHeader.classList.remove('bg-[#fcfbf7]/90', 'backdrop-blur-md', 'border-b', 'border-borderLine', 'py-4', 'shadow-xs');
+        siteHeader.classList.add('py-6');
+
+        logoText.classList.add('text-white');
+        logoText.classList.remove('text-dark');
+
+        navLinks.forEach(link => {
+          link.classList.add('text-white/90', 'hover:text-white');
+          link.classList.remove('text-dark/75', 'hover:text-dark');
+        });
+
+        navCta.classList.add('bg-white', 'text-dark');
+        navCta.classList.remove('bg-dark', 'text-white');
+
+        mobileMenuToggle.classList.add('text-white');
+        mobileMenuToggle.classList.remove('text-dark');
+      }
+    }
+
+    ScrollTrigger.create({
+      trigger: '#home',
+      start: 'bottom 90px',
+      onEnter: () => setHeaderTheme(true),
+      onLeaveBack: () => setHeaderTheme(false),
+    });
+
+    // Mobile Menu Toggle
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    function toggleMobileMenu() {
+      mobileDrawer.classList.toggle('hidden');
+    }
+    mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+
+    document.querySelectorAll('.mobile-nav-link').forEach(l => {
+      l.addEventListener('click', () => {
+        mobileDrawer.classList.add('hidden');
+      });
+    });
+
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const btn = item.querySelector('.faq-toggle');
+      btn.addEventListener('click', () => {
+        const isOpen = item.classList.contains('active');
+        faqItems.forEach(i => i.classList.remove('active'));
+        if (!isOpen) {
+          item.classList.add('active');
+        }
+        // Atualiza ScrollTrigger após expandir/recolher
+        setTimeout(() => ScrollTrigger.refresh(), 350);
+      });
+    });
+
+    // Booking Modal
+    const bookingModal = document.getElementById('bookingModal');
+    function openBookingModal() {
+      if (typeof bookingModal.showModal === 'function') {
+        bookingModal.showModal();
+        lenis.stop(); // Trava a rolagem de fundo suavemente
+      } else {
+        alert('Consultation booking: Please email hey@kafkalegal.pl or call +45 121 231 289');
+      }
+    }
+    function closeBookingModal() {
+      if (typeof bookingModal.close === 'function') {
+        bookingModal.close();
+        lenis.start(); // Destrava a rolagem
+      }
+    }
+
+    function handleBooking(event) {
+      event.preventDefault();
+      alert('Thank you for requesting a consultation with Kafka™. A partner will contact you shortly.');
+      closeBookingModal();
+      document.getElementById('consultationForm').reset();
+    }
+
+    // ==================== HERO: SAÍDA SUAVE AO ROLAR ====================
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '#home',
+        start: 'top top',
+        end: 'bottom 40%',
+        scrub: 0.3,
+      }
+    })
+    .to('#heroScrollIndicator', { opacity: 0, duration: 0.2 }, 0)
+    .to('#heroSubtext', { opacity: 0, y: -25, ease: 'none' }, 0)
+    .to('#heroHeadline', { opacity: 0, y: -35, ease: 'none' }, 0);
+
+    // ==================== ATTEST FRAMER STAGGER & REVEAL ENGINE ====================
+    // Mapeia elementos .reveal e agrupa irmãos em grids/listas para calcular staggers automáticos em cascata
+    const revealElements = document.querySelectorAll('.reveal');
+    const parentGroups = new Map();
+
+    revealElements.forEach(el => {
+      const parent = el.parentElement;
+      if (!parentGroups.has(parent)) {
+        parentGroups.set(parent, []);
+      }
+      parentGroups.get(parent).push(el);
+    });
+
+    parentGroups.forEach(children => {
+      if (children.length > 1) {
+        children.forEach((child, idx) => {
+          // Se não houver classe de atraso manual, aplica cascata dinâmica com 80ms entre itens
+          const hasManualDelay = ['delay-100', 'delay-200', 'delay-300', 'delay-400', 'delay-500'].some(c => child.classList.contains(c));
+          if (!hasManualDelay) {
+            child.style.transitionDelay = `${Math.min(idx * 0.08, 0.40)}s`;
+          }
+        });
+      }
+    });
+
+    // IntersectionObserver com antecipação (lookahead) de 80px e threshold Framer
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px 0px 80px 0px',
+      threshold: 0.02
+    });
+
+    revealElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 80) {
+        el.classList.add('is-revealed');
+      } else {
+        revealObserver.observe(el);
+      }
+    });
+
+    // Recalcula posições quando imagens e fontes terminam de carregar
+    window.addEventListener('load', () => {
+      ScrollTrigger.refresh();
+      revealElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight + 80) {
+          el.classList.add('is-revealed');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
