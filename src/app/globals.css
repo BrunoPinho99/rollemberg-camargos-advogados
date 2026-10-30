@@ -141,42 +141,62 @@ article.group:hover img, .framer-card:hover img {
   animation-play-state: paused;
 }
 
-/* Revelação de Scroll com Física Framer Motion suave e fluida */
+/* Revelação Slide-Up no Scroll com Física Fluida */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(0, 48px, 0);
+  backface-visibility: hidden;
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
 .reveal.is-revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
+}
+
+/* Otimização de renderização diferida para seções inferiores */
+#faq, #contact {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 650px;
 }
 
 /* Staggers explícitos em cascata */
 .reveal.delay-100 { transition-delay: 0.10s; }
-.reveal.delay-200 { transition-delay: 0.18s; }
-.reveal.delay-300 { transition-delay: 0.26s; }
-.reveal.delay-400 { transition-delay: 0.34s; }
-.reveal.delay-500 { transition-delay: 0.42s; }
+.reveal.delay-200 { transition-delay: 0.20s; }
+.reveal.delay-300 { transition-delay: 0.30s; }
+.reveal.delay-400 { transition-delay: 0.40s; }
+.reveal.delay-500 { transition-delay: 0.50s; }
 
-/* Animação inicial de entrada do Hero */
-@keyframes heroFadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(28px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-.hero-animate-title {
-  animation: heroFadeUp 0.85s var(--ease-framer) 0.15s both;
-}
+/* Animação Slide-Up de entrada do Hero sincronizada com o fim do Preloader */
+.hero-animate-title,
 .hero-animate-sub {
-  animation: heroFadeUp 0.85s var(--ease-framer) 0.3s both;
+  opacity: 0;
+  transform: translate3d(0, 44px, 0);
+  transition: opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+html[data-site-ready="true"] .hero-animate-title {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.15s;
+}
+html[data-site-ready="true"] .hero-animate-sub {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.32s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .hero-animate-title,
+  .hero-animate-sub {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 /* Efeito Zoom Out no Vídeo da Hero */

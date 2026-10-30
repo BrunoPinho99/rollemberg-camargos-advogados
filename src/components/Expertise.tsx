@@ -12,8 +12,8 @@ export default function Expertise({ copy }: ExpertiseProps) {
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Coluna Esquerda: Texto Editorial e Métricas */}
-          <div className="lg:col-span-6 space-y-12 reveal">
-            <div>
+          <div className="lg:col-span-6 space-y-12">
+            <div className="reveal">
               <span className="text-[12px] font-semibold tracking-wider uppercase text-[#6e6d69] block mb-4">
                 {copy.expertise.label}
               </span>
@@ -45,9 +45,9 @@ export default function Expertise({ copy }: ExpertiseProps) {
           </div>
 
           {/* Coluna Direita: Fotografia Editorial Grande Sticky */}
-          <div className="lg:col-span-6 reveal delay-200">
+          <div className="lg:col-span-6">
             <div className="sticky top-28">
-              <div className="rounded-2xl overflow-hidden bg-neutral-200 shadow-sm h-[580px] sm:h-[720px] relative w-full">
+              <div className="rounded-2xl overflow-hidden bg-neutral-200 shadow-sm h-[580px] sm:h-[720px] relative w-full reveal delay-200">
                 <Image
                   src="/equipe-rollemberg-camargos.jpg"
                   alt="Dra. Rollemberg e Dra. Camargos - Sócias fundadoras Rollemberg & Camargos Advogados"

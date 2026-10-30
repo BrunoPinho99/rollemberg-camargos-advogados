@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useMemo } from "react";
-import Image from "next/image";
+import { useEffect, useRef, useMemo } from "react";
 import { SiteCopy } from "@/content/siteCopy";
 
 interface AboutProps {
@@ -10,7 +9,54 @@ interface AboutProps {
 
 export default function About({ copy }: AboutProps) {
   const containerRef = useRef<HTMLElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const labelRef = useRef<HTMLDivElement>(null);
+  const spotlightLeftRef = useRef<HTMLDivElement>(null);
+  const spotlightRightRef = useRef<HTMLDivElement>(null);
+  const charsRef = useRef<HTMLSpanElement[]>([]);
+  const lastFilledCountRef = useRef(-1);
+
+  const paragraphText = copy.about.paragraph;
+
+  // Monta a estrutura de palavras e caracteres estaticamente uma única vez
+  const { renderedParagraph, totalChars } = useMemo(() => {
+    const words = paragraphText.split(" ");
+    let charIndex = 0;
+
+    const rendered = words.map((word, wordIdx) => {
+      const chars = word.split("");
+      return (
+        <span key={`pw-${wordIdx}`} className="inline-block whitespace-nowrap">
+          {chars.map((char, charIdx) => {
+            const index = charIndex++;
+            return (
+              <span
+                key={`pc-${charIdx}`}
+                ref={(el) => {
+                  if (el) charsRef.current[index] = el;
+                }}
+                data-filled="false"
+                style={{
+                  color: "rgba(16, 16, 16, 0.20)",
+                  fontWeight: 400,
+                }}
+              >
+                {char}
+              </span>
+            );
+          })}
+          {/* Espaço entre as palavras */}
+          {(() => {
+            charIndex++;
+            return wordIdx < words.length - 1 ? (
+              <span className="inline-block">&nbsp;</span>
+            ) : null;
+          })()}
+        </span>
+      );
+    });
+
+    return { renderedParagraph: rendered, totalChars: paragraphText.length };
+  }, [paragraphText]);
 
   useEffect(() => {
     let ticking = false;
@@ -24,12 +70,53 @@ export default function About({ copy }: AboutProps) {
 
       if (totalPinDistance <= 0) return;
 
-      // O pin ocorre enquanto rect.top <= 0 e rect.bottom >= window.innerHeight.
-      // A distância percorrida no scroll com a tela travada é -rect.top.
       const currentScroll = -rect.top;
       const progress = Math.min(Math.max(currentScroll / totalPinDistance, 0), 1);
 
-      setScrollProgress(progress);
+      // Quantidade exata de caracteres que devem estar preenchidos
+      const targetFilledCount = Math.round(progress * (totalChars - 1));
+
+      // Atualização direta e hiper rápida no DOM sem acionar re-render do React
+      if (targetFilledCount !== lastFilledCountRef.current) {
+        const start = Math.min(
+          lastFilledCountRef.current === -1 ? 0 : lastFilledCountRef.current,
+          targetFilledCount
+        );
+        const end = Math.max(
+          lastFilledCountRef.current === -1 ? totalChars : lastFilledCountRef.current,
+          targetFilledCount
+        );
+
+        for (let i = start; i <= end && i < totalChars; i++) {
+          const charEl = charsRef.current[i];
+          if (!charEl) continue;
+
+          const isFilled = i <= targetFilledCount;
+          const currentFilled = charEl.dataset.filled === "true";
+
+          if (isFilled !== currentFilled) {
+            charEl.dataset.filled = isFilled ? "true" : "false";
+            charEl.style.color = isFilled ? "#101010" : "rgba(16, 16, 16, 0.20)";
+            charEl.style.fontWeight = isFilled ? "500" : "400";
+          }
+        }
+        lastFilledCountRef.current = targetFilledCount;
+      }
+
+      // Parallax por GPU via translate3d direto
+      if (labelRef.current) {
+        const labelTranslateY = (progress - 0.5) * -35;
+        labelRef.current.style.transform = `translate3d(0, ${labelTranslateY.toFixed(2)}px, 0)`;
+      }
+
+      const spotlightOpacity = (0.15 + progress * 0.45).toFixed(3);
+      if (spotlightLeftRef.current) {
+        spotlightLeftRef.current.style.opacity = spotlightOpacity;
+      }
+      if (spotlightRightRef.current) {
+        spotlightRightRef.current.style.opacity = spotlightOpacity;
+      }
+
       ticking = false;
     };
 
@@ -48,54 +135,7 @@ export default function About({ copy }: AboutProps) {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, []);
-
-  const paragraphText = copy.about.paragraph;
-
-  // Preenchimento letra por letra com precisão milimétrica direta no scroll
-  // A última letra só é preenchida exatamente quando o scroll atinge 1.0 (100%),
-  // momento exato em que a página é liberada para rolar até a próxima seção.
-  const renderedParagraph = useMemo(() => {
-    const words = paragraphText.split(" ");
-    const totalChars = paragraphText.length;
-    let globalCharIndex = 0;
-
-    return words.map((word, wordIdx) => {
-      const chars = word.split("");
-      return (
-        <span key={`pw-${wordIdx}`} className="inline-block whitespace-nowrap">
-          {chars.map((char, charIdx) => {
-            const index = globalCharIndex++;
-            const threshold = index / Math.max(totalChars - 1, 1);
-            const isFilled = scrollProgress >= threshold;
-
-            return (
-              <span
-                key={`pc-${charIdx}`}
-                style={{
-                  color: isFilled ? "#101010" : "rgba(16, 16, 16, 0.20)",
-                  fontWeight: isFilled ? 500 : 400,
-                }}
-              >
-                {char}
-              </span>
-            );
-          })}
-          {/* Espaço entre as palavras */}
-          {(() => {
-            globalCharIndex++;
-            return wordIdx < words.length - 1 ? (
-              <span className="inline-block">&nbsp;</span>
-            ) : null;
-          })()}
-        </span>
-      );
-    });
-  }, [paragraphText, scrollProgress]);
-
-  // Efeitos de Parallax
-  const labelTranslateY = (scrollProgress - 0.5) * -35;
-  const spotlightOpacity = 0.15 + scrollProgress * 0.45;
+  }, [totalChars]);
 
   return (
     <section
@@ -108,12 +148,12 @@ export default function About({ copy }: AboutProps) {
       <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden select-none">
         {/* Parallax Camada 2: Iluminação lateral reativa */}
         <div
-          className="pointer-events-none absolute inset-y-0 left-0 w-32 sm:w-64 bg-gradient-to-r from-[#2E3C44]/[0.08] via-transparent to-transparent z-0"
-          style={{ opacity: spotlightOpacity }}
+          ref={spotlightLeftRef}
+          className="pointer-events-none absolute inset-y-0 left-0 w-32 sm:w-64 bg-gradient-to-r from-[#2E3C44]/[0.08] via-transparent to-transparent z-0 opacity-15 will-change-[opacity]"
         />
         <div
-          className="pointer-events-none absolute inset-y-0 right-0 w-32 sm:w-64 bg-gradient-to-l from-[#2E3C44]/[0.08] via-transparent to-transparent z-0"
-          style={{ opacity: spotlightOpacity }}
+          ref={spotlightRightRef}
+          className="pointer-events-none absolute inset-y-0 right-0 w-32 sm:w-64 bg-gradient-to-l from-[#2E3C44]/[0.08] via-transparent to-transparent z-0 opacity-15 will-change-[opacity]"
         />
 
         {/* Conteúdo Principal */}
@@ -121,12 +161,10 @@ export default function About({ copy }: AboutProps) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
             {/* Coluna Esquerda: Tag / Label com Parallax suave */}
             <div
+              ref={labelRef}
               className="lg:col-span-3 space-y-4 will-change-transform"
-              style={{
-                transform: `translateY(${labelTranslateY}px)`,
-              }}
             >
-              <div>
+              <div className="reveal">
                 <span className="text-[12px] font-semibold tracking-wider uppercase text-[#6e6d69] block">
                   {copy.about.label}
                 </span>
@@ -139,13 +177,13 @@ export default function About({ copy }: AboutProps) {
             {/* Coluna Direita: Declaração Editorial com Título de Alto Impacto e Parágrafo com Scrub de Letras */}
             <div className="lg:col-span-9 max-w-4xl">
               {/* Título Principal */}
-              <h2 className="text-3xl sm:text-5xl md:text-[54px] font-medium tracking-tight leading-[1.16] text-[#101010]">
+              <h2 className="text-3xl sm:text-5xl md:text-[54px] font-medium tracking-tight leading-[1.16] text-[#101010] reveal delay-100">
                 <span>{copy.about.headlineHighlight} </span>
                 <span>{copy.about.headlineMuted}</span>
               </h2>
 
               {/* Parágrafo Descritivo com Preenchimento Letra por Letra */}
-              <div className="mt-8 sm:mt-12 max-w-3xl">
+              <div className="mt-8 sm:mt-12 max-w-3xl reveal delay-200">
                 <p className="text-lg sm:text-2xl font-normal leading-relaxed flex flex-wrap">
                   {renderedParagraph}
                 </p>

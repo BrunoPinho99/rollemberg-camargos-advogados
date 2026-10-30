@@ -4,18 +4,18 @@ import { useState } from "react";
 import { ArrowUp, FileText } from "lucide-react";
 import { useMotion } from "./MotionProvider";
 import { SiteCopy } from "@/content/siteCopy";
+import { WHATSAPP_DIRECT_URL } from "@/lib/whatsapp";
 
 interface FooterProps {
   copy: SiteCopy;
   onOpenBooking?: () => void;
 }
 
-export default function Footer({ copy, onOpenBooking }: FooterProps) {
+export default function Footer({ copy }: FooterProps) {
   const { scrollTo } = useMotion();
   const [showTermsModal, setShowTermsModal] = useState(false);
 
-  const cleanPhone = copy.contact.phone.replace(/[^0-9]/g, "");
-  const whatsappUrl = `https://wa.me/${cleanPhone}?text=Ol%C3%A1%2C%20gostaria%20de%20conversar%20sobre%20a%20estrutura%20jur%C3%ADdica%20do%20meu%20neg%C3%B3cio%20com%20a%20Rollemberg%20%26%20Camargos%20Advogados.`;
+  const whatsappUrl = WHATSAPP_DIRECT_URL;
 
   const handleBackToTop = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -38,7 +38,7 @@ export default function Footer({ copy, onOpenBooking }: FooterProps) {
           <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
             {/* Coluna 1: Logo Oficial e Descrição Institucional */}
             <div className="py-14 lg:py-20 lg:pr-16 flex flex-col justify-between gap-12">
-              <div>
+              <div className="reveal">
                 <a
                   href="#home"
                   onClick={handleBackToTop}
@@ -54,14 +54,14 @@ export default function Footer({ copy, onOpenBooking }: FooterProps) {
                 </a>
               </div>
 
-              <p className="text-sm sm:text-[15px] text-white/55 leading-relaxed font-normal max-w-md">
+              <p className="text-sm sm:text-[15px] text-white/55 leading-relaxed font-normal max-w-md reveal delay-100">
                 Advocacia estratégica e descomplicada para empresas em construção e escala. Estrutura societária, contratos sob medida, proteção de marcas e segurança operacional.
               </p>
             </div>
 
-            {/* Coluna 2: Navegação em 2 Sub-colunas + Ícones Sociais Circulares */}
-            <div className="py-14 lg:py-20 lg:pl-16 flex flex-col justify-between gap-12">
-              <div className="grid grid-cols-2 gap-6 text-[12px] sm:text-[13px] font-medium tracking-[0.08em] uppercase">
+            {/* Coluna 2: Navegação em 2 Sub-colunas */}
+            <div className="py-14 lg:py-20 lg:pl-16 flex flex-col justify-center">
+              <div className="grid grid-cols-2 gap-6 text-[12px] sm:text-[13px] font-medium tracking-[0.08em] uppercase reveal delay-200">
                 {/* Sub-coluna 1 */}
                 <div className="flex flex-col space-y-4">
                   <a
@@ -103,14 +103,14 @@ export default function Footer({ copy, onOpenBooking }: FooterProps) {
 
                 {/* Sub-coluna 2 */}
                 <div className="flex flex-col space-y-4">
-                  {onOpenBooking && (
-                    <button
-                      onClick={onOpenBooking}
-                      className="text-left text-white/70 hover:text-white transition-colors duration-200 uppercase cursor-pointer"
-                    >
-                      Agendar Conversa
-                    </button>
-                  )}
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/70 hover:text-white transition-colors duration-200 uppercase"
+                  >
+                    Agendar Conversa
+                  </a>
                   <a
                     href={whatsappUrl}
                     target="_blank"
@@ -133,70 +133,13 @@ export default function Footer({ copy, onOpenBooking }: FooterProps) {
                   </button>
                 </div>
               </div>
-
-              {/* Botões Sociais Circulares com Borda Fina */}
-              <div className="flex items-center gap-3">
-                {/* LinkedIn */}
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/75 hover:text-white hover:border-white/60 hover:bg-white/5 transition-all duration-200 group"
-                >
-                  <svg className="w-4 h-4 fill-current transition-transform duration-200 group-hover:scale-110" viewBox="0 0 24 24">
-                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.8v8.37h-2.8v-8.37M7.86 6.54a1.64 1.64 0 1 0 0 3.27 1.64 1.64 0 0 0 0-3.27Z" />
-                  </svg>
-                </a>
-
-                {/* X (Twitter) */}
-                <a
-                  href="https://x.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="X (Twitter)"
-                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/75 hover:text-white hover:border-white/60 hover:bg-white/5 transition-all duration-200 group"
-                >
-                  <svg className="w-3.5 h-3.5 fill-current transition-transform duration-200 group-hover:scale-110" viewBox="0 0 24 24">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                  </svg>
-                </a>
-
-                {/* Instagram */}
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/75 hover:text-white hover:border-white/60 hover:bg-white/5 transition-all duration-200 group"
-                >
-                  <svg className="w-4 h-4 fill-none stroke-current stroke-2 transition-transform duration-200 group-hover:scale-110" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                  </svg>
-                </a>
-
-                {/* YouTube */}
-                <a
-                  href="https://youtube.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="YouTube"
-                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/75 hover:text-white hover:border-white/60 hover:bg-white/5 transition-all duration-200 group"
-                >
-                  <svg className="w-4 h-4 fill-current transition-transform duration-200 group-hover:scale-110" viewBox="0 0 24 24">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                  </svg>
-                </a>
-              </div>
             </div>
           </div>
         </div>
 
         {/* Barra Inferior Minimalista de Copyright */}
         <div className="border-t border-white/10">
-          <div className="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/45">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/45 reveal">
             <p className="text-center sm:text-left">
               © {new Date().getFullYear()} {copy.brand.name} Advogados. Todos os direitos reservados.
             </p>

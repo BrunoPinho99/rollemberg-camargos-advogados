@@ -28,6 +28,7 @@ export default function Preloader() {
     return () => {
       clearInterval(interval);
       document.body.style.overflow = "";
+      document.documentElement.dataset.siteReady = "true";
     };
   }, []);
 
@@ -36,6 +37,7 @@ export default function Preloader() {
       // Pequeno atraso de 1 segundo para apreciação da marca completa
       const exitTimer = setTimeout(() => {
         setIsExiting(true);
+        document.documentElement.dataset.siteReady = "true";
       }, 1000);
 
       // Finaliza e remove completamente da tela após a transição suave de 1s

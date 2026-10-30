@@ -21,7 +21,7 @@ export default function Marquee({ copy }: MarqueeProps) {
   return (
     <section className="w-full border-b border-[#e8e6df] bg-[#fcfbf7] py-6 sm:py-8 overflow-hidden select-none">
       {/* Marquee Container */}
-      <div className="relative w-full overflow-hidden">
+      <div className="relative w-full overflow-hidden reveal">
         <div className="marquee-track flex items-center justify-between gap-8 sm:gap-10 text-[#101010] hover:pause">
           {/* Loop Group 1 */}
           {legalPractices.map((practice, i) => (

@@ -3,22 +3,32 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { SiteCopy, copyVersionB } from "@/content/siteCopy";
+import { WHATSAPP_DIRECT_URL } from "@/lib/whatsapp";
 
 interface HeaderProps {
   copy?: SiteCopy;
-  onOpenBooking: () => void;
+  onOpenBooking?: () => void;
 }
 
-export default function Header({ copy = copyVersionB, onOpenBooking }: HeaderProps) {
+export default function Header({ copy = copyVersionB }: HeaderProps) {
   const [isPastHero, setIsPastHero] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
+    let isPast = false;
+
     const handleScroll = () => {
-      if (window.scrollY > 400) {
-        setIsPastHero(true);
-      } else {
-        setIsPastHero(false);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const next = window.scrollY > 400;
+          if (next !== isPast) {
+            isPast = next;
+            setIsPastHero(next);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
@@ -70,12 +80,14 @@ export default function Header({ copy = copyVersionB, onOpenBooking }: HeaderPro
             ))}
           </nav>
 
-          <button
-            onClick={onOpenBooking}
+          <a
+            href={WHATSAPP_DIRECT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn-pill px-5 py-2.5 rounded-full bg-white text-[#101010] font-medium text-sm shadow-[0_2px_12px_rgba(0,0,0,0.18)] hover:bg-[#f2efe9] hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer select-none"
           >
             {copy.nav.cta || "Vamos conversar?"}
-          </button>
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -106,15 +118,15 @@ export default function Header({ copy = copyVersionB, onOpenBooking }: HeaderPro
                 {item.label}
               </a>
             ))}
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenBooking();
-              }}
-              className="mt-2 w-full py-3.5 rounded-full bg-white text-[#101010] font-medium text-sm shadow-md hover:bg-[#f2efe9] transition-all cursor-pointer text-center"
+            <a
+              href={WHATSAPP_DIRECT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="mt-2 w-full py-3.5 rounded-full bg-white text-[#101010] font-medium text-sm shadow-md hover:bg-[#f2efe9] transition-all cursor-pointer text-center block"
             >
               {copy.nav.cta || "Vamos conversar?"}
-            </button>
+            </a>
           </div>
         </div>
       )}

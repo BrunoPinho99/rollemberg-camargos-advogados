@@ -64,7 +64,7 @@ export default function MotionProvider({ children }: { children: ReactNode }) {
             "delay-500",
           ].some((c) => child.classList.contains(c));
           if (!hasManualDelay) {
-            child.style.transitionDelay = `${Math.min(idx * 0.08, 0.45)}s`;
+            child.style.transitionDelay = `${Math.min(idx * 0.09, 0.36)}s`;
           }
         });
       }
@@ -81,14 +81,16 @@ export default function MotionProvider({ children }: { children: ReactNode }) {
       },
       {
         root: null,
-        rootMargin: "0px 0px -40px 0px", // Dispara quando o elemento realmente entra 40px no viewport
-        threshold: 0.1,
+        rootMargin: "0px 0px -8% 0px",
+        threshold: 0.08,
       }
     );
 
     revealElements.forEach((el) => {
       const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight + 80) {
+      // Revela imediatamente apenas o que já estiver visível na dobra atual;
+      // tudo abaixo da dobra anima com slide-up conforme o usuário rola a página.
+      if (rect.top < window.innerHeight * 0.9 && rect.bottom > 0) {
         el.classList.add("is-revealed");
       } else {
         revealObserver.observe(el);
