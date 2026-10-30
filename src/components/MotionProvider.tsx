@@ -81,8 +81,8 @@ export default function MotionProvider({ children }: { children: ReactNode }) {
       },
       {
         root: null,
-        rootMargin: "0px 0px 80px 0px", // Lookahead de 80px para antecipar e abrir instantaneamente
-        threshold: 0.02,
+        rootMargin: "0px 0px -40px 0px", // Dispara quando o elemento realmente entra 40px no viewport
+        threshold: 0.1,
       }
     );
 
@@ -96,6 +96,13 @@ export default function MotionProvider({ children }: { children: ReactNode }) {
     });
 
     // 3. Suavização para links âncora internos
+    if (window.location.hash) {
+      const hashEl = document.querySelector(window.location.hash);
+      if (hashEl) {
+        lenis.scrollTo(hashEl as HTMLElement, { immediate: true });
+      }
+    }
+
     const handleAnchorClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest("a");
       if (target) {

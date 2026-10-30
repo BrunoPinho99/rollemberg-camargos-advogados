@@ -5,60 +5,56 @@ interface MarqueeProps {
 }
 
 export default function Marquee({ copy }: MarqueeProps) {
-  // Nomes de referência no mercado de agências/negócios digitais
-  const logosA = [
-    { name: "CreatorHub®", font: "font-serif font-bold" },
-    { name: "LivePeak™", font: "font-bold", prefix: "● " },
-    { name: "ByteStudio", font: "font-light tracking-wider", prefix: "✦ " },
-    { name: "FlowTalents™", font: "font-medium", prefix: "ꕤ " },
-    { name: "ViralForce.io", font: "font-mono" },
-    { name: "Nexa Media™", font: "font-black tracking-tighter uppercase" },
+  // Serviços reais e áreas de atuação de escritórios de advocacia de alto padrão
+  const legalPractices = [
+    "Estruturação Societária & Acordo de Sócios",
+    "Contratos Comerciais & Parcerias Estratégicas",
+    "Registro de Marcas & Proteção de Ativos",
+    "Direito Digital, Tecnologia & LGPD",
+    "Blindagem Operacional & Trabalhista Preventiva",
+    "Planejamento Tributário para Negócios em Escala",
+    "Termos de Uso & Contratos de Prestação de Serviços",
+    "Resolução Ágil de Conflitos & Notificações",
+    "Assessoria Jurídica Mensal Acompanhada",
   ];
-
-  const logosB = [
-    { name: "Infoprodutores BR", font: "font-serif font-bold" },
-    { name: "ScaleDigital™", font: "font-bold", prefix: "● " },
-    { name: "SaaS Rocket", font: "font-light tracking-wider", prefix: "✦ " },
-    { name: "OmniGrowth™", font: "font-medium", prefix: "ꕤ " },
-    { name: "LaunchPad.tech", font: "font-mono" },
-    { name: "VentureMedia™", font: "font-black tracking-tighter uppercase" },
-  ];
-
-  const logos = copy.versionId === "A" ? logosA : logosB;
 
   return (
-    <section className="border-b border-[#e8e6df] py-10 bg-[#fcfbf7] overflow-hidden select-none reveal">
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14 mb-4">
-        <span className="text-[11px] font-semibold tracking-wider uppercase text-[#6e6d69]">
-          {copy.hero.socialProof}
-        </span>
-      </div>
-      <div className="marquee-track flex items-center justify-between gap-16 sm:gap-24 text-[#101010]/75 opacity-70 hover:opacity-100 transition-opacity">
-        {/* Loop Group 1 */}
-        {logos.map((logo, i) => (
-          <span
-            key={`l1-${i}`}
-            className={`text-xl sm:text-2xl tracking-tight whitespace-nowrap ${logo.font}`}
-          >
-            {logo.prefix && (
-              <span className="text-xs mr-1 opacity-70">{logo.prefix}</span>
-            )}
-            {logo.name}
-          </span>
-        ))}
+    <section className="w-full border-b border-[#e8e6df] bg-[#fcfbf7] py-6 sm:py-8 overflow-hidden select-none">
+      {/* Marquee Container */}
+      <div className="relative w-full overflow-hidden">
+        <div className="marquee-track flex items-center justify-between gap-8 sm:gap-10 text-[#101010] hover:pause">
+          {/* Loop Group 1 */}
+          {legalPractices.map((practice, i) => (
+            <a
+              key={`prac1-${i}`}
+              href="#services"
+              className="inline-flex items-center whitespace-nowrap group cursor-pointer transition-opacity hover:opacity-100 opacity-80"
+            >
+              <span className="text-[13px] sm:text-[14px] font-normal tracking-[0.14em] uppercase text-[#101010]/85 group-hover:text-[#101010] transition-colors">
+                {practice}
+              </span>
+              <span className="mx-6 sm:mx-8 text-xs font-light text-[#101010]/25 select-none">
+                /
+              </span>
+            </a>
+          ))}
 
-        {/* Loop Group 2 */}
-        {logos.map((logo, i) => (
-          <span
-            key={`l2-${i}`}
-            className={`text-xl sm:text-2xl tracking-tight whitespace-nowrap ${logo.font}`}
-          >
-            {logo.prefix && (
-              <span className="text-xs mr-1 opacity-70">{logo.prefix}</span>
-            )}
-            {logo.name}
-          </span>
-        ))}
+          {/* Loop Group 2 */}
+          {legalPractices.map((practice, i) => (
+            <a
+              key={`prac2-${i}`}
+              href="#services"
+              className="inline-flex items-center whitespace-nowrap group cursor-pointer transition-opacity hover:opacity-100 opacity-80"
+            >
+              <span className="text-[13px] sm:text-[14px] font-normal tracking-[0.14em] uppercase text-[#101010]/85 group-hover:text-[#101010] transition-colors">
+                {practice}
+              </span>
+              <span className="mx-6 sm:mx-8 text-xs font-light text-[#101010]/25 select-none">
+                /
+              </span>
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -15,7 +15,7 @@ export default function FAQ({ copy }: FAQProps) {
   };
 
   return (
-    <section className="py-24 sm:py-32 bg-[#fcfbf7] border-b border-[#e8e6df]">
+    <section id="faq" className="py-24 sm:py-32 bg-[#fcfbf7] border-b border-[#e8e6df]">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Coluna Esquerda: Título da Seção */}

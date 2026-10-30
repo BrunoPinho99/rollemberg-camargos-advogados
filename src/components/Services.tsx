@@ -4,9 +4,10 @@ import { SiteCopy } from "@/content/siteCopy";
 
 interface ServicesProps {
   copy: SiteCopy;
+  onOpenBooking?: () => void;
 }
 
-export default function Services({ copy }: ServicesProps) {
+export default function Services({ copy, onOpenBooking }: ServicesProps) {
   return (
     <section id="services" className="py-24 sm:py-32 bg-[#fcfbf7] border-b border-[#e8e6df]">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14">
@@ -34,41 +35,57 @@ export default function Services({ copy }: ServicesProps) {
         {/* Linha Divisória */}
         <div className="border-t border-[#e8e6df]" />
 
-        {/* Lista de Serviços com Imagem, Número e Conteúdo */}
+        {/* Lista de Serviços com Imagem e Conteúdo (sem números) */}
         <div className="divide-y divide-[#e8e6df]">
           {copy.services.items.map((service, index) => (
             <article
-              key={service.number}
-              className={`py-14 sm:py-20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center group reveal ${
+              key={service.number || index}
+              className={`py-14 sm:py-20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center group reveal ${
                 index % 2 === 1 ? "delay-100" : ""
               }`}
             >
-              <div className="lg:col-span-4 overflow-hidden rounded-xl bg-neutral-200 relative w-full h-[240px] sm:h-[280px]">
+              <div className="lg:col-span-5 overflow-hidden rounded-xl bg-neutral-200 relative w-full h-[240px] sm:h-[320px]">
                 <Image
                   src={service.image}
                   alt={service.alt}
                   fill
-                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                 />
               </div>
-              <div className="lg:col-span-2">
-                <span className="text-3xl sm:text-4xl font-normal text-[#101010] tracking-tighter font-mono">
-                  {service.number}
-                </span>
-              </div>
-              <div className="lg:col-span-6 space-y-3">
-                <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight uppercase text-[#101010]">
+              <div className="lg:col-span-7 space-y-4">
+                <h3 className="text-2xl sm:text-3xl md:text-[34px] font-semibold tracking-tight uppercase text-[#101010] leading-tight">
                   {service.title}
                 </h3>
-                <p className="text-base sm:text-lg text-[#6e6d69] font-normal leading-relaxed max-w-xl">
+                <p className="text-base sm:text-lg md:text-[19px] text-[#6e6d69] font-normal leading-relaxed max-w-xl">
                   {service.description}
                 </p>
               </div>
             </article>
           ))}
         </div>
+
+        {/* CTA Intermediário Estratégico no Fim dos Serviços */}
+        {onOpenBooking && (
+          <div className="mt-14 sm:mt-18 pt-10 border-t border-[#e8e6df] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 reveal">
+            <div className="space-y-1.5">
+              <h4 className="text-xl sm:text-2xl font-medium tracking-tight text-[#101010]">
+                Seu negócio cresceu mais rápido que a estrutura jurídica?
+              </h4>
+              <p className="text-sm sm:text-base text-[#6e6d69]">
+                Mapeamos pontos cegos em contratos, sociedade e marca antes que virem obstáculos para o próximo passo.
+              </p>
+            </div>
+            <button
+              onClick={onOpenBooking}
+              className="btn-pill shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#101010] text-white font-medium text-sm sm:text-base hover:bg-[#2E3C44] transition-all duration-200 cursor-pointer shadow-md"
+            >
+              <span>Agendar Diagnóstico do Negócio</span>
+              <span className="text-xs">↗</span>
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

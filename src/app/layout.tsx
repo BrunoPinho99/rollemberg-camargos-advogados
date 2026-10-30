@@ -11,13 +11,13 @@ const schibstedGrotesk = Schibsted_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Fabyana™ — Assessoria Jurídica para Agências e Negócios Digitais",
+  title: "Rollemberg & Camargos Advogados — Advocacia Estratégica para Negócios em Expansão",
   description:
-    "Proteção jurídica para agências de Live, TikTok e negócios digitais. Contratos blindados, compliance de plataformas, registro de marcas e segurança operacional.",
+    "Segurança jurídica clara e sem burocracia para quem constrói e escala negócios. Estrutura societária, contratos sob medida, registro de marcas e proteção operacional.",
   openGraph: {
-    title: "Fabyana™ — Assessoria Jurídica para Agências e Negócios Digitais",
+    title: "Rollemberg & Camargos Advogados — Advocacia Estratégica para Negócios em Expansão",
     description:
-      "Ajudamos agências de TikTok, criadores e infoprodutores a escalar operações com segurança jurídica.",
+      "Da primeira sociedade aos grandes contratos: estrutura jurídica clara, ágil e pensada para proteger cada etapa do seu crescimento.",
     type: "website",
   },
 };

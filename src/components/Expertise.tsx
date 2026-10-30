@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { SiteCopy } from "@/content/siteCopy";
+import Counter from "./Counter";
 
 interface ExpertiseProps {
   copy: SiteCopy;
@@ -7,7 +8,7 @@ interface ExpertiseProps {
 
 export default function Expertise({ copy }: ExpertiseProps) {
   return (
-    <section className="py-24 sm:py-32 bg-[#fcfbf7] border-b border-[#e8e6df]">
+    <section id="expertise" className="py-24 sm:py-32 bg-[#fcfbf7] border-b border-[#e8e6df]">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Coluna Esquerda: Texto Editorial e Métricas */}
@@ -23,12 +24,14 @@ export default function Expertise({ copy }: ExpertiseProps) {
 
             <div className="space-y-10">
               {copy.expertise.metrics.map((item, idx) => (
-                <div key={item.label}>
+                <div key={item.label} className="reveal">
                   {idx > 0 && <div className="border-t border-[#e8e6df] mb-10" />}
                   <div className="space-y-3">
-                    <span className="text-6xl sm:text-7xl font-bold tracking-tight text-[#101010] block">
-                      {item.stat}
-                    </span>
+                    <Counter
+                      value={item.stat}
+                      className="text-6xl sm:text-7xl font-bold tracking-tight text-[#101010] block"
+                      duration={1800}
+                    />
                     <h3 className="text-sm font-semibold uppercase tracking-wider text-[#101010]/75">
                       {item.label}
                     </h3>
@@ -44,14 +47,15 @@ export default function Expertise({ copy }: ExpertiseProps) {
           {/* Coluna Direita: Fotografia Editorial Grande Sticky */}
           <div className="lg:col-span-6 reveal delay-200">
             <div className="sticky top-28">
-              <div className="rounded-2xl overflow-hidden bg-neutral-200 shadow-sm h-[540px] sm:h-[680px] relative w-full">
+              <div className="rounded-2xl overflow-hidden bg-neutral-200 shadow-sm h-[580px] sm:h-[720px] relative w-full">
                 <Image
-                  src="https://framerusercontent.com/images/Ju8A5viMRN546D58tj5DGHfN2g.png"
-                  alt="Assessoria jurídica especializada para criadores e negócios digitais"
+                  src="/equipe-rollemberg-camargos.jpg"
+                  alt="Dra. Rollemberg e Dra. Camargos - Sócias fundadoras Rollemberg & Camargos Advogados"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
-                  loading="lazy"
+                  style={{ objectPosition: "center top" }}
+                  priority
                 />
               </div>
             </div>

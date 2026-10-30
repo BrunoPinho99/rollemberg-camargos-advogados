@@ -116,18 +116,17 @@ export const copyVersionA: SiteCopy = {
   versionId: "A",
   versionName: "Versão A: Agências de Live e TikTok",
   brand: {
-    name: "FABYANA",
-    tagline: "ASSESSORIA JURÍDICA",
+    name: "ROLLEMBERG & CAMARGOS",
+    tagline: "ADVOGADOS",
   },
   nav: {
     items: [
       { label: "Início", href: "#home" },
       { label: "Sobre", href: "#about" },
       { label: "Serviços", href: "#services" },
-      { label: "Casos", href: "#insights" },
-      { label: "Contacto", href: "#contact" },
+      { label: "Contato", href: "#contact" },
     ],
-    cta: "Agendar Consulta",
+    cta: "Vamos conversar?",
   },
   hero: {
     headline: {
@@ -138,12 +137,12 @@ export const copyVersionA: SiteCopy = {
       "Ajudamos agências de TikTok e criadores a escalar as suas operações com contratos blindados, compliance e segurança nos repasses.",
     secondaryCta: "Os nossos serviços",
     scrollIndicator: "DESLIZE PARA EXPLORAR",
-    badge: "FABYANA™ / ASSESSORIA JURÍDICA",
+    badge: "ROLLEMBERG & CAMARGOS ADVOGADOS",
     socialProof: "A ESCOLHA DE GRANDES AGÊNCIAS",
   },
   about: {
     label: "SOBRE NÓS",
-    sublabel: "FABYANA ASSESSORIA JURÍDICA",
+    sublabel: "ROLLEMBERG & CAMARGOS ADVOGADOS",
     headlineHighlight: "Soluções jurídicas diretas para",
     headlineMuted: "agências de criadores e talentos.",
     paragraph:
@@ -152,7 +151,7 @@ export const copyVersionA: SiteCopy = {
   services: {
     label: "OS NOSSOS SERVIÇOS",
     title: "Assessoria jurídica para agências digitais.",
-    contactLink: "Precisa de orientação? Fale connosco ↗",
+    contactLink: "Precisa de orientação? Fale conosco",
     items: [
       {
         number: "001",
@@ -282,7 +281,7 @@ export const copyVersionA: SiteCopy = {
   testimonial: {
     label: "VISÃO DO CLIENTE",
     quote:
-      "A Fabyana trouxe a segurança e a agilidade que a nossa agência precisava para crescer no TikTok. Hoje temos contratos claros que impedem a perda de criadores e protegem o nosso caixa.",
+      "A Rollemberg & Camargos trouxe a segurança e a agilidade que a nossa agência precisava para crescer no digital. Hoje temos contratos claros que impedem a perda de criadores e protegem o nosso caixa.",
     author: "Nome do Cliente",
     role: "Diretor, Agência Parceira",
     badge: "ASSESSORIA MENSAL",
@@ -314,13 +313,13 @@ export const copyVersionA: SiteCopy = {
     ],
   },
   contact: {
-    label: "CONTACTO",
-    title: "Suporte jurídico para decisões seguras.",
+    label: "CONTATO",
+    title: "Segurança jurídica para decisões estratégicas.",
     description:
-      "A Fabyana oferece consultoria jurídica para agências e empresas digitais em contratos, compliance e proteção de ativos.",
+      "A Rollemberg & Camargos oferece assessoria jurídica para agências e empresas digitais em contratos, compliance e proteção de ativos.",
     cta: "Agendar uma Reunião +",
-    talkToUsLabel: "FALE CONNOSCO",
-    email: "contacto@fabyanaadvocacia.com",
+    talkToUsLabel: "FALE CONOSCO",
+    email: "contato@rollembergcamargos.adv.br",
     phone: "+55 (11) 98765-4321",
     addressLabel: "ATENDIMENTO",
     addressLines: ["Atendimento Digital Especializado", "Brasil & Operações Internacionais"],
@@ -347,216 +346,210 @@ export const copyVersionA: SiteCopy = {
 
 export const copyVersionB: SiteCopy = {
   versionId: "B",
-  versionName: "Versão B: Negócios Digitais (Mercado Amplo)",
+  versionName: "Versão B: Negócios em Construção e Escala",
   brand: {
-    name: "FABYANA",
-    tagline: "ASSESSORIA JURÍDICA",
+    name: "ROLLEMBERG & CAMARGOS",
+    tagline: "ADVOGADOS",
   },
   nav: {
     items: [
       { label: "Início", href: "#home" },
       { label: "Sobre", href: "#about" },
       { label: "Serviços", href: "#services" },
-      { label: "Casos", href: "#insights" },
-      { label: "Contacto", href: "#contact" },
+      { label: "Contato", href: "#contact" },
     ],
-    cta: "Blindar Negócio",
+    cta: "Vamos conversar?",
   },
   hero: {
     headline: {
-      line1: "Proteção jurídica para",
-      line2: "negócios digitais.",
+      line1: "Segurança jurídica",
+      line2: "para quem constrói",
+      line3: "e escala negócios.",
     },
     subtext:
-      "Ajudamos infoprodutores, empresas de tecnologia e agências a escalar na internet com contratos seguros, marcas registadas e operação dentro da lei.",
-    secondaryCta: "Os nossos serviços",
+      "Da primeira sociedade aos grandes contratos: traduzimos o direito para uma linguagem clara, ágil e pensada para proteger cada etapa do seu crescimento.",
+    secondaryCta: "Nossos serviços",
     scrollIndicator: "DESLIZE PARA EXPLORAR",
-    badge: "FABYANA™ / ASSESSORIA JURÍDICA",
-    socialProof: "A ESCOLHA DE EMPRESAS DIGITAIS",
+    badge: "ROLLEMBERG & CAMARGOS ADVOGADOS",
+    socialProof: "ESTRUTURA JURÍDICA PARA NEGÓCIOS EM MOVIMENTO",
   },
   about: {
     label: "SOBRE NÓS",
-    sublabel: "FABYANA ASSESSORIA JURÍDICA",
-    headlineHighlight: "Soluções jurídicas diretas para",
-    headlineMuted: "quem vende e escala na internet.",
+    sublabel: "ROLLEMBERG & CAMARGOS ADVOGADOS",
+    headlineHighlight: "Advocacia direta e sem burocracia para",
+    headlineMuted: "quem tira ideias do papel e escala operações.",
     paragraph:
-      "Eliminamos os riscos legais do seu crescimento digital com contratos claros, proteção de ativos e atendimento ágil.",
+      "Substituímos o juridiquês por orientação prática, contratos sob medida e proteção real para você crescer sem deixar brechas pelo caminho.",
   },
   services: {
-    label: "OS NOSSOS SERVIÇOS",
-    title: "Assessoria jurídica para empresas digitais.",
-    contactLink: "Precisa de orientação? Fale connosco ↗",
+    label: "NOSSOS SERVIÇOS",
+    title: "Estrutura completa para cada fase do negócio.",
+    contactLink: "Não sabe por onde começar? Fale conosco",
     items: [
       {
         number: "001",
-        title: "CONTRATOS DE PARCERIA",
+        title: "SOCIEDADE & PARCERIAS",
         description:
-          "Definição segura de divisão de lucros (split), deveres e direitos em coproduções, sociedades e prestação de serviços.",
+          "Acordos de sócios, entrada de investidores, coproduções e divisão de resultados com regras claras desde o primeiro dia, evitando conflitos quando a operação crescer.",
         image: "https://framerusercontent.com/images/Unj4zrUK7oJ6Ma2mUvFNpF17P1U.png",
-        alt: "Contratos de parceria, coprodução e split societário",
+        alt: "Estruturação societária, acordo de sócios e parcerias estratégicas",
       },
       {
         number: "002",
-        title: "REGISTO DE MARCA E ATIVOS",
+        title: "REGISTRO DE MARCA & ATIVOS",
         description:
-          "Proteção oficial do nome da sua empresa, software ou produto digital contra cópias e concorrência desleal.",
+          "Proteção oficial do nome, identidade visual, produtos e tecnologia no INPI para garantir que tudo o que você está construindo pertença de fato a você.",
         image: "https://framerusercontent.com/images/9TGdyV5TPmEmHtmnA4gxULCrIL0.png",
-        alt: "Registo de marca no INPI e proteção de ativos intelectuais",
+        alt: "Registro de marca no INPI e proteção de ativos intelectuais",
       },
       {
         number: "003",
-        title: "COMBATE À PIRATARIA",
+        title: "BLINDAGEM COMERCIAL & CONFLITOS",
         description:
-          "Ações rápidas e notificações para derrubar conteúdos vazados, plágios e vendas ilegais dos seus produtos.",
+          "Contratos com clientes, fornecedores e equipe sem modelos genéricos, além de atuação rápida em cobranças, quebras contratuais e notificações extrajudiciais.",
         image: "https://framerusercontent.com/images/5c2WmHLzjnU1fC8Mp9z1mGaVgjE.png",
-        alt: "Combate à pirataria, plágio e remoção de conteúdo",
+        alt: "Contratos comerciais sob medida e resolução estratégica de conflitos",
       },
       {
         number: "004",
         title: "TERMOS DE USO E PRIVACIDADE",
         description:
-          "Elaboração de contratos para clientes, políticas de reembolso, termos de plataformas e adequação à lei de dados.",
-        image: "https://framerusercontent.com/images/M5oBh2KSjcSMsrrhFyIradzlA.png",
-        alt: "Termos de uso, políticas de reembolso e conformidade LGPD",
+          "Políticas claras para vendas online, plataformas, aplicativos e relação com o consumidor, alinhando sua operação à LGPD e prevenindo bloqueios ou passivos.",
+        image: "/termos-de-uso-privacidade.jpg",
+        alt: "Termos de uso, políticas comerciais e conformidade LGPD",
       },
     ],
   },
   expertise: {
-    label: "ESPECIALIZAÇÃO JURÍDICA",
-    title: "Suporte jurídico com clareza e precisão.",
+    label: "NOSSA ATUAÇÃO",
+    title: "Visão de negócio, linguagem clara e resposta ágil.",
     metrics: [
       {
         stat: "100%",
-        label: "FOCO DIGITAL",
+        label: "DIGITAL & SEM FRONTEIRAS",
         description:
-          "Orientação dedicada a negócios online, infoprodutos, softwares e prestadores de serviços digitais.",
+          "Atendimento direto, reuniões objetivas e assinatura eletrônica para resolver demandas de onde você estiver, sem deslocamentos ou papelada.",
       },
       {
         stat: "+200",
-        label: "OPERAÇÕES BLINDADAS",
+        label: "OPERAÇÕES ESTRUTURADAS",
         description:
-          "Assistência direta em contratos, sociedades, lançamentos e estruturação segura de empresas.",
-      },
-      {
-        stat: "24h",
-        label: "RESPOSTA RÁPIDA",
-        description:
-          "Agilidade na análise de contratos urgentes, notificações extrajudiciais e defesa do seu negócio.",
+          "Sociedades formalizadas, marcas protegidas e contratos comerciais desenhados para empresas que saíram do zero e ganharam tração.",
       },
       {
         stat: "98%",
-        label: "CLIENTES SATISFEITOS",
+        label: "RELAÇÕES DE LONGO PRAZO",
         description:
-          "Construído com base na confiança, disponibilidade rápida, sigilo em lançamentos e excelência jurídica.",
+          "Acompanhamos a empresa desde os primeiros contratos até novas frentes de receita, contratações estratégicas e expansão de mercado.",
       },
     ],
   },
   process: {
     label: "COMO TRABALHAMOS",
     title: "Segurança jurídica sem burocracia.",
-    cta: "Agendar consulta",
+    cta: "Vamos conversar?",
     steps: [
       {
         step: "01 / DIAGNÓSTICO",
-        title: "Análise do Negócio",
+        title: "Raio-X da Operação",
         description:
-          "Avaliamos a estrutura da sua operação, os contratos atuais e onde estão as vulnerabilidades fiscais e legais.",
+          "Entendemos o seu modelo de negócio, como você vende hoje e onde estão os pontos cegos societários, contratuais e de marca.",
       },
       {
-        step: "02 / ESTRUTURA",
-        title: "Plano de Blindagem",
+        step: "02 / ESTRATÉGIA",
+        title: "Plano de Prioridades",
         description:
-          "Desenhamos a estratégia jurídica ideal para proteger os seus produtos, marcas e acordos com parceiros.",
+          "Definimos o que precisa ser protegido imediatamente para destravar vendas e parcerias sem sobrecarregar sua rotina.",
       },
       {
         step: "03 / EXECUÇÃO",
-        title: "Implementação Rápida",
+        title: "Entrega Enxuta e Clara",
         description:
-          "Entregamos os contratos prontos, iniciamos registos de marca e adequamos os termos da sua plataforma.",
+          "Elaboramos documentos objetivos, fáceis de assinar e adaptados à realidade comercial da sua empresa.",
       },
       {
-        step: "04 / PROTEÇÃO",
-        title: "Suporte Contínuo",
+        step: "04 / ESCALA",
+        title: "Acompanhamento Próximo",
         description:
-          "Acompanhamento preventivo para novos lançamentos, contratações de equipa e resolução ágil de conflitos.",
+          "Suporte contínuo para revisar acordos, apoiar contratações e dar segurança a cada novo passo de crescimento.",
       },
     ],
   },
   insights: {
-    label: "CASOS E ARTIGOS",
-    title: "Resultados reais no mercado digital.",
+    label: "CASOS E ATUAÇÃO",
+    title: "Estrutura real para negócios em crescimento.",
     cases: [
       {
-        title: "COMBATE À PIRATARIA E REMOÇÃO DE CONTEÚDO",
-        tags: "Propriedade Intelectual",
-        year: "2024",
+        title: "ACORDO DE SÓCIOS E REESTRUTURAÇÃO DE PARTICIPAÇÕES",
+        tags: "Direito Societário",
+        year: "2025",
         image: "https://framerusercontent.com/images/wsGNlyuOkIdU6Vf8VoUlYjuvmC4.png",
-        alt: "Combate à pirataria e takedown de cursos piratas",
+        alt: "Estruturação societária e acordo de sócios",
         align: "left",
       },
       {
         title: "ADEQUAÇÃO DE TERMOS DE USO E CONTRATOS B2B",
-        tags: "Plataforma de Software",
-        year: "2024",
+        tags: "Tecnologia & Operações",
+        year: "2025",
         image: "https://framerusercontent.com/images/nmXZOsPpIlQjIHmg5uwOA5NJcI.png",
-        alt: "Adequação de termos de uso para plataformas SaaS",
+        alt: "Adequação de termos de uso e contratos B2B",
         align: "right",
       },
       {
-        title: "ESTRUTURAÇÃO DE SOCIEDADE E COPRODUÇÃO",
-        tags: "Lançamento Digital",
+        title: "BLINDAGEM DE MARCA E PARCERIAS COMERCIAIS",
+        tags: "Expansão de Marca",
         year: "2025",
         image: "https://framerusercontent.com/images/uKY0y11Igx9LzVoeZBuszZASoU.png",
-        alt: "Contrato de coprodução e divisão de faturamento",
+        alt: "Proteção de marca e contratos de parceria",
         align: "left",
       },
     ],
   },
   testimonial: {
-    label: "VISÃO DO CLIENTE",
+    label: "VISÃO DE QUEM CONSTRÓI",
     quote:
-      "A Fabyana resolveu toda a estrutura jurídica dos nossos lançamentos e contratos com parceiros. Hoje escalamos as vendas com a tranquilidade de ter a marca e o caixa protegidos.",
-    author: "Nome do Cliente",
-    role: "Fundador, Empresa Digital",
+      "A equipe da Rollemberg & Camargos organizou nossa sociedade, registrou nossa marca e criou contratos que nossos clientes assinam sem travar a venda. Hoje crescemos com a tranquilidade de ter a casa em ordem.",
+    author: "Cliente Rollemberg & Camargos",
+    role: "Sócio-Fundador",
     badge: "ASSESSORIA EMPRESARIAL",
   },
   faq: {
-    label: "PERGUNTAS FREQUENTES",
-    title: "Tudo o que precisa de saber sobre a nossa atuação.",
+    label: "DÚVIDAS FREQUENTES",
+    title: "Respostas diretas antes do próximo passo.",
     items: [
       {
-        q: "Em que tipos de negócios digitais o escritório é especializado?",
-        a: "Atuamos fortemente com infoprodutores, agências de lançamentos, empresas de software (SaaS), e-commerces e prestadores de serviços digitais que escalam vendas na internet.",
+        q: "Qual é o momento certo de estruturar o jurídico do meu negócio?",
+        a: "Antes que o primeiro imprevisto custe caro. Se você já tem faturamento recorrente, vai dividir a operação com um sócio, fechar contratos maiores ou posicionar uma marca própria no mercado, organizar a base agora custa uma fração de corrigir problemas depois.",
       },
       {
-        q: "Como funciona a consulta jurídica inicial?",
-        a: "Realizamos um raio-x completo de 45 minutos para avaliar a sua estrutura societária, termos de uso, contratos de prestadores e principais pontos de vulnerabilidade antes do próximo ciclo de crescimento.",
+        q: "Como funciona a primeira conversa com o escritório?",
+        a: "Fazemos uma reunião objetiva de diagnóstico para entender o modelo da sua operação, avaliar como você fecha negócios hoje e apontar o que precisa de proteção imediata — sem termos complicados e com um plano claro de prioridades.",
       },
       {
-        q: "O que fazer se copiarem o meu produto ou usarem a minha marca?",
-        a: "Agimos de imediato com notificações extrajudiciais diretas e solicitações de takedown junto a gateways de pagamento, plataformas de infoprodutos e redes sociais para derrubar as cópias e estancar prejuízos.",
+        q: "Estou iniciando uma sociedade ou parceria. Preciso mesmo formalizar agora?",
+        a: "Sim. A maioria dos desgastes societários nasce de combinados verbais feitos quando tudo estava começando. Colocamos no papel a participação de cada parte, responsabilidades, divisão de resultados, propriedade intelectual e regras claras de saída.",
       },
       {
-        q: "Como funciona o contrato de parceria ou coprodução segura?",
-        a: "Estruturamos a divisão exata de percentuais de faturamento (split), responsabilidade sobre custos operacionais e de tráfego, propriedade intelectual dos materiais e regras transparentes de rescisão e não-concorrência.",
+        q: "Ainda uso modelos prontos de contrato com clientes e prestadores. Qual o risco?",
+        a: "Modelos genéricos raramente cobrem a realidade da sua entrega, multas por cancelamento, inadimplência, confidencialidade ou riscos trabalhistas. Criamos contratos enxutos, fáceis de ler e assinar, mas que protegem o seu caixa de verdade.",
       },
       {
-        q: "Fazem elaboração e revisão dos contratos que já uso hoje?",
-        a: "Sim. Revisamos todos os seus contratos atuais com coprodutores, afiliados, prestadores de tráfego/design e termos de uso da sua plataforma, blindando eventuais brechas jurídicas e riscos trabalhistas.",
+        q: "Vocês atendem demandas pontuais ou acompanham a empresa no dia a dia?",
+        a: "Atuamos nos dois formatos. Podemos resolver uma demanda específica — como registrar sua marca, formalizar sua sociedade ou redigir um contrato estratégico — ou assumir o jurídico mensal para apoiar negociações e decisões contínuas.",
       },
     ],
   },
   contact: {
-    label: "CONTACTO",
-    title: "Suporte jurídica para decisões seguras.",
+    label: "CONTATO",
+    title: "Segurança jurídica para decisões que movem o negócio.",
     description:
-      "A Fabyana oferece consultoria jurídica para empresas digitais e empreendedores em contratos, marcas e segurança operacional.",
-    cta: "Agendar uma Reunião +",
-    talkToUsLabel: "FALE CONNOSCO",
-    email: "contacto@fabyanaadvocacia.com",
+      "A Rollemberg & Camargos Advogados oferece assessoria jurídica direta e estratégica em estrutura societária, contratos, marcas e proteção operacional.",
+    cta: "Vamos conversar?",
+    talkToUsLabel: "FALE CONOSCO",
+    email: "contato@rollembergcamargos.adv.br",
     phone: "+55 (11) 98765-4321",
     addressLabel: "ATENDIMENTO",
-    addressLines: ["Assessoria Jurídica Digital", "Atendimento para Todo o Brasil & Exterior"],
+    addressLines: ["Advocacia Digital & Estratégica", "Atendimento em Todo o Brasil & Exterior"],
     hoursLabel: "HORÁRIO DE ATENDIMENTO",
     hoursLines: ["Segunda — Sexta", "09:00 — 18:00 BRT"],
     navLabel: "NAVEGAÇÃO",
@@ -564,16 +557,16 @@ export const copyVersionB: SiteCopy = {
     backToTopLabel: "Voltar ao topo ↑",
   },
   modal: {
-    title: "Blindar Meu Negócio Digital",
+    title: "Vamos conversar sobre o seu negócio",
     subtitle:
-      "Preencha os dados abaixo para agendarmos uma sessão de diagnóstico jurídico do seu infoproduto ou empresa de tecnologia.",
+      "Preencha os dados abaixo para agendarmos uma conversa objetiva de diagnóstico e entendermos o momento atual da sua operação.",
     serviceOptions: [
-      "Contrato de Coprodução e Divisão de Lucros",
-      "Registo de Marca e Proteção de Software",
-      "Combate à Pirataria e Remoção de Conteúdo",
-      "Termos de Uso e Adequação LGPD",
-      "Assessoria Mensal para Lançamentos",
+      "Acordo de Sócios e Estruturação Societária",
+      "Contratos com Clientes, Parceiros e Equipe",
+      "Registro de Marca e Proteção de Ativos",
+      "Termos de Uso, Plataformas e LGPD",
+      "Assessoria Jurídica Mensal Recorrente",
     ],
-    submitButton: "Solicitar Diagnóstico",
+    submitButton: "Agendar Conversa",
   },
 };

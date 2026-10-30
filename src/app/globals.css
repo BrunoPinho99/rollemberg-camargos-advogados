@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.88;
+    transform: scale(0.985);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+
 :root {
   --background: #fcfbf7;
   --foreground: #101010;
@@ -125,25 +141,25 @@ article.group:hover img, .framer-card:hover img {
   animation-play-state: paused;
 }
 
-/* Revelação de Scroll com Física Framer Motion (Attest) */
+/* Revelação de Scroll com Física Framer Motion suave e fluida */
 .reveal {
   opacity: 0;
-  transform: translateY(22px) scale(0.985);
-  transition: opacity 0.5s var(--ease-framer),
-              transform 0.5s var(--ease-framer);
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 .reveal.is-revealed {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
 }
 
 /* Staggers explícitos em cascata */
-.reveal.delay-100 { transition-delay: 0.08s; }
-.reveal.delay-200 { transition-delay: 0.16s; }
-.reveal.delay-300 { transition-delay: 0.24s; }
-.reveal.delay-400 { transition-delay: 0.32s; }
-.reveal.delay-500 { transition-delay: 0.40s; }
+.reveal.delay-100 { transition-delay: 0.10s; }
+.reveal.delay-200 { transition-delay: 0.18s; }
+.reveal.delay-300 { transition-delay: 0.26s; }
+.reveal.delay-400 { transition-delay: 0.34s; }
+.reveal.delay-500 { transition-delay: 0.42s; }
 
 /* Animação inicial de entrada do Hero */
 @keyframes heroFadeUp {
@@ -161,4 +177,19 @@ article.group:hover img, .framer-card:hover img {
 }
 .hero-animate-sub {
   animation: heroFadeUp 0.85s var(--ease-framer) 0.3s both;
+}
+
+/* Efeito Zoom Out no Vídeo da Hero */
+@keyframes heroVideoZoomOut {
+  0% {
+    transform: scale(1.18);
+  }
+  100% {
+    transform: scale(1.0);
+  }
+}
+
+.hero-video-zoom-out {
+  animation: heroVideoZoomOut 12s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  will-change: transform;
 }
