@@ -84,19 +84,6 @@ export default function Hero({ copy }: HeroProps) {
             {copy.hero.subtext}
           </p>
         </div>
-
-        {/* CTA direto na primeira dobra em dispositivos móveis */}
-        <div className="mt-6 sm:hidden hero-animate-sub">
-          <a
-            href={WHATSAPP_DIRECT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-pill inline-flex items-center justify-center gap-2 w-full py-3.5 px-6 rounded-full bg-white text-[#101010] font-medium text-sm shadow-md active:scale-95 transition-all text-center"
-          >
-            <span>Vamos conversar?</span>
-            <span className="text-xs">↗</span>
-          </a>
-        </div>
       </div>
     </section>
   );
