@@ -43,9 +43,10 @@ export default function Hero({ copy }: HeroProps) {
           loop
           muted
           playsInline
-          preload="metadata"
-          className="hero-video-zoom-out absolute inset-0 w-full h-full object-cover"
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover"
         >
+          <source src="/hero-video.webm" type="video/webm" />
           <source src="/hero-video.mp4" type="video/mp4" />
         </video>
 

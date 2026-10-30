@@ -198,18 +198,3 @@ html[data-site-ready="true"] .hero-animate-sub {
     transition: none !important;
   }
 }
-
-/* Efeito Zoom Out no Vídeo da Hero */
-@keyframes heroVideoZoomOut {
-  0% {
-    transform: scale(1.18);
-  }
-  100% {
-    transform: scale(1.0);
-  }
-}
-
-.hero-video-zoom-out {
-  animation: heroVideoZoomOut 12s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-  will-change: transform;
-}

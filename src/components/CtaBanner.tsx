@@ -47,6 +47,7 @@ export default function CtaBanner({}: CtaBannerProps) {
             poster="/cta-conversation-poster.jpg"
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           >
+            <source src="/cta-conversation.webm" type="video/webm" />
             <source src="/cta-conversation.mp4" type="video/mp4" />
           </video>
 
