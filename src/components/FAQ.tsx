@@ -39,11 +39,11 @@ export default function FAQ({ copy }: FAQProps) {
                 >
                   <button
                     onClick={() => toggle(idx)}
-                    className="faq-toggle w-full flex items-center justify-between text-left font-semibold text-lg sm:text-xl text-[#101010] group focus:outline-none cursor-pointer"
+                    className="faq-toggle w-full min-h-[44px] py-1 flex items-center justify-between text-left font-semibold text-base sm:text-xl text-[#101010] group focus:outline-none cursor-pointer"
                     aria-expanded={isOpen}
                   >
-                    <span>{faq.q}</span>
-                    <span className="faq-icon text-2xl font-light text-[#101010] ml-4 select-none">
+                    <span className="pr-2">{faq.q}</span>
+                    <span className="faq-icon text-2xl font-light text-[#101010] shrink-0 ml-2 select-none">
                       {isOpen ? "−" : "+"}
                     </span>
                   </button>

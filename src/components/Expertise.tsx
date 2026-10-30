@@ -29,7 +29,7 @@ export default function Expertise({ copy }: ExpertiseProps) {
                   <div className="space-y-3">
                     <Counter
                       value={item.stat}
-                      className="text-6xl sm:text-7xl font-bold tracking-tight text-[#101010] block"
+                      className="text-5xl sm:text-7xl font-bold tracking-tight text-[#101010] block"
                       duration={1800}
                     />
                     <h3 className="text-sm font-semibold uppercase tracking-wider text-[#101010]/75">
@@ -47,7 +47,7 @@ export default function Expertise({ copy }: ExpertiseProps) {
           {/* Coluna Direita: Fotografia Editorial Grande Sticky */}
           <div className="lg:col-span-6">
             <div className="sticky top-28">
-              <div className="rounded-2xl overflow-hidden bg-neutral-200 shadow-sm h-[580px] sm:h-[720px] relative w-full reveal delay-200">
+              <div className="rounded-2xl overflow-hidden bg-neutral-200 shadow-sm h-[360px] sm:h-[500px] lg:h-[720px] relative w-full reveal delay-200">
                 <Image
                   src="/equipe-rollemberg-camargos.jpg"
                   alt="Dra. Rollemberg e Dra. Camargos - Sócias fundadoras Rollemberg & Camargos Advogados"

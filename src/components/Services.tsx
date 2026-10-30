@@ -27,10 +27,10 @@ export default function Services({ copy }: ServicesProps) {
               href={WHATSAPP_DIRECT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="arrow-link text-[#101010] text-base sm:text-lg font-medium inline-flex items-center gap-1.5 hover:underline"
+              className="arrow-link text-[#101010] text-sm sm:text-lg font-medium inline-flex items-center gap-1.5 hover:underline min-h-[44px]"
             >
               <span>{copy.services.contactLink}</span>
-              <ArrowUpRight className="w-4 h-4 inline-block" />
+              <ArrowUpRight className="w-4 h-4 inline-block shrink-0" />
             </a>
           </div>
         </div>
@@ -43,9 +43,9 @@ export default function Services({ copy }: ServicesProps) {
           {copy.services.items.map((service, index) => (
             <article
               key={service.number || index}
-              className="py-14 sm:py-20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center group"
+              className="py-12 sm:py-20 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-16 items-center group"
             >
-              <div className="lg:col-span-5 overflow-hidden rounded-xl bg-neutral-200 relative w-full h-[240px] sm:h-[320px] reveal">
+              <div className="lg:col-span-5 overflow-hidden rounded-xl bg-neutral-200 relative w-full h-[210px] sm:h-[300px] md:h-[320px] reveal">
                 <Image
                   src={service.image}
                   alt={service.alt}
@@ -55,11 +55,11 @@ export default function Services({ copy }: ServicesProps) {
                   loading="lazy"
                 />
               </div>
-              <div className="lg:col-span-7 space-y-4 reveal delay-100">
-                <h3 className="text-2xl sm:text-3xl md:text-[34px] font-semibold tracking-tight uppercase text-[#101010] leading-tight">
+              <div className="lg:col-span-7 space-y-3 sm:space-y-4 reveal delay-100">
+                <h3 className="text-xl sm:text-3xl md:text-[34px] font-semibold tracking-tight uppercase text-[#101010] leading-tight">
                   {service.title}
                 </h3>
-                <p className="text-base sm:text-lg md:text-[19px] text-[#6e6d69] font-normal leading-relaxed max-w-xl">
+                <p className="text-sm sm:text-lg md:text-[19px] text-[#6e6d69] font-normal leading-relaxed max-w-xl">
                   {service.description}
                 </p>
               </div>
@@ -68,7 +68,7 @@ export default function Services({ copy }: ServicesProps) {
         </div>
 
         {/* CTA Intermediário Estratégico no Fim dos Serviços */}
-        <div className="mt-14 sm:mt-18 pt-10 border-t border-[#e8e6df] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 reveal">
+        <div className="mt-12 sm:mt-18 pt-8 sm:pt-10 border-t border-[#e8e6df] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 reveal">
           <div className="space-y-1.5">
             <h4 className="text-xl sm:text-2xl font-medium tracking-tight text-[#101010]">
               Seu negócio cresceu mais rápido que a estrutura jurídica?
@@ -81,7 +81,7 @@ export default function Services({ copy }: ServicesProps) {
             href={WHATSAPP_DIRECT_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-pill shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#101010] text-white font-medium text-sm sm:text-base hover:bg-[#2E3C44] transition-all duration-200 cursor-pointer shadow-md"
+            className="btn-pill w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#101010] text-white font-medium text-sm sm:text-base hover:bg-[#2E3C44] transition-all duration-200 cursor-pointer shadow-md min-h-[48px]"
           >
             <span>Agendar Diagnóstico do Negócio</span>
             <span className="text-xs">↗</span>

@@ -37,99 +37,148 @@ export default function Header({ copy = copyVersionB }: HeaderProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return (
-    <header
-      id="siteHeader"
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 px-6 sm:px-10 md:px-14 ${
-        isPastHero
-          ? "bg-[#2E3C44]/95 backdrop-blur-md border-b border-[#2E3C44] py-4 shadow-lg shadow-black/10"
-          : "bg-transparent py-6"
-      }`}
-    >
-      <div className="max-w-[1400px] mx-auto flex items-center justify-between">
-        {/* Brand Logo */}
-        <a
-          href="#home"
-          className="relative flex items-center transition-opacity hover:opacity-85 py-1"
-          aria-label="Rollemberg & Camargos Advogados - Início"
-        >
-          {/* Logo clara sobre fundo escuro (#2E3C44 e Hero) */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/logo-rollemberg.png"
-            alt="Rollemberg & Camargos Advogados"
-            className="h-11 sm:h-12 w-auto object-contain drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] transition-opacity duration-300 opacity-100"
-          />
-        </a>
+  // Trava o scroll do body quando o menu mobile estiver aberto
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
 
-        {/* Desktop Navigation Menu & Action Button (Estilo Attest Framer) */}
-        <div className="hidden md:flex items-center gap-7">
-          <nav className="flex items-center gap-7 text-[15px] font-medium tracking-tight">
+  return (
+    <>
+      <header
+        id="siteHeader"
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 px-4 sm:px-10 md:px-14 ${
+          isPastHero
+            ? "bg-[#2E3C44]/95 backdrop-blur-md border-b border-[#2E3C44] py-3.5 sm:py-4 shadow-lg shadow-black/10"
+            : "bg-transparent py-4 sm:py-6"
+        }`}
+      >
+        <div className="max-w-[1400px] mx-auto flex items-center justify-between">
+          {/* Brand Logo */}
+          <a
+            href="#home"
+            className="relative flex items-center transition-opacity hover:opacity-85 py-1 min-h-[44px]"
+            aria-label="Rollemberg & Camargos Advogados - Início"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo-rollemberg.png"
+              alt="Rollemberg & Camargos Advogados"
+              className="h-9 sm:h-12 w-auto object-contain drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] transition-opacity duration-300 opacity-100"
+            />
+          </a>
+
+          {/* Desktop Navigation Menu & Action Button (Estilo Attest Framer) */}
+          <div className="hidden md:flex items-center gap-7">
+            <nav className="flex items-center gap-7 text-[15px] font-medium tracking-tight">
+              {copy.nav.items.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className={`transition-colors duration-300 py-1 ${
+                    isPastHero
+                      ? "text-white/85 hover:text-white"
+                      : "text-white/90 hover:text-white"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+
+            <a
+              href={WHATSAPP_DIRECT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-pill px-5 py-2.5 rounded-full bg-white text-[#101010] font-medium text-sm shadow-[0_2px_12px_rgba(0,0,0,0.18)] hover:bg-[#f2efe9] hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer select-none"
+            >
+              {copy.nav.cta || "Vamos conversar?"}
+            </a>
+          </div>
+
+          {/* Mobile Menu Button com área de toque mínima de 44px */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden w-11 h-11 flex items-center justify-center rounded-xl bg-black/20 backdrop-blur-sm border border-white/10 text-white focus:outline-none transition-all cursor-pointer active:scale-95"
+            aria-label="Abrir menu de navegação"
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile Drawer em tela cheia com backdrop blur e toque aprimorado */}
+      {mobileMenuOpen && (
+        <div
+          className="md:hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex flex-col justify-between p-6 animate-in fade-in duration-200"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          {/* Header do Menu Aberto */}
+          <div className="flex items-center justify-between pt-2">
+            <a
+              href="#home"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-label="Rollemberg & Camargos Advogados"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/logo-rollemberg.png"
+                alt="Rollemberg & Camargos Advogados"
+                className="h-9 w-auto object-contain"
+              />
+            </a>
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-11 h-11 flex items-center justify-center rounded-xl bg-white/10 text-white border border-white/15 cursor-pointer"
+              aria-label="Fechar menu"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Links de navegação com altura tátil de 48px */}
+          <nav
+            className="flex flex-col space-y-2 my-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
             {copy.nav.items.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className={`transition-colors duration-300 ${
-                  isPastHero
-                    ? "text-white/85 hover:text-white"
-                    : "text-white/90 hover:text-white"
-                }`}
+                onClick={() => setMobileMenuOpen(false)}
+                className="min-h-[52px] flex items-center px-4 rounded-xl text-lg font-medium text-white/90 hover:text-white hover:bg-white/10 active:bg-white/15 transition-colors border-b border-white/5"
               >
                 {item.label}
               </a>
             ))}
           </nav>
 
-          <a
-            href={WHATSAPP_DIRECT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-pill px-5 py-2.5 rounded-full bg-white text-[#101010] font-medium text-sm shadow-[0_2px_12px_rgba(0,0,0,0.18)] hover:bg-[#f2efe9] hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer select-none"
-          >
-            {copy.nav.cta || "Vamos conversar?"}
-          </a>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 focus:outline-none transition-colors duration-300 cursor-pointer text-white"
-          aria-label="Abrir menu de navegação"
-        >
-          {mobileMenuOpen ? (
-            <X className="w-6 h-6" />
-          ) : (
-            <Menu className="w-6 h-6" />
-          )}
-        </button>
-      </div>
-
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="md:hidden mt-4 mx-2 rounded-2xl bg-[#2E3C44] border border-white/10 p-6 shadow-2xl transition-all">
-          <div className="flex flex-col space-y-4 text-base font-medium text-white">
-            {copy.nav.items.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-2 border-b border-white/10 text-white/90 hover:text-white"
-              >
-                {item.label}
-              </a>
-            ))}
+          {/* Botão de Ação CTA no rodapé do menu mobile */}
+          <div className="pb-4" onClick={(e) => e.stopPropagation()}>
             <a
               href={WHATSAPP_DIRECT_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
-              className="mt-2 w-full py-3.5 rounded-full bg-white text-[#101010] font-medium text-sm shadow-md hover:bg-[#f2efe9] transition-all cursor-pointer text-center block"
+              className="btn-pill w-full min-h-[50px] flex items-center justify-center py-3.5 px-6 rounded-full bg-white text-[#101010] font-medium text-base shadow-lg hover:bg-[#f2efe9] active:scale-95 transition-all text-center"
             >
-              {copy.nav.cta || "Vamos conversar?"}
+              <span>{copy.nav.cta || "Vamos conversar?"}</span>
+              <span className="ml-1 text-xs">↗</span>
             </a>
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 }

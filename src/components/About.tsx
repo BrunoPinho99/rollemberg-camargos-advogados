@@ -141,8 +141,7 @@ export default function About({ copy }: AboutProps) {
     <section
       id="about"
       ref={containerRef}
-      className="relative bg-[#fcfbf7] border-b border-[#e8e6df]"
-      style={{ height: "260vh" }}
+      className="relative bg-[#fcfbf7] border-b border-[#e8e6df] h-[175vh] md:h-[260vh]"
     >
       {/* Container Sticky: Trava a tela centralizada no viewport enquanto o usuário rola a página */}
       <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden select-none">
@@ -157,12 +156,12 @@ export default function About({ copy }: AboutProps) {
         />
 
         {/* Conteúdo Principal */}
-        <div className="max-w-[1400px] w-full mx-auto px-6 sm:px-10 md:px-14 relative z-10 py-8 sm:py-0">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+        <div className="max-w-[1400px] w-full mx-auto px-5 sm:px-10 md:px-14 relative z-10 py-6 sm:py-0">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-16 items-start">
             {/* Coluna Esquerda: Tag / Label com Parallax suave */}
             <div
               ref={labelRef}
-              className="lg:col-span-3 space-y-4 will-change-transform"
+              className="lg:col-span-3 space-y-2 sm:space-y-4 will-change-transform"
             >
               <div className="reveal">
                 <span className="text-[12px] font-semibold tracking-wider uppercase text-[#6e6d69] block">
@@ -177,14 +176,14 @@ export default function About({ copy }: AboutProps) {
             {/* Coluna Direita: Declaração Editorial com Título de Alto Impacto e Parágrafo com Scrub de Letras */}
             <div className="lg:col-span-9 max-w-4xl">
               {/* Título Principal */}
-              <h2 className="text-3xl sm:text-5xl md:text-[54px] font-medium tracking-tight leading-[1.16] text-[#101010] reveal delay-100">
+              <h2 className="text-2xl sm:text-4xl md:text-[54px] font-medium tracking-tight leading-[1.18] text-[#101010] reveal delay-100">
                 <span>{copy.about.headlineHighlight} </span>
                 <span>{copy.about.headlineMuted}</span>
               </h2>
 
               {/* Parágrafo Descritivo com Preenchimento Letra por Letra */}
-              <div className="mt-8 sm:mt-12 max-w-3xl reveal delay-200">
-                <p className="text-lg sm:text-2xl font-normal leading-relaxed flex flex-wrap">
+              <div className="mt-6 sm:mt-12 max-w-3xl reveal delay-200">
+                <p className="text-base sm:text-xl md:text-2xl font-normal leading-relaxed flex flex-wrap">
                   {renderedParagraph}
                 </p>
               </div>

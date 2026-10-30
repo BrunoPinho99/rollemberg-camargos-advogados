@@ -36,7 +36,7 @@ export default function CtaBanner({}: CtaBannerProps) {
     <section id="cta-banner" className="py-16 sm:py-24 bg-[#fcfbf7]">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14">
         {/* Card Flutuante com Bordas Arredondadas e Vídeo em Loop (Inspirado em attest.framer.media) */}
-        <div className="relative w-full rounded-3xl sm:rounded-[36px] overflow-hidden min-h-[460px] sm:min-h-[520px] md:min-h-[580px] flex flex-col items-center justify-center text-center p-8 sm:p-14 shadow-2xl reveal">
+        <div className="relative w-full rounded-3xl sm:rounded-[36px] overflow-hidden min-h-[440px] sm:min-h-[520px] md:min-h-[580px] flex flex-col items-center justify-center text-center p-6 sm:p-14 shadow-2xl reveal">
           {/* Vídeo de Fundo em Loop da Reunião com Iluminação Quente */}
           <video
             ref={videoRef}
@@ -77,12 +77,12 @@ export default function CtaBanner({}: CtaBannerProps) {
             </p>
 
             {/* Botão Pill de Conversão */}
-            <div className="reveal delay-400">
+            <div className="reveal delay-400 w-full sm:w-auto flex justify-center">
               <a
                 href={WHATSAPP_DIRECT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-pill group inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 rounded-full bg-white text-[#101010] font-medium text-sm sm:text-base shadow-[0_6px_28px_rgba(255,255,255,0.22)] hover:bg-[#f2efe9] hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
+                className="btn-pill group w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 rounded-full bg-white text-[#101010] font-medium text-sm sm:text-base shadow-[0_6px_28px_rgba(255,255,255,0.22)] hover:bg-[#f2efe9] hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer min-h-[48px]"
               >
                 <span>Agendar uma conversa conosco</span>
                 <span className="text-xs transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">

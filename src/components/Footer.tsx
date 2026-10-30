@@ -63,51 +63,51 @@ export default function Footer({ copy }: FooterProps) {
             <div className="py-14 lg:py-20 lg:pl-16 flex flex-col justify-center">
               <div className="grid grid-cols-2 gap-6 text-[12px] sm:text-[13px] font-medium tracking-[0.08em] uppercase reveal delay-200">
                 {/* Sub-coluna 1 */}
-                <div className="flex flex-col space-y-4">
+                <div className="flex flex-col space-y-1">
                   <a
                     href="#home"
                     onClick={handleBackToTop}
-                    className="text-white/70 hover:text-white transition-colors duration-200"
+                    className="min-h-[44px] flex items-center text-white/70 hover:text-white transition-colors duration-200"
                   >
                     Início
                   </a>
                   <a
                     href="#about"
                     onClick={(e) => handleNavClick(e, "#about")}
-                    className="text-white/70 hover:text-white transition-colors duration-200"
+                    className="min-h-[44px] flex items-center text-white/70 hover:text-white transition-colors duration-200"
                   >
                     Sobre Nós
                   </a>
                   <a
                     href="#services"
                     onClick={(e) => handleNavClick(e, "#services")}
-                    className="text-white/70 hover:text-white transition-colors duration-200"
+                    className="min-h-[44px] flex items-center text-white/70 hover:text-white transition-colors duration-200"
                   >
                     Serviços
                   </a>
                   <a
                     href="#expertise"
                     onClick={(e) => handleNavClick(e, "#expertise")}
-                    className="text-white/70 hover:text-white transition-colors duration-200"
+                    className="min-h-[44px] flex items-center text-white/70 hover:text-white transition-colors duration-200"
                   >
                     Nossa Atuação
                   </a>
                   <a
                     href="#faq"
                     onClick={(e) => handleNavClick(e, "#faq")}
-                    className="text-white/70 hover:text-white transition-colors duration-200"
+                    className="min-h-[44px] flex items-center text-white/70 hover:text-white transition-colors duration-200"
                   >
                     Dúvidas / FAQ
                   </a>
                 </div>
 
                 {/* Sub-coluna 2 */}
-                <div className="flex flex-col space-y-4">
+                <div className="flex flex-col space-y-1">
                   <a
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/70 hover:text-white transition-colors duration-200 uppercase"
+                    className="min-h-[44px] flex items-center text-white/70 hover:text-white transition-colors duration-200 uppercase"
                   >
                     Agendar Conversa
                   </a>
@@ -115,19 +115,19 @@ export default function Footer({ copy }: FooterProps) {
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/70 hover:text-white transition-colors duration-200"
+                    className="min-h-[44px] flex items-center text-white/70 hover:text-white transition-colors duration-200"
                   >
                     WhatsApp
                   </a>
                   <button
                     onClick={() => setShowTermsModal(true)}
-                    className="text-left text-white/70 hover:text-white transition-colors duration-200 uppercase cursor-pointer"
+                    className="min-h-[44px] flex items-center text-left text-white/70 hover:text-white transition-colors duration-200 uppercase cursor-pointer"
                   >
                     Termos de Uso
                   </button>
                   <button
                     onClick={() => setShowTermsModal(true)}
-                    className="text-left text-white/70 hover:text-white transition-colors duration-200 uppercase cursor-pointer"
+                    className="min-h-[44px] flex items-center text-left text-white/70 hover:text-white transition-colors duration-200 uppercase cursor-pointer"
                   >
                     Privacidade
                   </button>
@@ -139,14 +139,14 @@ export default function Footer({ copy }: FooterProps) {
 
         {/* Barra Inferior Minimalista de Copyright */}
         <div className="border-t border-white/10">
-          <div className="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/45 reveal">
-            <p className="text-center sm:text-left">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-white/45 reveal">
+            <p className="text-center sm:text-left py-2">
               © {new Date().getFullYear()} {copy.brand.name} Advogados. Todos os direitos reservados.
             </p>
 
             <button
               onClick={handleBackToTop}
-              className="group inline-flex items-center gap-2 text-white/55 hover:text-white transition-colors cursor-pointer"
+              className="group min-h-[44px] px-3 -mr-3 inline-flex items-center gap-2 text-white/55 hover:text-white transition-colors cursor-pointer"
             >
               <span>Voltar ao topo</span>
               <ArrowUp className="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-y-0.5" />

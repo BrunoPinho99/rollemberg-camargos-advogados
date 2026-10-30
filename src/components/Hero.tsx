@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { SiteCopy } from "@/content/siteCopy";
+import { WHATSAPP_DIRECT_URL } from "@/lib/whatsapp";
 
 interface HeroProps {
   copy: SiteCopy;
@@ -58,13 +59,13 @@ export default function Hero({ copy }: HeroProps) {
       </div>
 
       {/* Espaçamento superior para compensar o cabeçalho fixo */}
-      <div className="pt-[clamp(100px,16vh,140px)]" />
+      <div className="pt-[clamp(88px,14vh,140px)]" />
 
       {/* Conteúdo Principal do Hero */}
-      <div className="relative z-10 max-w-[1400px] w-full mx-auto px-6 sm:px-10 md:px-14 pb-12 sm:pb-16 mt-auto flex flex-col">
-        {/* Título de Alto Impacto */}
+      <div className="relative z-10 max-w-[1400px] w-full mx-auto px-4 sm:px-10 md:px-14 pb-10 sm:pb-16 mt-auto flex flex-col">
+        {/* Título de Alto Impacto com clamp fluido */}
         <div id="heroHeadline" className="hero-animate-title max-w-4xl">
-          <h1 className="text-[clamp(38px,min(5.4vw,8.5vh),78px)] font-normal tracking-[-0.03em] leading-[1.05] text-white">
+          <h1 className="text-[clamp(34px,8vw,78px)] font-normal tracking-[-0.03em] leading-[1.08] text-white">
             {copy.hero.headline.line1}
             <br />
             {copy.hero.headline.line2}
@@ -77,11 +78,24 @@ export default function Hero({ copy }: HeroProps) {
           </h1>
         </div>
 
-        {/* Linha Descritiva */}
-        <div className="hidden md:block mt-6 sm:mt-8 pt-5 border-t border-white/15 max-w-2xl hero-animate-sub">
-          <p className="text-base sm:text-lg md:text-[18px] font-normal leading-[1.48] tracking-tight text-white/90">
+        {/* Linha Descritiva adaptada para telas pequenas e grandes */}
+        <div className="mt-5 sm:mt-8 pt-4 sm:pt-5 border-t border-white/15 max-w-2xl hero-animate-sub">
+          <p className="text-sm sm:text-lg md:text-[18px] font-normal leading-[1.48] tracking-tight text-white/90">
             {copy.hero.subtext}
           </p>
+        </div>
+
+        {/* CTA direto na primeira dobra em dispositivos móveis */}
+        <div className="mt-6 sm:hidden hero-animate-sub">
+          <a
+            href={WHATSAPP_DIRECT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-pill inline-flex items-center justify-center gap-2 w-full py-3.5 px-6 rounded-full bg-white text-[#101010] font-medium text-sm shadow-md active:scale-95 transition-all text-center"
+          >
+            <span>Vamos conversar?</span>
+            <span className="text-xs">↗</span>
+          </a>
         </div>
       </div>
     </section>
