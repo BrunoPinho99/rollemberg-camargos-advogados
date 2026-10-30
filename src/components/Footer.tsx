@@ -37,8 +37,8 @@ export default function Footer({ copy }: FooterProps) {
         <div className="max-w-[1400px] mx-auto px-5 sm:px-10 md:px-14">
           <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
             {/* Coluna 1: Logo Oficial e Descrição Institucional */}
-            <div className="lg:col-span-5 py-10 sm:py-14 lg:py-20 lg:pr-14 flex flex-col justify-start space-y-4 sm:space-y-6">
-              <div className="reveal">
+            <div className="lg:col-span-5 py-10 sm:py-14 lg:py-20 lg:pr-14 flex flex-col justify-start space-y-4 sm:space-y-6 items-center text-center lg:items-start lg:text-left">
+              <div className="reveal flex justify-center lg:justify-start w-full">
                 <a
                   href="#home"
                   onClick={handleBackToTop}
@@ -49,12 +49,12 @@ export default function Footer({ copy }: FooterProps) {
                   <img
                     src="/logo-rollemberg.png"
                     alt="Rollemberg & Camargos Advogados"
-                    className="h-10 sm:h-12 w-auto object-contain"
+                    className="h-10 sm:h-12 w-auto object-contain mx-auto lg:mx-0"
                   />
                 </a>
               </div>
 
-              <p className="text-sm sm:text-[15px] text-white/60 leading-relaxed font-normal max-w-md reveal delay-100">
+              <p className="text-sm sm:text-[15px] text-white/60 leading-relaxed font-normal max-w-md reveal delay-100 text-center lg:text-left mx-auto lg:mx-0">
                 Advocacia estratégica e descomplicada para empresas em construção e escala. Estrutura societária, contratos sob medida, proteção de marcas e segurança operacional.
               </p>
             </div>
