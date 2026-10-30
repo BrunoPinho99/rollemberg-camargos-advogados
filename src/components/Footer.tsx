@@ -33,11 +33,11 @@ export default function Footer({ copy }: FooterProps) {
         id="contact"
         className="relative bg-[#080a0c] text-white border-t border-white/10 overflow-hidden font-sans"
       >
-        {/* Seção Principal: 2 Colunas Divididas por Linha Vertical */}
-        <div className="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14">
-          <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
+        {/* Seção Principal: 2 Colunas no Desktop, Empilhado e Compacto no Mobile */}
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-10 md:px-14">
+          <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
             {/* Coluna 1: Logo Oficial e Descrição Institucional */}
-            <div className="py-14 lg:py-20 lg:pr-16 flex flex-col justify-between gap-12">
+            <div className="lg:col-span-5 py-10 sm:py-14 lg:py-20 lg:pr-14 flex flex-col justify-start space-y-4 sm:space-y-6">
               <div className="reveal">
                 <a
                   href="#home"
@@ -49,65 +49,65 @@ export default function Footer({ copy }: FooterProps) {
                   <img
                     src="/logo-rollemberg.png"
                     alt="Rollemberg & Camargos Advogados"
-                    className="h-12 sm:h-14 w-auto object-contain"
+                    className="h-10 sm:h-12 w-auto object-contain"
                   />
                 </a>
               </div>
 
-              <p className="text-sm sm:text-[15px] text-white/55 leading-relaxed font-normal max-w-md reveal delay-100">
+              <p className="text-sm sm:text-[15px] text-white/60 leading-relaxed font-normal max-w-md reveal delay-100">
                 Advocacia estratégica e descomplicada para empresas em construção e escala. Estrutura societária, contratos sob medida, proteção de marcas e segurança operacional.
               </p>
             </div>
 
-            {/* Coluna 2: Navegação em 2 Sub-colunas */}
-            <div className="py-14 lg:py-20 lg:pl-16 flex flex-col justify-center">
-              <div className="grid grid-cols-2 gap-6 text-[12px] sm:text-[13px] font-medium tracking-[0.08em] uppercase reveal delay-200">
-                {/* Sub-coluna 1 */}
-                <div className="flex flex-col space-y-1">
+            {/* Coluna 2: Navegação em 2 Sub-colunas perfeitamente ajustadas para touch */}
+            <div className="lg:col-span-7 py-8 sm:py-12 lg:py-20 lg:pl-16 flex flex-col justify-center">
+              <div className="grid grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-1 text-[11px] sm:text-[13px] font-medium tracking-[0.06em] sm:tracking-[0.08em] uppercase reveal delay-200">
+                {/* Sub-coluna 1: Navegação Principal */}
+                <div className="flex flex-col">
                   <a
                     href="#home"
                     onClick={handleBackToTop}
-                    className="min-h-[44px] flex items-center text-white/70 hover:text-white transition-colors duration-200"
+                    className="min-h-[40px] sm:min-h-[44px] py-1 flex items-center text-white/70 hover:text-white transition-colors duration-200"
                   >
                     Início
                   </a>
                   <a
                     href="#about"
                     onClick={(e) => handleNavClick(e, "#about")}
-                    className="min-h-[44px] flex items-center text-white/70 hover:text-white transition-colors duration-200"
+                    className="min-h-[40px] sm:min-h-[44px] py-1 flex items-center text-white/70 hover:text-white transition-colors duration-200"
                   >
                     Sobre Nós
                   </a>
                   <a
                     href="#services"
                     onClick={(e) => handleNavClick(e, "#services")}
-                    className="min-h-[44px] flex items-center text-white/70 hover:text-white transition-colors duration-200"
+                    className="min-h-[40px] sm:min-h-[44px] py-1 flex items-center text-white/70 hover:text-white transition-colors duration-200"
                   >
                     Serviços
                   </a>
                   <a
                     href="#expertise"
                     onClick={(e) => handleNavClick(e, "#expertise")}
-                    className="min-h-[44px] flex items-center text-white/70 hover:text-white transition-colors duration-200"
+                    className="min-h-[40px] sm:min-h-[44px] py-1 flex items-center text-white/70 hover:text-white transition-colors duration-200"
                   >
                     Nossa Atuação
                   </a>
                   <a
                     href="#faq"
                     onClick={(e) => handleNavClick(e, "#faq")}
-                    className="min-h-[44px] flex items-center text-white/70 hover:text-white transition-colors duration-200"
+                    className="min-h-[40px] sm:min-h-[44px] py-1 flex items-center text-white/70 hover:text-white transition-colors duration-200"
                   >
                     Dúvidas / FAQ
                   </a>
                 </div>
 
-                {/* Sub-coluna 2 */}
-                <div className="flex flex-col space-y-1">
+                {/* Sub-coluna 2: Contato & Políticas */}
+                <div className="flex flex-col">
                   <a
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="min-h-[44px] flex items-center text-white/70 hover:text-white transition-colors duration-200 uppercase"
+                    className="min-h-[40px] sm:min-h-[44px] py-1 flex items-center text-white/70 hover:text-white transition-colors duration-200"
                   >
                     Agendar Conversa
                   </a>
@@ -115,19 +115,19 @@ export default function Footer({ copy }: FooterProps) {
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="min-h-[44px] flex items-center text-white/70 hover:text-white transition-colors duration-200"
+                    className="min-h-[40px] sm:min-h-[44px] py-1 flex items-center text-white/70 hover:text-white transition-colors duration-200"
                   >
                     WhatsApp
                   </a>
                   <button
                     onClick={() => setShowTermsModal(true)}
-                    className="min-h-[44px] flex items-center text-left text-white/70 hover:text-white transition-colors duration-200 uppercase cursor-pointer"
+                    className="min-h-[40px] sm:min-h-[44px] py-1 flex items-center text-left text-white/70 hover:text-white transition-colors duration-200 uppercase cursor-pointer"
                   >
                     Termos de Uso
                   </button>
                   <button
                     onClick={() => setShowTermsModal(true)}
-                    className="min-h-[44px] flex items-center text-left text-white/70 hover:text-white transition-colors duration-200 uppercase cursor-pointer"
+                    className="min-h-[40px] sm:min-h-[44px] py-1 flex items-center text-left text-white/70 hover:text-white transition-colors duration-200 uppercase cursor-pointer"
                   >
                     Privacidade
                   </button>
@@ -139,14 +139,14 @@ export default function Footer({ copy }: FooterProps) {
 
         {/* Barra Inferior Minimalista de Copyright */}
         <div className="border-t border-white/10">
-          <div className="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-white/45 reveal">
-            <p className="text-center sm:text-left py-2">
+          <div className="max-w-[1400px] mx-auto px-5 sm:px-10 md:px-14 py-4 sm:py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/45 reveal">
+            <p className="text-center sm:text-left">
               © {new Date().getFullYear()} {copy.brand.name} Advogados. Todos os direitos reservados.
             </p>
 
             <button
               onClick={handleBackToTop}
-              className="group min-h-[44px] px-3 -mr-3 inline-flex items-center gap-2 text-white/55 hover:text-white transition-colors cursor-pointer"
+              className="group min-h-[40px] sm:min-h-[44px] px-2 inline-flex items-center gap-1.5 text-white/55 hover:text-white transition-colors cursor-pointer"
             >
               <span>Voltar ao topo</span>
               <ArrowUp className="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-y-0.5" />
