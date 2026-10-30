@@ -62,6 +62,7 @@ export default function About({ copy }: AboutProps) {
     let ticking = false;
 
     const updateScroll = () => {
+      if (typeof window !== "undefined" && window.innerWidth < 768) return;
       const el = containerRef.current;
       if (!el) return;
 
@@ -141,27 +142,27 @@ export default function About({ copy }: AboutProps) {
     <section
       id="about"
       ref={containerRef}
-      className="relative bg-[#fcfbf7] border-b border-[#e8e6df] h-[175vh] md:h-[260vh]"
+      className="relative bg-[#fcfbf7] border-b border-[#e8e6df] md:h-[260vh]"
     >
-      {/* Container Sticky: Trava a tela centralizada no viewport enquanto o usuário rola a página */}
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden select-none">
-        {/* Parallax Camada 2: Iluminação lateral reativa */}
+      {/* Container: Em telas mobile (< md), fluxo natural sem vão de 300px e sem prender o scroll. No desktop, sticky top-0 h-screen */}
+      <div className="relative md:sticky md:top-0 md:h-screen w-full flex flex-col justify-start md:justify-center overflow-hidden select-none py-12 sm:py-16 md:py-0">
+        {/* Parallax Camada 2: Iluminação lateral reativa (somente desktop) */}
         <div
           ref={spotlightLeftRef}
-          className="pointer-events-none absolute inset-y-0 left-0 w-32 sm:w-64 bg-gradient-to-r from-[#2E3C44]/[0.08] via-transparent to-transparent z-0 opacity-15 will-change-[opacity]"
+          className="hidden md:block pointer-events-none absolute inset-y-0 left-0 w-32 sm:w-64 bg-gradient-to-r from-[#2E3C44]/[0.08] via-transparent to-transparent z-0 opacity-15 will-change-[opacity]"
         />
         <div
           ref={spotlightRightRef}
-          className="pointer-events-none absolute inset-y-0 right-0 w-32 sm:w-64 bg-gradient-to-l from-[#2E3C44]/[0.08] via-transparent to-transparent z-0 opacity-15 will-change-[opacity]"
+          className="hidden md:block pointer-events-none absolute inset-y-0 right-0 w-32 sm:w-64 bg-gradient-to-l from-[#2E3C44]/[0.08] via-transparent to-transparent z-0 opacity-15 will-change-[opacity]"
         />
 
         {/* Conteúdo Principal */}
-        <div className="max-w-[1400px] w-full mx-auto px-5 sm:px-10 md:px-14 relative z-10 py-6 sm:py-0">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-16 items-start">
-            {/* Coluna Esquerda: Tag / Label com Parallax suave */}
+        <div className="max-w-[1400px] w-full mx-auto px-5 sm:px-10 md:px-14 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-16 items-start">
+            {/* Coluna Esquerda: Tag / Label com Parallax suave no desktop */}
             <div
               ref={labelRef}
-              className="lg:col-span-3 space-y-2 sm:space-y-4 will-change-transform"
+              className="lg:col-span-3 space-y-2 sm:space-y-4 md:will-change-transform"
             >
               <div className="reveal">
                 <span className="text-[12px] font-semibold tracking-wider uppercase text-[#6e6d69] block">
@@ -173,7 +174,7 @@ export default function About({ copy }: AboutProps) {
               </div>
             </div>
 
-            {/* Coluna Direita: Declaração Editorial com Título de Alto Impacto e Parágrafo com Scrub de Letras */}
+            {/* Coluna Direita: Declaração Editorial com Título de Alto Impacto e Parágrafo */}
             <div className="lg:col-span-9 max-w-4xl">
               {/* Título Principal */}
               <h2 className="text-2xl sm:text-4xl md:text-[54px] font-medium tracking-tight leading-[1.18] text-[#101010] reveal delay-100">
@@ -181,9 +182,16 @@ export default function About({ copy }: AboutProps) {
                 <span>{copy.about.headlineMuted}</span>
               </h2>
 
-              {/* Parágrafo Descritivo com Preenchimento Letra por Letra */}
-              <div className="mt-6 sm:mt-12 max-w-3xl reveal delay-200">
-                <p className="text-base sm:text-xl md:text-2xl font-normal leading-relaxed flex flex-wrap">
+              {/* Parágrafo no mobile: 100% legível, contínuo, sem vão branco e sem scroll trap */}
+              <div className="mt-5 max-w-3xl md:hidden reveal delay-200">
+                <p className="text-base sm:text-xl font-normal leading-relaxed text-[#101010]">
+                  {paragraphText}
+                </p>
+              </div>
+
+              {/* Parágrafo no desktop: Preenchimento letra por letra reativo com scrub do scroll */}
+              <div className="mt-8 sm:mt-12 max-w-3xl hidden md:block reveal delay-200">
+                <p className="text-xl md:text-2xl font-normal leading-relaxed flex flex-wrap">
                   {renderedParagraph}
                 </p>
               </div>
