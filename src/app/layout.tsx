@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Schibsted_Grotesk } from "next/font/google";
 import "./globals.css";
 import MotionProvider from "@/components/MotionProvider";
+import BFCacheRestorer from "@/components/BFCacheRestorer";
 import { copyVersionB } from "@/content/siteCopy";
 
 const schibstedGrotesk = Schibsted_Grotesk({
@@ -304,6 +305,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-[#fcfbf7] text-[#101010] selection:bg-[#101010] selection:text-[#fcfbf7]">
+        <BFCacheRestorer />
         <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
