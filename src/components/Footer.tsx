@@ -137,11 +137,13 @@ export default function Footer({ copy }: FooterProps) {
           </div>
         </div>
 
-        {/* Barra Inferior Minimalista de Copyright */}
+        {/* Barra Inferior Minimalista de Copyright e CNPJ */}
         <div className="border-t border-white/10">
           <div className="max-w-[1400px] mx-auto px-5 sm:px-10 md:px-14 py-4 sm:py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/45 reveal">
-            <p className="text-center sm:text-left">
-              © {new Date().getFullYear()} {copy.brand.name} Advogados. Todos os direitos reservados.
+            <p className="text-center sm:text-left flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+              <span>© {new Date().getFullYear()} {copy.brand.name} Advogados. Todos os direitos reservados.</span>
+              <span className="hidden sm:inline text-white/20">•</span>
+              <span>CNPJ: 57.567.009/0001-04</span>
             </p>
 
             <button
