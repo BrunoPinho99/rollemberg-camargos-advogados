@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Rollemberg & Camargos Advogados | Advocacia em Brasília/DF e Todo o Brasil",
   description:
-    "Escritório de advocacia em Brasília/DF com atendimento digital em todo o Brasil. Estruturação societária, acordos de sócios, contratos comerciais, registro de marcas no INPI, LGPD e assessoria jurídica para startups e empresas.",
+    "Assessoria jurídica estratégica e consultoria especializada. Proteja sua empresa e seus direitos com a Rollemberg & Camargos Advogados. Fale conosco.",
   keywords: [
     "advocacia Brasília",
     "advogado Brasília DF",
