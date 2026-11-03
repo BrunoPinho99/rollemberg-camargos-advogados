@@ -16,7 +16,12 @@ export default function CtaBanner({}: CtaBannerProps) {
     const video = videoRef.current;
     if (!video) return;
 
-    // Carrega e toca o vídeo somente quando o usuário se aproxima da seção
+    // Garante que o vídeo seja reproduzido automaticamente com muted
+    video.muted = true;
+    video.defaultMuted = true;
+    video.play().catch(() => {});
+
+    // Pausa quando o usuário sai completamente da área para economizar recursos
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -25,7 +30,7 @@ export default function CtaBanner({}: CtaBannerProps) {
           video.pause();
         }
       },
-      { rootMargin: "250px", threshold: 0.05 }
+      { rootMargin: "300px", threshold: 0.01 }
     );
 
     observer.observe(video);
@@ -40,10 +45,11 @@ export default function CtaBanner({}: CtaBannerProps) {
           {/* Vídeo de Fundo em Loop da Reunião com Iluminação Quente */}
           <video
             ref={videoRef}
+            autoPlay
             loop
             muted
             playsInline
-            preload="none"
+            preload="auto"
             poster="/cta-conversation-poster.webp"
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           >

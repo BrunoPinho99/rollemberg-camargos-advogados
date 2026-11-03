@@ -15,6 +15,11 @@ export default function Hero({ copy }: HeroProps) {
     const video = videoRef.current;
     if (!video) return;
 
+    // Força muted no elemento DOM para autorização imediata de autoplay em Safari/iOS/Chrome
+    video.muted = true;
+    video.defaultMuted = true;
+    video.play().catch(() => {});
+
     // Pausa o decodificador de vídeo quando fora do viewport para liberar GPU/bateria
     const observer = new IntersectionObserver(
       ([entry]) => {
