@@ -104,7 +104,7 @@ const jsonLd = {
       description:
         "Escritório de advocacia com sede em Brasília/DF e atuação em todo o território nacional. Especializado em direito empresarial, estruturação societária, acordos de sócios, contratos comerciais, registro de marcas no INPI, conformidade LGPD e assessoria continuada para empresas e startups.",
       taxID: "57.567.009/0001-04",
-      telephone: "+55-61-9912-6429",
+      telephone: "+55-61-99112-6429",
       email: "contato@rollembergcamargos.adv.br",
       priceRange: "$$",
       address: {

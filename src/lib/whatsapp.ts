@@ -1,4 +1,4 @@
-export const WHATSAPP_PHONE = "556199126429";
+export const WHATSAPP_PHONE = "5561991126429";
 
 export const WHATSAPP_DEFAULT_MESSAGE =
   "Olá! Vim pelo site da Rollemberg & Camargos Advogados e gostaria de saber mais sobre a atuação do escritório.";

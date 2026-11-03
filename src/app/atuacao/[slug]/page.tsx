@@ -109,7 +109,7 @@ export default async function AreaPage({ params }: PageProps) {
           "@type": ["LegalService", "Attorney", "Organization"],
           "@id": `${SITE_URL}/#organization`,
           name: "Rollemberg & Camargos Advogados Associados",
-          telephone: "+55-61-9912-6429",
+          telephone: "+55-61-99112-6429",
           address: {
             "@type": "PostalAddress",
             addressLocality: "Brasília",
