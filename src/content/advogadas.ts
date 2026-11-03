@@ -62,3 +62,4 @@ export const ADVOGADAS_EQUIPE: AdvogadaPerfil[] = [
       "Foco na proteção patrimonial de marcas, blindagem de negócios digitais e construção de relações comerciais equilibradas e sustentáveis.",
   },
 ];
+

@@ -250,3 +250,4 @@ export default async function AdvogadaPage({ params }: PageProps) {
     </>
   );
 }
+
