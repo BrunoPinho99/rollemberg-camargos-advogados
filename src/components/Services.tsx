@@ -10,10 +10,10 @@ interface ServicesProps {
 
 export default function Services({ copy }: ServicesProps) {
   return (
-    <section id="services" className="py-24 sm:py-32 bg-[#fcfbf7] border-b border-[#e8e6df]">
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14">
+    <section id="services" className="py-12 sm:py-20 md:py-28 lg:py-32 bg-[#fcfbf7] border-b border-[#e8e6df]">
+      <div className="max-w-[1400px] mx-auto px-5 sm:px-10 md:px-14">
         {/* Header da Seção de Serviços */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between pb-16 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between pb-8 sm:pb-12 md:pb-16 gap-4 sm:gap-6">
           <div className="reveal">
             <span className="text-[12px] font-semibold tracking-wider uppercase text-[#6e6d69] block mb-4">
               {copy.services.label}
@@ -43,7 +43,7 @@ export default function Services({ copy }: ServicesProps) {
           {copy.services.items.map((service, index) => (
             <article
               key={service.number || index}
-              className="py-12 sm:py-20 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-16 items-center group"
+              className="py-8 sm:py-14 md:py-20 grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-16 items-center group"
             >
               <div className="lg:col-span-5 overflow-hidden rounded-xl bg-neutral-200 relative w-full h-[210px] sm:h-[300px] md:h-[320px] reveal">
                 <Image
@@ -68,7 +68,7 @@ export default function Services({ copy }: ServicesProps) {
         </div>
 
         {/* CTA Intermediário Estratégico no Fim dos Serviços */}
-        <div className="mt-12 sm:mt-18 pt-8 sm:pt-10 border-t border-[#e8e6df] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 reveal">
+        <div className="mt-8 sm:mt-14 md:mt-18 pt-6 sm:pt-8 md:pt-10 border-t border-[#e8e6df] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 sm:gap-6 reveal">
           <div className="space-y-1.5">
             <h4 className="text-xl sm:text-2xl font-medium tracking-tight text-[#101010]">
               Seu negócio cresceu mais rápido que a estrutura jurídica?

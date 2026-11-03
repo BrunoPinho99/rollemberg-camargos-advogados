@@ -33,10 +33,10 @@ export default function CtaBanner({}: CtaBannerProps) {
   }, []);
 
   return (
-    <section id="cta-banner" className="py-16 sm:py-24 bg-[#fcfbf7]">
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14">
+    <section id="cta-banner" className="py-10 sm:py-16 md:py-24 bg-[#fcfbf7]">
+      <div className="max-w-[1400px] mx-auto px-5 sm:px-10 md:px-14">
         {/* Card Flutuante com Bordas Arredondadas e Vídeo em Loop (Inspirado em attest.framer.media) */}
-        <div className="relative w-full rounded-3xl sm:rounded-[36px] overflow-hidden min-h-[440px] sm:min-h-[520px] md:min-h-[580px] flex flex-col items-center justify-center text-center p-6 sm:p-14 shadow-2xl reveal">
+        <div className="relative w-full rounded-2xl sm:rounded-3xl md:rounded-[36px] overflow-hidden min-h-[380px] sm:min-h-[460px] md:min-h-[580px] flex flex-col items-center justify-center text-center p-6 sm:p-10 md:p-14 shadow-2xl reveal">
           {/* Vídeo de Fundo em Loop da Reunião com Iluminação Quente */}
           <video
             ref={videoRef}

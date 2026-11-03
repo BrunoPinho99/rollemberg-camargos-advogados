@@ -145,7 +145,7 @@ export default function About({ copy }: AboutProps) {
       className="relative bg-[#fcfbf7] border-b border-[#e8e6df] md:h-[260vh]"
     >
       {/* Container: Em telas mobile (< md), fluxo natural sem vão de 300px e sem prender o scroll. No desktop, sticky top-0 h-screen */}
-      <div className="relative md:sticky md:top-0 md:h-screen w-full flex flex-col justify-start md:justify-center overflow-hidden select-none py-12 sm:py-16 md:py-0">
+      <div className="relative md:sticky md:top-0 md:h-screen w-full flex flex-col justify-start md:justify-center overflow-hidden select-none py-8 sm:py-12 md:py-0">
         {/* Parallax Camada 2: Iluminação lateral reativa (somente desktop) */}
         <div
           ref={spotlightLeftRef}

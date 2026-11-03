@@ -26,3 +26,4 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: "https://attest-advocacia.vercel.app/sitemap.xml",
   };
 }
+
