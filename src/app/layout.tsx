@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Schibsted_Grotesk } from "next/font/google";
 import "./globals.css";
 import MotionProvider from "@/components/MotionProvider";
+import { copyVersionB } from "@/content/siteCopy";
 
 const schibstedGrotesk = Schibsted_Grotesk({
   subsets: ["latin"],
@@ -10,25 +11,33 @@ const schibstedGrotesk = Schibsted_Grotesk({
   display: "swap",
 });
 
-const siteUrl = "https://attest-advocacia.vercel.app";
+const siteUrl = "https://www.rollembergecamargos.adv.br";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Rollemberg & Camargos Advogados | Advocacia em Brasília/DF e Todo o Brasil",
   description:
-    "Escritório de advocacia com sede em Brasília/DF e atendimento em todo o Brasil. Assessoria jurídica empresarial, contratos comerciais, estruturação societária, registro de marcas no INPI e conformidade digital.",
+    "Escritório de advocacia em Brasília/DF com atendimento digital em todo o Brasil. Estruturação societária, acordos de sócios, contratos comerciais, registro de marcas no INPI, LGPD e assessoria jurídica para startups e empresas.",
   keywords: [
     "advocacia Brasília",
     "advogado Brasília DF",
     "advocacia empresarial",
     "direito societário",
+    "acordo de sócios",
     "contratos comerciais",
     "registro de marca INPI",
     "advogado para startups",
     "assessoria jurídica digital",
+    "LGPD empresarial",
     "Rollemberg e Camargos Advogados",
+    "Dra Marcela Rollemberg OAB DF",
+    "Dra Fabyana Camargos OAB DF",
   ],
-  authors: [{ name: "Rollemberg & Camargos Advogados" }],
+  authors: [
+    { name: "Rollemberg & Camargos Advogados Associados", url: siteUrl },
+    { name: "Marcela Silveira Rollemberg" },
+    { name: "Fabyana Trindade Camargos" },
+  ],
   creator: "Rollemberg & Camargos Advogados",
   publisher: "Rollemberg & Camargos Advogados",
   robots: {
@@ -48,16 +57,26 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Rollemberg & Camargos Advogados — Advocacia Estratégica para Negócios",
     description:
-      "Sede em Brasília/DF com atendimento digital em todo o território nacional. Segurança jurídica ágil e sem burocracia para empresas em crescimento.",
+      "Sede em Brasília/DF com atendimento digital em todo o Brasil. Segurança jurídica ágil e sem burocracia para empresas em crescimento, marcas e startups.",
     url: siteUrl,
     siteName: "Rollemberg & Camargos Advogados",
     locale: "pt_BR",
     type: "website",
+    images: [
+      {
+        url: `${siteUrl}/equipe-rollemberg-camargos.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Rollemberg & Camargos Advogados - Brasília/DF",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Rollemberg & Camargos Advogados",
-    description: "Sede em Brasília/DF com atendimento em todo o Brasil. Advocacia estratégica para empresas.",
+    description:
+      "Sede em Brasília/DF com atendimento em todo o Brasil. Advocacia estratégica para empresas, estruturação societária e marcas no INPI.",
+    images: [`${siteUrl}/equipe-rollemberg-camargos.jpg`],
   },
 };
 
@@ -68,20 +87,26 @@ const jsonLd = {
       "@type": ["LegalService", "Attorney", "Organization"],
       "@id": `${siteUrl}/#organization`,
       name: "Rollemberg & Camargos Advogados",
-      legalName: "Rollemberg & Camargos Sociedade de Advogados",
+      legalName: "Rollemberg & Camargos Advogados Associados",
       url: siteUrl,
       logo: `${siteUrl}/logo-rollemberg.png`,
       image: `${siteUrl}/equipe-rollemberg-camargos.jpg`,
       description:
-        "Escritório de advocacia com sede em Brasília/DF e atuação em todo o Brasil. Especializado em estruturação societária, contratos comerciais, registro de marcas e proteção de negócios digitais.",
+        "Escritório de advocacia com sede em Brasília/DF e atuação em todo o território nacional. Especializado em direito empresarial, estruturação societária, acordos de sócios, contratos comerciais, registro de marcas no INPI, conformidade LGPD e assessoria continuada para empresas e startups.",
       taxID: "57.567.009/0001-04",
       telephone: "+55-61-9912-6429",
+      email: "contato@rollembergcamargos.adv.br",
       priceRange: "$$",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Brasília",
         addressRegion: "DF",
         addressCountry: "BR",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: -15.7942,
+        longitude: -47.8822,
       },
       areaServed: [
         {
@@ -93,48 +118,138 @@ const jsonLd = {
           name: "Distrito Federal",
         },
       ],
+      founder: [
+        {
+          "@type": "Person",
+          name: "Marcela Silveira Rollemberg",
+          jobTitle: "Sócia-Fundadora",
+          honorificPrefix: "Dra.",
+          description: "Advogada inscrita na OAB/DF nº 69.733, especialista em Direito Societário e Governança Corporativa.",
+        },
+        {
+          "@type": "Person",
+          name: "Fabyana Trindade Camargos",
+          jobTitle: "Sócia-Fundadora",
+          honorificPrefix: "Dra.",
+          description: "Advogada inscrita na OAB/DF nº 72.885, especialista em Propriedade Intelectual, Marcas (INPI) e Direito Digital.",
+        },
+      ],
+      member: [
+        {
+          "@type": "Person",
+          name: "Marcela Silveira Rollemberg",
+          jobTitle: "Sócia-Fundadora",
+        },
+        {
+          "@type": "Person",
+          name: "Fabyana Trindade Camargos",
+          jobTitle: "Sócia-Fundadora",
+        },
+      ],
       knowsAbout: [
+        "Direito Empresarial",
         "Direito Societário",
-        "Acordo de Sócios",
-        "Contratos Empresariais",
-        "Registro de Marca no INPI",
-        "Direito Digital e LGPD",
-        "Assessoria Jurídica Preventiva",
+        "Acordo de Sócios e Quotistas",
+        "Contratos Comerciais e Negociações B2B",
+        "Registro de Marcas e Propriedade Intelectual no INPI",
+        "Direito Digital e Negócios na Internet",
+        "LGPD (Lei Geral de Proteção de Dados)",
+        "Consultoria e Blindagem Trabalhista Empresarial",
+        "Assessoria Jurídica Mensal (Retainer)",
+        "Assessoria para Startups e Empresas de Tecnologia",
       ],
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "Serviços Jurídicos",
+        name: "Serviços Jurídicos Especializados",
         itemListElement: [
           {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "Sociedade & Parcerias",
-              description: "Acordos de sócios, entrada de investidores e estruturação societária preventiva.",
+              name: "Direito Empresarial Estratégico",
+              url: `${siteUrl}/atuacao/direito-empresarial`,
+              description: "Assessoria jurídica preventiva, governança e alinhamento de riscos para negócios em expansão.",
             },
           },
           {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "Registro de Marca & Ativos",
-              description: "Proteção oficial no INPI, marcas, softwares e ativos de propriedade intelectual.",
+              name: "Estruturação Societária",
+              url: `${siteUrl}/atuacao/estruturacao-societaria`,
+              description: "Definição de tipos societários, reorganizações, entrada de investidores e proteção patrimonial.",
             },
           },
           {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "Blindagem Comercial & Conflitos",
-              description: "Contratos sob medida, cobranças e atuação extrajudicial estratégica.",
+              name: "Acordos de Sócios e Quotistas",
+              url: `${siteUrl}/atuacao/acordos-de-socios`,
+              description: "Acordos parassociais, cláusulas de tag along, drag along, vesting, impasses e saídas regradas.",
             },
           },
           {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "Termos de Uso e Privacidade",
-              description: "Políticas comerciais digitais e conformidade integral com a LGPD.",
+              name: "Contratos Comerciais e Negociações B2B",
+              url: `${siteUrl}/atuacao/contratos-comerciais`,
+              description: "Elaboração e revisão de minutas de alto valor, redução de inadimplência e títulos executivos extrajudiciais.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Registro de Marcas e Propriedade Intelectual",
+              url: `${siteUrl}/atuacao/registro-de-marcas`,
+              description: "Proteção oficial do nome, identidade e tecnologia no INPI com exclusividade nacional.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Direito Digital e Negócios na Internet",
+              url: `${siteUrl}/atuacao/direito-digital`,
+              description: "Termos de Uso, Políticas de Venda Online, proteção contra fraudes e conformidade para SaaS e e-commerces.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Adequação à LGPD",
+              url: `${siteUrl}/atuacao/lgpd`,
+              description: "Políticas de privacidade, mapeamento de fluxo de dados e adequação às exigências da ANPD.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Consultoria e Blindagem Trabalhista Empresarial",
+              url: `${siteUrl}/atuacao/trabalhista-empresarial`,
+              description: "Mitigação preventiva de passivos trabalhistas, contratos PJ com segurança e teletrabalho.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Assessoria Jurídica Mensal (Retainer)",
+              url: `${siteUrl}/atuacao/assessoria-juridica-mensal`,
+              description: "Suporte consultivo continuado com valor fixo previsível para empresas em tração.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Assessoria para Startups e Tecnologia",
+              url: `${siteUrl}/atuacao/startups-tecnologia`,
+              description: "Mútuo conversível, vesting, captable, acordos preliminares e rodadas de captação.",
             },
           },
         ],
@@ -149,6 +264,18 @@ const jsonLd = {
         "@id": `${siteUrl}/#organization`,
       },
       inLanguage: "pt-BR",
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${siteUrl}/#faq`,
+      mainEntity: copyVersionB.faq.items.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.a,
+        },
+      })),
     },
   ],
 };

@@ -63,6 +63,9 @@ export default function Footer({ copy }: FooterProps) {
                   Sede em Brasília/DF • Atendimento em todo o Brasil
                 </p>
                 <p>CNPJ: 57.567.009/0001-04</p>
+                <p className="text-[11px] text-white/40 pt-1">
+                  Sócias: Dra. Marcela Rollemberg (OAB/DF 69.733) • Dra. Fabyana Camargos (OAB/DF 72.885)
+                </p>
               </div>
             </div>
 

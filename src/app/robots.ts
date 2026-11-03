@@ -10,20 +10,26 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: [
-          "GPTBot",
+          // Robôs de Busca Tradicionais & Pesquisa por IA
+          "Googlebot",
+          "Bingbot",
+          "OAI-SearchBot",
           "ChatGPT-User",
+          "PerplexityBot",
           "Claude-Web",
           "ClaudeBot",
-          "PerplexityBot",
           "Google-Extended",
           "Applebot",
           "CCBot",
+          "meta-externalagent",
+          "Bytespider",
+          // Robô de Treinamento Geral da OpenAI (permitido para indexação semântica e citação da marca)
+          "GPTBot",
         ],
         allow: "/",
         disallow: ["/api/"],
       },
     ],
-    sitemap: "https://attest-advocacia.vercel.app/sitemap.xml",
+    sitemap: "https://www.rollembergecamargos.adv.br/sitemap.xml",
   };
 }
-
