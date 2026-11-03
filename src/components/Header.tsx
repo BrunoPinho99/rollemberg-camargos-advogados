@@ -70,6 +70,8 @@ export default function Header({ copy = copyVersionB }: HeaderProps) {
             <img
               src="/logo-rollemberg.png"
               alt="Rollemberg & Camargos Advogados"
+              width={851}
+              height={313}
               className="h-9 sm:h-12 w-auto object-contain drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] transition-opacity duration-300 opacity-100"
             />
           </a>
@@ -135,6 +137,8 @@ export default function Header({ copy = copyVersionB }: HeaderProps) {
               <img
                 src="/logo-rollemberg.png"
                 alt="Rollemberg & Camargos Advogados"
+                width={851}
+                height={313}
                 className="h-9 w-auto object-contain"
               />
             </a>

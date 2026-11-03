@@ -49,6 +49,8 @@ export default function Footer({ copy }: FooterProps) {
                   <img
                     src="/logo-rollemberg.png"
                     alt="Rollemberg & Camargos Advogados"
+                    width={851}
+                    height={313}
                     className="h-10 sm:h-12 w-auto object-contain mx-auto lg:mx-0"
                   />
                 </a>
