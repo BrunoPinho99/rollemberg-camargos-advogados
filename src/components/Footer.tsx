@@ -57,6 +57,13 @@ export default function Footer({ copy }: FooterProps) {
               <p className="text-sm sm:text-[15px] text-white/60 leading-relaxed font-normal max-w-md reveal delay-100 text-center lg:text-left mx-auto lg:mx-0">
                 Advocacia estratégica e descomplicada para empresas em construção e escala. Estrutura societária, contratos sob medida, proteção de marcas e segurança operacional.
               </p>
+
+              <div className="pt-1 text-xs text-white/50 space-y-1 reveal delay-150">
+                <p className="font-medium text-white/70">
+                  Sede em Brasília/DF • Atendimento em todo o Brasil
+                </p>
+                <p>CNPJ: 57.567.009/0001-04</p>
+              </div>
             </div>
 
             {/* Coluna 2: Navegação em 2 Sub-colunas perfeitamente ajustadas para touch */}
@@ -142,6 +149,8 @@ export default function Footer({ copy }: FooterProps) {
           <div className="max-w-[1400px] mx-auto px-5 sm:px-10 md:px-14 py-4 sm:py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/45 reveal">
             <p className="text-center sm:text-left flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
               <span>© {new Date().getFullYear()} {copy.brand.name} Advogados. Todos os direitos reservados.</span>
+              <span className="hidden sm:inline text-white/20">•</span>
+              <span>Brasília/DF (Atendimento Nacional)</span>
               <span className="hidden sm:inline text-white/20">•</span>
               <span>CNPJ: 57.567.009/0001-04</span>
             </p>

@@ -1,0 +1,18 @@
+# Rollemberg & Camargos Advogados
+
+> Advocacia Estratégica para Empresas em Construção, Tecnologia e Escala de Negócios.
+
+## Sobre o Escritório
+* **Razão Social / Nome**: Rollemberg & Camargos Advogados
+* **CNPJ**: 57.567.009/0001-04
+* **Sede Principal**: Brasília, DF - Distrito Federal, Brasil
+* **Abrangência de Atuação**: Atendimento nacional em todos os estados do Brasil e operações internacionais através de atendimento jurídico consultivo e contencioso 100% digital.
+* **Website Oficial**: https://attest-advocacia.vercel.app
+* **Contato / WhatsApp**: +55 61 9912-6429
+
+## Áreas de Atuação e Especialidades
+1. **Estruturação Societária & Acordo de Sócios**: Acordos de quotistas/acionistas, entrada de investidores, vesting, mútuos conversíveis e divisão estratégica de resultados.
+2. **Contratos Comerciais & Parcerias Estratégicas**: Elaboração e revisão de minutas de alto valor, contratos de prestação de serviços B2B, parcerias comerciais e resolução ágil de disputas.
+3. **Registro de Marcas & Propriedade Intelectual (INPI)**: Proteção de identidade de marca, patentes, software e direitos autorais.
+4. **Direito Digital, Tecnologia & LGPD**: Termos de Uso, Políticas de Privacidade, conformidade com a Lei Geral de Proteção de Dados (Lei 13.709/2018) para SaaS, plataformas e e-commerce.
+5. **Blindagem Jurídica & Gestão Preventiva de Passivos**: Assessoria continuada para operações digitais e empresas em tração.
