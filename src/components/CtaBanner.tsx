@@ -44,7 +44,7 @@ export default function CtaBanner({}: CtaBannerProps) {
             muted
             playsInline
             preload="none"
-            poster="/cta-conversation-poster.jpg"
+            poster="/cta-conversation-poster.webp"
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           >
             <source src="/cta-conversation.webm" type="video/webm" />

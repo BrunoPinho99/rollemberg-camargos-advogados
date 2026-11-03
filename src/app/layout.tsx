@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${siteUrl}/equipe-rollemberg-camargos.jpg`,
+        url: `${siteUrl}/equipe-rollemberg-camargos.webp`,
         width: 1200,
         height: 630,
         alt: "Rollemberg & Camargos Advogados - Brasília/DF",
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     title: "Rollemberg & Camargos Advogados",
     description:
       "Sede em Brasília/DF com atendimento em todo o Brasil. Advocacia estratégica para empresas, estruturação societária e marcas no INPI.",
-    images: [`${siteUrl}/equipe-rollemberg-camargos.jpg`],
+    images: [`${siteUrl}/equipe-rollemberg-camargos.webp`],
   },
 };
 
@@ -89,8 +89,8 @@ const jsonLd = {
       name: "Rollemberg & Camargos Advogados",
       legalName: "Rollemberg & Camargos Advogados Associados",
       url: siteUrl,
-      logo: `${siteUrl}/logo-rollemberg.png`,
-      image: `${siteUrl}/equipe-rollemberg-camargos.jpg`,
+      logo: `${siteUrl}/logo-rollemberg.webp`,
+      image: `${siteUrl}/equipe-rollemberg-camargos.webp`,
       description:
         "Escritório de advocacia com sede em Brasília/DF e atuação em todo o território nacional. Especializado em direito empresarial, estruturação societária, acordos de sócios, contratos comerciais, registro de marcas no INPI, conformidade LGPD e assessoria continuada para empresas e startups.",
       taxID: "57.567.009/0001-04",

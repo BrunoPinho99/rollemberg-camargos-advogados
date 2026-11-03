@@ -70,7 +70,7 @@ export default function Preloader() {
         {/* Monograma RC Branco */}
         <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mb-6 animate-pulse-subtle">
           <Image
-            src="/rc-logo-white.png"
+            src="/rc-logo-white.webp"
             alt="Rollemberg & Camargos"
             fill
             priority

@@ -20,7 +20,7 @@ export const ADVOGADAS_EQUIPE: AdvogadaPerfil[] = [
     cargo: "Sócia-Fundadora",
     oab: "OAB/DF 69.733",
     seccional: "Distrito Federal (OAB/DF)",
-    foto: "/equipe-rollemberg-camargos.jpg",
+    foto: "/equipe-rollemberg-camargos.webp",
     resumoBiografico:
       "Advogada inscrita na Ordem dos Advogados do Brasil, Seccional do Distrito Federal (OAB/DF nº 69.733). Sócia-fundadora da Rollemberg & Camargos Advogados Associados. Atua estrategicamente em direito societário, governança corporativa, acordos de sócios e estruturação jurídica para empresas em crescimento, startups e operações digitais em todo o Brasil.",
     formacaoAcademica: [
@@ -44,7 +44,7 @@ export const ADVOGADAS_EQUIPE: AdvogadaPerfil[] = [
     cargo: "Sócia-Fundadora",
     oab: "OAB/DF 72.885",
     seccional: "Distrito Federal (OAB/DF)",
-    foto: "/equipe-rollemberg-camargos.jpg",
+    foto: "/equipe-rollemberg-camargos.webp",
     resumoBiografico:
       "Advogada inscrita na Ordem dos Advogados do Brasil, Seccional do Distrito Federal (OAB/DF nº 72.885). Sócia-fundadora da Rollemberg & Camargos Advogados Associados. Especializada em proteção de ativos de propriedade intelectual no INPI, direito digital, adequação à LGPD, contratos comerciais e consultoria preventiva para mitigação de passivos.",
     formacaoAcademica: [

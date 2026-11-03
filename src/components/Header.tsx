@@ -68,7 +68,7 @@ export default function Header({ copy = copyVersionB }: HeaderProps) {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/logo-rollemberg.png"
+              src="/logo-rollemberg.webp"
               alt="Rollemberg & Camargos Advogados"
               width={851}
               height={313}
@@ -135,7 +135,7 @@ export default function Header({ copy = copyVersionB }: HeaderProps) {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/logo-rollemberg.png"
+                src="/logo-rollemberg.webp"
                 alt="Rollemberg & Camargos Advogados"
                 width={851}
                 height={313}

@@ -415,7 +415,7 @@ export const copyVersionB: SiteCopy = {
         title: "TERMOS DE USO E PRIVACIDADE",
         description:
           "Políticas claras para vendas online, plataformas, aplicativos e relação com o consumidor, alinhando sua operação à LGPD e prevenindo bloqueios ou passivos.",
-        image: "/termos-de-uso-privacidade.jpg",
+        image: "/termos-de-uso-privacidade.webp",
         alt: "Termos de uso, políticas comerciais e conformidade LGPD",
       },
     ],

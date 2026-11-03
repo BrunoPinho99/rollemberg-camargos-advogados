@@ -49,7 +49,7 @@ export default function Expertise({ copy }: ExpertiseProps) {
             <div className="sticky top-28">
               <div className="rounded-2xl overflow-hidden bg-neutral-200 shadow-sm h-[360px] sm:h-[500px] lg:h-[720px] relative w-full reveal delay-200">
                 <Image
-                  src="/equipe-rollemberg-camargos.jpg"
+                  src="/equipe-rollemberg-camargos.webp"
                   alt="Dra. Rollemberg e Dra. Camargos - Sócias fundadoras Rollemberg & Camargos Advogados"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
