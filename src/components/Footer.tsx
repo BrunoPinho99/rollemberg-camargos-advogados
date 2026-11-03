@@ -60,7 +60,7 @@ export default function Footer({ copy }: FooterProps) {
                 Advocacia estratégica e descomplicada para empresas em construção e escala. Estrutura societária, contratos sob medida, proteção de marcas e segurança operacional.
               </p>
 
-              <div className="pt-1 text-xs text-white/50 space-y-1 reveal delay-150">
+              <div className="hidden lg:block pt-1 text-xs text-white/50 space-y-1 reveal delay-150">
                 <p className="font-medium text-white/70">
                   Sede em Brasília/DF • Atendimento em todo o Brasil
                 </p>
@@ -152,13 +152,16 @@ export default function Footer({ copy }: FooterProps) {
         {/* Barra Inferior Minimalista de Copyright e CNPJ */}
         <div className="border-t border-white/10">
           <div className="max-w-[1400px] mx-auto px-5 sm:px-10 md:px-14 py-4 sm:py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/45 reveal">
-            <p className="text-center sm:text-left flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+            <div className="text-center sm:text-left flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
               <span>© {new Date().getFullYear()} {copy.brand.name} Advogados. Todos os direitos reservados.</span>
               <span className="hidden sm:inline text-white/20">•</span>
-              <span>Brasília/DF (Atendimento Nacional)</span>
+              <span>Sede em Brasília/DF (Atendimento Nacional)</span>
               <span className="hidden sm:inline text-white/20">•</span>
               <span>CNPJ: 57.567.009/0001-04</span>
-            </p>
+              <span className="block sm:hidden text-white/40 text-[11px] pt-0.5">
+                Sócias: Dra. Marcela Rollemberg (OAB/DF 69.733) • Dra. Fabyana Camargos (OAB/DF 72.885)
+              </span>
+            </div>
 
             <button
               onClick={handleBackToTop}
