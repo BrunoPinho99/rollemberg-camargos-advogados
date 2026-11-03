@@ -15,25 +15,38 @@ export default function Hero({ copy }: HeroProps) {
     const video = videoRef.current;
     if (!video) return;
 
-    // Força muted no elemento DOM para autorização imediata de autoplay em Safari/iOS/Chrome
     video.muted = true;
     video.defaultMuted = true;
-    video.play().catch(() => {});
 
-    // Pausa o decodificador de vídeo quando fora do viewport para liberar GPU/bateria
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      },
-      { threshold: 0.05 }
-    );
+    const playVideo = () => {
+      video.play().catch(() => {});
+    };
 
-    observer.observe(video);
-    return () => observer.disconnect();
+    playVideo();
+    video.addEventListener("loadedmetadata", playVideo);
+    video.addEventListener("canplay", playVideo);
+
+    const onUserInteraction = () => {
+      playVideo();
+      window.removeEventListener("touchstart", onUserInteraction);
+      window.removeEventListener("touchend", onUserInteraction);
+      window.removeEventListener("click", onUserInteraction);
+      window.removeEventListener("scroll", onUserInteraction);
+    };
+
+    window.addEventListener("touchstart", onUserInteraction, { passive: true, once: true });
+    window.addEventListener("touchend", onUserInteraction, { passive: true, once: true });
+    window.addEventListener("click", onUserInteraction, { passive: true, once: true });
+    window.addEventListener("scroll", onUserInteraction, { passive: true, once: true });
+
+    return () => {
+      video.removeEventListener("loadedmetadata", playVideo);
+      video.removeEventListener("canplay", playVideo);
+      window.removeEventListener("touchstart", onUserInteraction);
+      window.removeEventListener("touchend", onUserInteraction);
+      window.removeEventListener("click", onUserInteraction);
+      window.removeEventListener("scroll", onUserInteraction);
+    };
   }, []);
 
   return (
@@ -49,11 +62,13 @@ export default function Hero({ copy }: HeroProps) {
           loop
           muted
           playsInline
+          webkit-playsinline="true"
+          x5-playsinline="true"
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         >
-          <source src="/hero-video.webm" type="video/webm" />
           <source src="/hero-video.mp4" type="video/mp4" />
+          <source src="/hero-video.webm" type="video/webm" />
         </video>
 
         {/* Overlays cinematográficos suaves para garantir máxima legibilidade */}

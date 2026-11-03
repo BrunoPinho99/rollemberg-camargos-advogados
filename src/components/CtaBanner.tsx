@@ -16,25 +16,38 @@ export default function CtaBanner({}: CtaBannerProps) {
     const video = videoRef.current;
     if (!video) return;
 
-    // Garante que o vídeo seja reproduzido automaticamente com muted
     video.muted = true;
     video.defaultMuted = true;
-    video.play().catch(() => {});
 
-    // Pausa quando o usuário sai completamente da área para economizar recursos
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      },
-      { rootMargin: "300px", threshold: 0.01 }
-    );
+    const playVideo = () => {
+      video.play().catch(() => {});
+    };
 
-    observer.observe(video);
-    return () => observer.disconnect();
+    playVideo();
+    video.addEventListener("loadedmetadata", playVideo);
+    video.addEventListener("canplay", playVideo);
+
+    const onUserInteraction = () => {
+      playVideo();
+      window.removeEventListener("touchstart", onUserInteraction);
+      window.removeEventListener("touchend", onUserInteraction);
+      window.removeEventListener("click", onUserInteraction);
+      window.removeEventListener("scroll", onUserInteraction);
+    };
+
+    window.addEventListener("touchstart", onUserInteraction, { passive: true, once: true });
+    window.addEventListener("touchend", onUserInteraction, { passive: true, once: true });
+    window.addEventListener("click", onUserInteraction, { passive: true, once: true });
+    window.addEventListener("scroll", onUserInteraction, { passive: true, once: true });
+
+    return () => {
+      video.removeEventListener("loadedmetadata", playVideo);
+      video.removeEventListener("canplay", playVideo);
+      window.removeEventListener("touchstart", onUserInteraction);
+      window.removeEventListener("touchend", onUserInteraction);
+      window.removeEventListener("click", onUserInteraction);
+      window.removeEventListener("scroll", onUserInteraction);
+    };
   }, []);
 
   return (
@@ -49,12 +62,14 @@ export default function CtaBanner({}: CtaBannerProps) {
             loop
             muted
             playsInline
+            webkit-playsinline="true"
+            x5-playsinline="true"
             preload="auto"
             poster="/cta-conversation-poster.webp"
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           >
-            <source src="/cta-conversation.webm" type="video/webm" />
             <source src="/cta-conversation.mp4" type="video/mp4" />
+            <source src="/cta-conversation.webm" type="video/webm" />
           </video>
 
           {/* Overlay suave e cinematográfico mantendo o vídeo bem claro */}
