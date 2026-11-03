@@ -391,7 +391,7 @@ export const copyVersionB: SiteCopy = {
         title: "SOCIEDADE & PARCERIAS",
         description:
           "Acordos de sócios, entrada de investidores, coproduções e divisão de resultados com regras claras desde o primeiro dia, evitando conflitos quando a operação crescer.",
-        image: "https://framerusercontent.com/images/Unj4zrUK7oJ6Ma2mUvFNpF17P1U.png",
+        image: "/servico-sociedade-parcerias.webp",
         alt: "Estruturação societária, acordo de sócios e parcerias estratégicas",
       },
       {
@@ -399,7 +399,7 @@ export const copyVersionB: SiteCopy = {
         title: "REGISTRO DE MARCA & ATIVOS",
         description:
           "Proteção oficial do nome, identidade visual, produtos e tecnologia no INPI para garantir que tudo o que você está construindo pertença de fato a você.",
-        image: "https://framerusercontent.com/images/9TGdyV5TPmEmHtmnA4gxULCrIL0.png",
+        image: "/servico-registro-marcas.webp",
         alt: "Registro de marca no INPI e proteção de ativos intelectuais",
       },
       {
@@ -407,7 +407,7 @@ export const copyVersionB: SiteCopy = {
         title: "BLINDAGEM COMERCIAL & CONFLITOS",
         description:
           "Contratos com clientes, fornecedores e equipe sem modelos genéricos, além de atuação rápida em cobranças, quebras contratuais e notificações extrajudiciais.",
-        image: "https://framerusercontent.com/images/5c2WmHLzjnU1fC8Mp9z1mGaVgjE.png",
+        image: "/servico-blindagem-comercial.webp",
         alt: "Contratos comerciais sob medida e resolução estratégica de conflitos",
       },
       {
@@ -483,7 +483,7 @@ export const copyVersionB: SiteCopy = {
         title: "ACORDO DE SÓCIOS E REESTRUTURAÇÃO DE PARTICIPAÇÕES",
         tags: "Direito Societário",
         year: "2025",
-        image: "https://framerusercontent.com/images/wsGNlyuOkIdU6Vf8VoUlYjuvmC4.png",
+        image: "/caso-acordo-socios.webp",
         alt: "Estruturação societária e acordo de sócios",
         align: "left",
       },
@@ -491,7 +491,7 @@ export const copyVersionB: SiteCopy = {
         title: "ADEQUAÇÃO DE TERMOS DE USO E CONTRATOS B2B",
         tags: "Tecnologia & Operações",
         year: "2025",
-        image: "https://framerusercontent.com/images/nmXZOsPpIlQjIHmg5uwOA5NJcI.png",
+        image: "/caso-termos-b2b.webp",
         alt: "Adequação de termos de uso e contratos B2B",
         align: "right",
       },
@@ -499,7 +499,7 @@ export const copyVersionB: SiteCopy = {
         title: "BLINDAGEM DE MARCA E PARCERIAS COMERCIAIS",
         tags: "Expansão de Marca",
         year: "2025",
-        image: "https://framerusercontent.com/images/uKY0y11Igx9LzVoeZBuszZASoU.png",
+        image: "/caso-blindagem-marcas.webp",
         alt: "Proteção de marca e contratos de parceria",
         align: "left",
       },
