@@ -29,7 +29,7 @@ export default function FAQ({ copy }: FAQProps) {
           </div>
 
           {/* Coluna Direita: Acordeão Interativo */}
-          <div className="lg:col-span-7 divide-y divide-[#e8e6df] border-t border-b border-[#e8e6df] reveal delay-100">
+          <div className="lg:col-span-7 divide-y divide-[#e8e6df] border-t border-b border-[#e8e6df]">
             {copy.faq.items.map((faq, idx) => {
               const isOpen = openIndex === idx;
               return (

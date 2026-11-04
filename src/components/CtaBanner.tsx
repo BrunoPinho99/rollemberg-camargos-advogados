@@ -18,14 +18,22 @@ export default function CtaBanner({}: CtaBannerProps) {
 
     video.muted = true;
     video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "true");
 
     const playVideo = () => {
-      video.play().catch(() => {});
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
     };
 
     playVideo();
     video.addEventListener("loadedmetadata", playVideo);
     video.addEventListener("canplay", playVideo);
+    video.addEventListener("canplaythrough", playVideo);
 
     const onUserInteraction = () => {
       playVideo();
@@ -43,6 +51,7 @@ export default function CtaBanner({}: CtaBannerProps) {
     return () => {
       video.removeEventListener("loadedmetadata", playVideo);
       video.removeEventListener("canplay", playVideo);
+      video.removeEventListener("canplaythrough", playVideo);
       window.removeEventListener("touchstart", onUserInteraction);
       window.removeEventListener("touchend", onUserInteraction);
       window.removeEventListener("click", onUserInteraction);
@@ -64,6 +73,9 @@ export default function CtaBanner({}: CtaBannerProps) {
             playsInline
             webkit-playsinline="true"
             x5-playsinline="true"
+            controls={false}
+            disablePictureInPicture
+            disableRemotePlayback
             preload="auto"
             poster="/cta-conversation-poster.webp"
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"

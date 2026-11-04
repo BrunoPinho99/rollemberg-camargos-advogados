@@ -15,16 +15,27 @@ export default function Hero({ copy }: HeroProps) {
     const video = videoRef.current;
     if (!video) return;
 
+    // Propriedades nativas obrigatórias no elemento DOM para liberação de autoplay no iOS Safari e Android Chrome
     video.muted = true;
     video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "true");
 
     const playVideo = () => {
-      video.play().catch(() => {});
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Trata rejeição silenciosa de autoplay sem bloquear a execução
+        });
+      }
     };
 
     playVideo();
     video.addEventListener("loadedmetadata", playVideo);
     video.addEventListener("canplay", playVideo);
+    video.addEventListener("canplaythrough", playVideo);
 
     const onUserInteraction = () => {
       playVideo();
@@ -42,6 +53,7 @@ export default function Hero({ copy }: HeroProps) {
     return () => {
       video.removeEventListener("loadedmetadata", playVideo);
       video.removeEventListener("canplay", playVideo);
+      video.removeEventListener("canplaythrough", playVideo);
       window.removeEventListener("touchstart", onUserInteraction);
       window.removeEventListener("touchend", onUserInteraction);
       window.removeEventListener("click", onUserInteraction);
@@ -59,12 +71,16 @@ export default function Hero({ copy }: HeroProps) {
         <video
           ref={videoRef}
           autoPlay
-          loop
           muted
+          loop
           playsInline
           webkit-playsinline="true"
           x5-playsinline="true"
+          controls={false}
+          disablePictureInPicture
+          disableRemotePlayback
           preload="auto"
+          poster="/hero-video-poster.webp"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         >
           <source src="/hero-video.mp4" type="video/mp4" />

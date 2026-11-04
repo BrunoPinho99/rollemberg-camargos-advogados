@@ -68,13 +68,13 @@ export default function Preloader() {
         }`}
       >
         {/* Monograma RC Branco */}
-        <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mb-6 animate-pulse-subtle">
+        <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mb-6 animate-pulse-subtle bg-transparent border-0 outline-none shadow-none">
           <Image
             src="/rc-logo-white.webp"
             alt="Rollemberg & Camargos"
             fill
             priority
-            className="object-contain drop-shadow-[0_4px_24px_rgba(255,255,255,0.18)]"
+            className="object-contain bg-transparent border-0 outline-none shadow-none"
           />
         </div>
 
