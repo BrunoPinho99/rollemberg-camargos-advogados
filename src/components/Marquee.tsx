@@ -21,10 +21,14 @@ export default function Marquee({}: MarqueeProps) {
   return (
     <section
       id="marquee"
-      className="w-full border-b border-[#e8e6df] bg-[#fcfbf7] py-3.5 sm:py-5 md:py-6 overflow-hidden select-none"
+      className="relative w-full border-b border-[#e8e6df] bg-[#fcfbf7] py-3.5 sm:py-5 md:py-6 overflow-hidden select-none"
       aria-label="Áreas de atuação em destaque"
     >
-      {/* Marquee Container com visibilidade imediata (sem classe reveal que oculta no mobile) */}
+      {/* Gradientes laterais sutis para entrada e saída ultra-smooth sem cortes secos */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-8 sm:w-20 bg-gradient-to-r from-[#fcfbf7] to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-8 sm:w-20 bg-gradient-to-l from-[#fcfbf7] to-transparent z-10" />
+
+      {/* Marquee Container com loop contínuo e aceleração por GPU */}
       <div className="relative w-full overflow-hidden">
         <div className="marquee-track flex items-center text-[#101010]">
           {/* Loop Group 1 */}

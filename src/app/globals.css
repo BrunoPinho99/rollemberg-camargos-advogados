@@ -127,7 +127,7 @@ article.group:hover img, .framer-card:hover img {
   transform: rotate(45deg);
 }
 
-/* Logo Marquee infinito contínuo e responsivo (mobile e desktop) */
+/* Logo Marquee infinito contínuo e ultra-smooth (mobile e desktop) */
 @keyframes marquee {
   0% { transform: translate3d(0, 0, 0); }
   100% { transform: translate3d(-50%, 0, 0); }
@@ -136,14 +136,17 @@ article.group:hover img, .framer-card:hover img {
   display: flex;
   width: max-content;
   will-change: transform;
-  animation: marquee 32s linear infinite;
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  animation: marquee 34s linear infinite;
 }
 .marquee-track:hover {
   animation-play-state: paused;
 }
 @media (max-width: 768px) {
   .marquee-track {
-    animation-duration: 25s;
+    animation-duration: 28s;
   }
 }
 
