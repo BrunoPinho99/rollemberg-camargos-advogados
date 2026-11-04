@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Schibsted_Grotesk } from "next/font/google";
 import "./globals.css";
 import MotionProvider from "@/components/MotionProvider";
@@ -299,6 +300,20 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`h-full antialiased ${schibstedGrotesk.variable}`}>
       <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-FZ7QH5LK1G"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-FZ7QH5LK1G');
+          `}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
