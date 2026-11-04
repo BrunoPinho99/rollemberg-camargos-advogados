@@ -144,7 +144,7 @@ export default function About({ copy }: AboutProps) {
       className="relative bg-[#fcfbf7] border-b border-[#e8e6df] h-[175vh] md:h-[260vh]"
     >
       {/* Container Sticky: Trava centralizado no viewport com scrub e parallax tanto no mobile quanto no desktop */}
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden select-none">
+      <div className="sticky top-0 h-[100svh] w-full flex flex-col justify-center overflow-hidden select-none">
         {/* Parallax Camada 2: Iluminação lateral reativa */}
         <div
           ref={spotlightLeftRef}

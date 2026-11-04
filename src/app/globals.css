@@ -127,18 +127,24 @@ article.group:hover img, .framer-card:hover img {
   transform: rotate(45deg);
 }
 
-/* Logo Marquee infinito */
+/* Logo Marquee infinito contínuo e responsivo (mobile e desktop) */
 @keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 .marquee-track {
   display: flex;
-  width: 200%;
-  animation: marquee 28s linear infinite;
+  width: max-content;
+  will-change: transform;
+  animation: marquee 32s linear infinite;
 }
 .marquee-track:hover {
   animation-play-state: paused;
+}
+@media (max-width: 768px) {
+  .marquee-track {
+    animation-duration: 25s;
+  }
 }
 
 /* Revelação Slide-Up no Scroll com Física Fluida */
