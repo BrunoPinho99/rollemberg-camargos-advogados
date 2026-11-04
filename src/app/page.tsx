@@ -7,6 +7,7 @@ import Expertise from "@/components/Expertise";
 import FAQ from "@/components/FAQ";
 import CtaBanner from "@/components/CtaBanner";
 import Footer from "@/components/Footer";
+import Preloader from "@/components/Preloader";
 import { copyVersionB, SiteCopy } from "@/content/siteCopy";
 
 const copy: SiteCopy = copyVersionB;
@@ -14,6 +15,7 @@ const copy: SiteCopy = copyVersionB;
 export default function Home() {
   return (
     <>
+      <Preloader />
       <Header copy={copy} />
       <main className="flex-1">
         <Hero copy={copy} />
