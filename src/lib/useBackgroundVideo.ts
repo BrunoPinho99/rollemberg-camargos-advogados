@@ -94,3 +94,4 @@ export function useBackgroundVideo() {
 
   return { videoRef, isPlaying };
 }
+
