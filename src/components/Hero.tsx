@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SiteCopy } from "@/content/siteCopy";
 import { WHATSAPP_DIRECT_URL } from "@/lib/whatsapp";
 
@@ -10,6 +10,7 @@ interface HeroProps {
 
 export default function Hero({ copy }: HeroProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -31,23 +32,35 @@ export default function Hero({ copy }: HeroProps) {
       }
     };
 
+    const handlePlaying = () => {
+      forceNoControls();
+      setIsVideoPlaying(true);
+    };
+
     const playVideo = () => {
       forceNoControls();
       const playPromise = video.play();
       if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // Trata silenciosamente qualquer restrição de autoplay sem erros
-        });
+        playPromise
+          .then(() => {
+            setIsVideoPlaying(true);
+          })
+          .catch(() => {
+            // Em dispositivos com Modo Pouca Energia (Low Power Mode no iOS), o autoplay inicial é bloqueado pelo SO.
+            // O vídeo permanece com opacity-0 (ocultando qualquer botão nativo de play) até o primeiro toque/scroll.
+          });
       }
     };
 
-    playVideo();
+    video.addEventListener("playing", handlePlaying);
+    video.addEventListener("play", handlePlaying);
+    video.addEventListener("pause", forceNoControls);
+    video.addEventListener("timeupdate", forceNoControls);
     video.addEventListener("loadedmetadata", playVideo);
     video.addEventListener("canplay", playVideo);
     video.addEventListener("canplaythrough", playVideo);
-    video.addEventListener("play", forceNoControls);
-    video.addEventListener("pause", forceNoControls);
-    video.addEventListener("timeupdate", forceNoControls);
+
+    playVideo();
 
     const onUserInteraction = () => {
       playVideo();
@@ -63,12 +76,13 @@ export default function Hero({ copy }: HeroProps) {
     window.addEventListener("scroll", onUserInteraction, { passive: true, once: true });
 
     return () => {
+      video.removeEventListener("playing", handlePlaying);
+      video.removeEventListener("play", handlePlaying);
+      video.removeEventListener("pause", forceNoControls);
+      video.removeEventListener("timeupdate", forceNoControls);
       video.removeEventListener("loadedmetadata", playVideo);
       video.removeEventListener("canplay", playVideo);
       video.removeEventListener("canplaythrough", playVideo);
-      video.removeEventListener("play", forceNoControls);
-      video.removeEventListener("pause", forceNoControls);
-      video.removeEventListener("timeupdate", forceNoControls);
       window.removeEventListener("touchstart", onUserInteraction);
       window.removeEventListener("touchend", onUserInteraction);
       window.removeEventListener("click", onUserInteraction);
@@ -81,7 +95,15 @@ export default function Hero({ copy }: HeroProps) {
       id="home"
       className="relative min-h-[100svh] w-full flex flex-col justify-between overflow-hidden bg-[#101010] text-white"
     >
-      {/* Background Video que preenche toda a altura da seção */}
+      {/* Background Poster permanente: imagem estática cinematográfica que renderiza imediatamente sem botões */}
+      <div
+        className="absolute inset-0 z-0 bg-cover bg-center pointer-events-none select-none"
+        style={{ backgroundImage: "url('/hero-video-poster.webp')" }}
+      />
+
+      {/* Background Video: só se torna visível (opacity-100) quando estiver efetivamente reproduzindo.
+          Se o iOS estiver em Modo Pouca Energia, o vídeo pausado fica invisível (opacity-0),
+          impedindo 100% que o sistema operacional injete qualquer botão nativo de play sobre a tela! */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <video
           ref={videoRef}
@@ -96,7 +118,9 @@ export default function Hero({ copy }: HeroProps) {
           disablePictureInPicture
           disableRemotePlayback
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+          className={`absolute inset-0 w-full h-full object-cover pointer-events-none select-none transition-opacity duration-700 ease-out ${
+            isVideoPlaying ? "opacity-100" : "opacity-0 invisible"
+          }`}
         >
           <source src="/hero-video.mp4" type="video/mp4" />
           <source src="/hero-video.webm" type="video/webm" />

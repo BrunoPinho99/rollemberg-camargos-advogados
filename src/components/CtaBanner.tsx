@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SiteCopy } from "@/content/siteCopy";
 import { WHATSAPP_DIRECT_URL } from "@/lib/whatsapp";
 
@@ -11,6 +11,7 @@ interface CtaBannerProps {
 
 export default function CtaBanner({}: CtaBannerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -31,21 +32,32 @@ export default function CtaBanner({}: CtaBannerProps) {
       }
     };
 
+    const handlePlaying = () => {
+      forceNoControls();
+      setIsVideoPlaying(true);
+    };
+
     const playVideo = () => {
       forceNoControls();
       const playPromise = video.play();
       if (playPromise !== undefined) {
-        playPromise.catch(() => {});
+        playPromise
+          .then(() => {
+            setIsVideoPlaying(true);
+          })
+          .catch(() => {});
       }
     };
 
-    playVideo();
+    video.addEventListener("playing", handlePlaying);
+    video.addEventListener("play", handlePlaying);
+    video.addEventListener("pause", forceNoControls);
+    video.addEventListener("timeupdate", forceNoControls);
     video.addEventListener("loadedmetadata", playVideo);
     video.addEventListener("canplay", playVideo);
     video.addEventListener("canplaythrough", playVideo);
-    video.addEventListener("play", forceNoControls);
-    video.addEventListener("pause", forceNoControls);
-    video.addEventListener("timeupdate", forceNoControls);
+
+    playVideo();
 
     const onUserInteraction = () => {
       playVideo();
@@ -61,12 +73,13 @@ export default function CtaBanner({}: CtaBannerProps) {
     window.addEventListener("scroll", onUserInteraction, { passive: true, once: true });
 
     return () => {
+      video.removeEventListener("playing", handlePlaying);
+      video.removeEventListener("play", handlePlaying);
+      video.removeEventListener("pause", forceNoControls);
+      video.removeEventListener("timeupdate", forceNoControls);
       video.removeEventListener("loadedmetadata", playVideo);
       video.removeEventListener("canplay", playVideo);
       video.removeEventListener("canplaythrough", playVideo);
-      video.removeEventListener("play", forceNoControls);
-      video.removeEventListener("pause", forceNoControls);
-      video.removeEventListener("timeupdate", forceNoControls);
       window.removeEventListener("touchstart", onUserInteraction);
       window.removeEventListener("touchend", onUserInteraction);
       window.removeEventListener("click", onUserInteraction);
@@ -79,6 +92,12 @@ export default function CtaBanner({}: CtaBannerProps) {
       <div className="max-w-[1400px] mx-auto px-5 sm:px-10 md:px-14">
         {/* Card Flutuante com Bordas Arredondadas e Vídeo em Loop (Inspirado em attest.framer.media) */}
         <div className="relative w-full rounded-2xl sm:rounded-3xl md:rounded-[36px] overflow-hidden min-h-[380px] sm:min-h-[460px] md:min-h-[580px] flex flex-col items-center justify-center text-center p-6 sm:p-10 md:p-14 shadow-2xl reveal">
+          {/* Background Poster constante para evitar tela vazia ou botão de play em Low Power Mode */}
+          <div
+            className="absolute inset-0 z-0 bg-cover bg-center pointer-events-none select-none"
+            style={{ backgroundImage: "url('/cta-conversation-poster.webp')" }}
+          />
+
           {/* Vídeo de Fundo em Loop da Reunião com Iluminação Quente */}
           <video
             ref={videoRef}
@@ -93,7 +112,9 @@ export default function CtaBanner({}: CtaBannerProps) {
             disablePictureInPicture
             disableRemotePlayback
             preload="auto"
-            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+            className={`absolute inset-0 w-full h-full object-cover pointer-events-none select-none transition-opacity duration-700 ease-out ${
+              isVideoPlaying ? "opacity-100" : "opacity-0 invisible"
+            }`}
           >
             <source src="/cta-conversation.mp4" type="video/mp4" />
             <source src="/cta-conversation.webm" type="video/webm" />

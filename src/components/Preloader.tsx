@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 export default function Preloader() {
   const [progress, setProgress] = useState(0);
@@ -66,14 +65,15 @@ export default function Preloader() {
           isExiting ? "scale-[1.02] opacity-0" : "scale-100 opacity-100"
         }`}
       >
-        {/* Monograma RC Branco — 100% limpo, sem moldura, sem bordas, sem sombras retangulares */}
-        <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mb-5 animate-pulse-subtle bg-transparent border-0 outline-none shadow-none">
-          <Image
-            src="/rc-logo-white.webp"
+        {/* Monograma RC Branco — canal alfa limpo, sem moldura, sem bordas, sem sombras retangulares */}
+        <div className="relative w-16 h-24 sm:w-20 sm:h-28 mb-5 animate-pulse-subtle bg-transparent border-0 outline-none shadow-none flex items-center justify-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/rc-monogram-v2.webp?v=5"
             alt="Rollemberg & Camargos"
-            fill
-            priority
-            className="object-contain bg-transparent border-0 outline-none shadow-none"
+            width={445}
+            height={659}
+            className="w-full h-full object-contain bg-transparent border-0 outline-none shadow-none select-none"
           />
         </div>
 
