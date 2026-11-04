@@ -15,19 +15,28 @@ export default function Hero({ copy }: HeroProps) {
     const video = videoRef.current;
     if (!video) return;
 
-    // Propriedades nativas obrigatórias no elemento DOM para liberação de autoplay no iOS Safari e Android Chrome
+    // Força configurações nativas estritas no elemento DOM para garantir autoplay sem controles
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
+    video.controls = false;
     video.setAttribute("muted", "");
     video.setAttribute("playsinline", "");
     video.setAttribute("webkit-playsinline", "true");
+    video.setAttribute("x5-playsinline", "true");
+
+    const forceNoControls = () => {
+      if (video.controls) {
+        video.controls = false;
+      }
+    };
 
     const playVideo = () => {
+      forceNoControls();
       const playPromise = video.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {
-          // Trata rejeição silenciosa de autoplay sem bloquear a execução
+          // Trata silenciosamente qualquer restrição de autoplay sem erros
         });
       }
     };
@@ -36,6 +45,9 @@ export default function Hero({ copy }: HeroProps) {
     video.addEventListener("loadedmetadata", playVideo);
     video.addEventListener("canplay", playVideo);
     video.addEventListener("canplaythrough", playVideo);
+    video.addEventListener("play", forceNoControls);
+    video.addEventListener("pause", forceNoControls);
+    video.addEventListener("timeupdate", forceNoControls);
 
     const onUserInteraction = () => {
       playVideo();
@@ -54,6 +66,9 @@ export default function Hero({ copy }: HeroProps) {
       video.removeEventListener("loadedmetadata", playVideo);
       video.removeEventListener("canplay", playVideo);
       video.removeEventListener("canplaythrough", playVideo);
+      video.removeEventListener("play", forceNoControls);
+      video.removeEventListener("pause", forceNoControls);
+      video.removeEventListener("timeupdate", forceNoControls);
       window.removeEventListener("touchstart", onUserInteraction);
       window.removeEventListener("touchend", onUserInteraction);
       window.removeEventListener("click", onUserInteraction);
@@ -67,9 +82,10 @@ export default function Hero({ copy }: HeroProps) {
       className="relative min-h-[100svh] w-full flex flex-col justify-between overflow-hidden bg-[#101010] text-white"
     >
       {/* Background Video que preenche toda a altura da seção */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <video
           ref={videoRef}
+          src="/hero-video.mp4"
           autoPlay
           muted
           loop
@@ -80,8 +96,7 @@ export default function Hero({ copy }: HeroProps) {
           disablePictureInPicture
           disableRemotePlayback
           preload="auto"
-          poster="/hero-video-poster.webp"
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
         >
           <source src="/hero-video.mp4" type="video/mp4" />
           <source src="/hero-video.webm" type="video/webm" />

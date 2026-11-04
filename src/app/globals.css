@@ -169,24 +169,41 @@ article.group:hover img, .framer-card:hover img {
 .reveal.delay-400 { transition-delay: 0.40s; }
 .reveal.delay-500 { transition-delay: 0.50s; }
 
-/* Animação Slide-Up de entrada do Hero sincronizada com o fim do Preloader */
-.hero-animate-title,
+/* Oculta controles nativos de vídeo e botões de play do iOS WebKit e Android */
+video::-webkit-media-controls,
+video::-webkit-media-controls-panel,
+video::-webkit-media-controls-play-button,
+video::-webkit-media-controls-start-playback-button,
+video::-webkit-media-controls-overlay-play-button,
+video::-webkit-media-controls-enclosure {
+  display: none !important;
+  -webkit-appearance: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Animação suave e imediata de entrada do Hero (sem dependência de loader ou JS) */
+@keyframes heroEntrance {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hero-animate-title {
+  animation: heroEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 .hero-animate-sub {
   opacity: 0;
-  transform: translate3d(0, 44px, 0);
-  transition: opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.95s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
-}
-html[data-site-ready="true"] .hero-animate-title {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-  transition-delay: 0.15s;
-}
-html[data-site-ready="true"] .hero-animate-sub {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-  transition-delay: 0.32s;
+  animation: heroEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.12s forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {

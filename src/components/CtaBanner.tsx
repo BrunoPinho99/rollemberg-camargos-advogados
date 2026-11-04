@@ -19,11 +19,20 @@ export default function CtaBanner({}: CtaBannerProps) {
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
+    video.controls = false;
     video.setAttribute("muted", "");
     video.setAttribute("playsinline", "");
     video.setAttribute("webkit-playsinline", "true");
+    video.setAttribute("x5-playsinline", "true");
+
+    const forceNoControls = () => {
+      if (video.controls) {
+        video.controls = false;
+      }
+    };
 
     const playVideo = () => {
+      forceNoControls();
       const playPromise = video.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {});
@@ -34,6 +43,9 @@ export default function CtaBanner({}: CtaBannerProps) {
     video.addEventListener("loadedmetadata", playVideo);
     video.addEventListener("canplay", playVideo);
     video.addEventListener("canplaythrough", playVideo);
+    video.addEventListener("play", forceNoControls);
+    video.addEventListener("pause", forceNoControls);
+    video.addEventListener("timeupdate", forceNoControls);
 
     const onUserInteraction = () => {
       playVideo();
@@ -52,6 +64,9 @@ export default function CtaBanner({}: CtaBannerProps) {
       video.removeEventListener("loadedmetadata", playVideo);
       video.removeEventListener("canplay", playVideo);
       video.removeEventListener("canplaythrough", playVideo);
+      video.removeEventListener("play", forceNoControls);
+      video.removeEventListener("pause", forceNoControls);
+      video.removeEventListener("timeupdate", forceNoControls);
       window.removeEventListener("touchstart", onUserInteraction);
       window.removeEventListener("touchend", onUserInteraction);
       window.removeEventListener("click", onUserInteraction);
@@ -67,6 +82,7 @@ export default function CtaBanner({}: CtaBannerProps) {
           {/* Vídeo de Fundo em Loop da Reunião com Iluminação Quente */}
           <video
             ref={videoRef}
+            src="/cta-conversation.mp4"
             autoPlay
             loop
             muted
@@ -77,7 +93,6 @@ export default function CtaBanner({}: CtaBannerProps) {
             disablePictureInPicture
             disableRemotePlayback
             preload="auto"
-            poster="/cta-conversation-poster.webp"
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           >
             <source src="/cta-conversation.mp4" type="video/mp4" />
