@@ -29,13 +29,13 @@ export default function FAQ({ copy }: FAQProps) {
           </div>
 
           {/* Coluna Direita: Acordeão Interativo */}
-          <div className="lg:col-span-7 divide-y divide-[#e8e6df] border-t border-b border-[#e8e6df]">
+          <div className="lg:col-span-7 divide-y divide-[#e8e6df] border-t border-b border-[#e8e6df] reveal delay-100">
             {copy.faq.items.map((faq, idx) => {
               const isOpen = openIndex === idx;
               return (
                 <div
                   key={faq.q}
-                  className={`faq-item py-4 sm:py-6 md:py-7 reveal ${isOpen ? "active" : ""}`}
+                  className={`faq-item py-4 sm:py-6 md:py-7 ${isOpen ? "active" : ""}`}
                 >
                   <button
                     onClick={() => toggle(idx)}

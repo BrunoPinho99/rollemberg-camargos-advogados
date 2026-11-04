@@ -157,7 +157,7 @@ article.group:hover img, .framer-card:hover img {
 }
 
 /* Otimização de renderização diferida para seções inferiores */
-#faq, #contact {
+#contact {
   content-visibility: auto;
   contain-intrinsic-size: auto 650px;
 }
