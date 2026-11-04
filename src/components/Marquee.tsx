@@ -25,14 +25,14 @@ export default function Marquee({}: MarqueeProps) {
       aria-label="Áreas de atuação em destaque"
     >
       {/* Gradientes laterais sutis para entrada e saída ultra-smooth sem cortes secos */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-8 sm:w-20 bg-gradient-to-r from-[#fcfbf7] to-transparent z-10" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-8 sm:w-20 bg-gradient-to-l from-[#fcfbf7] to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-10 sm:w-28 bg-gradient-to-r from-[#fcfbf7] to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-10 sm:w-28 bg-gradient-to-l from-[#fcfbf7] to-transparent z-10" />
 
       {/* Marquee Container com loop contínuo e aceleração por GPU */}
       <div className="relative w-full overflow-hidden">
         <div className="marquee-track flex items-center text-[#101010]">
           {/* Loop Group 1 */}
-          <div className="flex items-center shrink-0 gap-6 sm:gap-10 pr-6 sm:pr-10">
+          <div className="flex items-center shrink-0 gap-8 sm:gap-12 pr-8 sm:pr-12">
             {legalPractices.map((practice, i) => (
               <a
                 key={`prac1-${i}`}
@@ -42,7 +42,7 @@ export default function Marquee({}: MarqueeProps) {
                 <span className="text-[12px] sm:text-[14px] font-medium tracking-[0.12em] uppercase text-[#101010]/85 group-hover:text-[#101010] transition-colors">
                   {practice}
                 </span>
-                <span className="ml-6 sm:ml-10 text-xs font-light text-[#101010]/25 select-none">
+                <span className="ml-8 sm:ml-12 text-xs font-light text-[#101010]/25 select-none">
                   /
                 </span>
               </a>
@@ -50,7 +50,7 @@ export default function Marquee({}: MarqueeProps) {
           </div>
 
           {/* Loop Group 2 (Duplicado para loop infinito 100% contínuo) */}
-          <div className="flex items-center shrink-0 gap-6 sm:gap-10 pr-6 sm:pr-10" aria-hidden="true">
+          <div className="flex items-center shrink-0 gap-8 sm:gap-12 pr-8 sm:pr-12" aria-hidden="true">
             {legalPractices.map((practice, i) => (
               <a
                 key={`prac2-${i}`}
@@ -61,7 +61,7 @@ export default function Marquee({}: MarqueeProps) {
                 <span className="text-[12px] sm:text-[14px] font-medium tracking-[0.12em] uppercase text-[#101010]/85 group-hover:text-[#101010] transition-colors">
                   {practice}
                 </span>
-                <span className="ml-6 sm:ml-10 text-xs font-light text-[#101010]/25 select-none">
+                <span className="ml-8 sm:ml-12 text-xs font-light text-[#101010]/25 select-none">
                   /
                 </span>
               </a>
