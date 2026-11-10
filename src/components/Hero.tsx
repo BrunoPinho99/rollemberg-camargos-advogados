@@ -1,6 +1,6 @@
 "use client";
 
-import { useBackgroundVideo } from "@/lib/useBackgroundVideo";
+import BackgroundVideo from "@/components/BackgroundVideo";
 import { SiteCopy } from "@/content/siteCopy";
 
 interface HeroProps {
@@ -8,50 +8,19 @@ interface HeroProps {
 }
 
 export default function Hero({ copy }: HeroProps) {
-  const { videoRef, isPlaying: isVideoPlaying } = useBackgroundVideo();
-
   return (
     <section
       id="home"
       className="relative min-h-[100svh] w-full flex flex-col justify-between overflow-hidden bg-[#101010] text-white"
     >
-      {/* Background Poster permanente: imagem estática cinematográfica que renderiza imediatamente sem botões */}
-      <div
-        className="absolute inset-0 z-0 bg-cover bg-center pointer-events-none select-none"
-        style={{ backgroundImage: "url('/hero-video-poster.webp')" }}
-      />
-
-      {/* Background Video: só se torna visível (opacity-100) quando estiver efetivamente reproduzindo.
-          Se o iOS estiver em Modo Pouca Energia, o vídeo pausado fica invisível (opacity-0),
-          impedindo 100% que o sistema operacional injete qualquer botão nativo de play sobre a tela! */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          webkit-playsinline="true"
-          x5-playsinline="true"
-          controls={false}
-          disablePictureInPicture
-          disableRemotePlayback
-          preload="auto"
-          poster="/hero-video-poster.webp"
-          className={`absolute inset-0 w-full h-full object-cover pointer-events-none select-none transition-opacity duration-700 ease-out ${
-            isVideoPlaying ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <source src="/hero-video.mp4" type="video/mp4" />
-          <source src="/hero-video.webm" type="video/webm" />
-        </video>
-
+      {/* Background Video Otimizado com CDN fallback e Zero Peso Visual */}
+      <BackgroundVideo priority={true}>
         {/* Overlays cinematográficos suaves para garantir máxima legibilidade */}
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/55 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-tr from-black/65 via-black/20 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-      </div>
+      </BackgroundVideo>
 
       {/* Espaçamento superior para compensar o cabeçalho fixo */}
       <div className="pt-[clamp(88px,14vh,140px)]" />
